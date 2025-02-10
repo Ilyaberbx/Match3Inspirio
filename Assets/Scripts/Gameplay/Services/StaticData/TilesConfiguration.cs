@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EndlessHeresy.Gameplay.Actors;
+using UnityEngine;
 
 namespace EndlessHeresy.Gameplay.Services.StaticData
 {
@@ -7,8 +8,10 @@ namespace EndlessHeresy.Gameplay.Services.StaticData
     {
         [SerializeField] private Sprite _oddSprite;
         [SerializeField] private Sprite _evenSprite;
-
+        [SerializeField] private TileActor _prefab;
         public Sprite OddSprite => _oddSprite;
         public Sprite EvenSprite => _evenSprite;
+
+        public TileActor Prefab => _prefab;
     }
 }

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _oddSprite: {fileID: 21300000, guid: 6007a0fd1c3ad314f8c334a4d432af80, type: 3}
   _evenSprite: {fileID: 21300000, guid: 48dcf600542d487428f4421dfdde4392, type: 3}
+  _prefab: {fileID: 3709748950187270231, guid: addde0419fa2f6c4a9912cc265059340, type: 3}

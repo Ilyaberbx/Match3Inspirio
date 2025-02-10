@@ -12,7 +12,7 @@ namespace EndlessHeresy.Gameplay.Services.StaticData
         [SerializeField] private GameBoardConfiguration _gameBoardConfiguration;
         [SerializeField] private TilesConfiguration _tilesConfiguration;
 
-        public GameBoardConfiguration GetGameBoardConfiguration() => _gameBoardConfiguration;
+        public GameBoardConfiguration GetGameBoardConfiguration(int levelId) => _gameBoardConfiguration;
         public TilesConfiguration GetTilesConfiguration() => _tilesConfiguration;
 
         protected override Task OnInitializeAsync(CancellationToken cancellationToken)

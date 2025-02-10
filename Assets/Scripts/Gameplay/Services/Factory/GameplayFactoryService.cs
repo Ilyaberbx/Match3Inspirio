@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Better.Locators.Runtime;
 using Better.Services.Runtime;
 using EndlessHeresy.Gameplay.Actors;
-using EndlessHeresy.Gameplay.Services.Sprites;
 using EndlessHeresy.Gameplay.Services.StaticData;
 using EndlessHeresy.Gameplay.Systems;
 using EndlessHeresy.Utilities;
@@ -18,7 +17,6 @@ namespace EndlessHeresy.Gameplay.Services.Factory
         [SerializeField] private GameObject _root;
 
         private IGameplayStaticDataService _staticDataService;
-        private GameBoardConfiguration _gameBoardConfiguration;
 
         protected override Task OnInitializeAsync(CancellationToken cancellationToken)
         {
@@ -30,18 +28,17 @@ namespace EndlessHeresy.Gameplay.Services.Factory
             await Task.CompletedTask;
 
             _staticDataService = ServiceLocator.Get<GameplayStaticDataService>();
-            _gameBoardConfiguration = _staticDataService.GetGameBoardConfiguration();
         }
 
-        public Task<GameBoardActor> CreateGameBoardActor()
+        public Task<GameBoardActor> CreateGameBoardActor(int levelId)
         {
-            var prefab = _gameBoardConfiguration.BoardPrefab;
+            var configuration = _staticDataService.GetGameBoardConfiguration(levelId);
             var builder = MonoActorUtility.GetBuilder<GameBoardActor>();
             var sizeStorage = new SizeStorageComponent();
-            sizeStorage.Setup(_gameBoardConfiguration.Width, _gameBoardConfiguration.Height);
+            sizeStorage.Setup(configuration.Width, configuration.Height);
 
             return builder
-                .ForPrefab(prefab)
+                .ForPrefab(configuration.BoardPrefab)
                 .WithParent(_root.GetComponent<RectTransform>())
                 .WithComponent(sizeStorage)
                 .Build();
@@ -49,13 +46,13 @@ namespace EndlessHeresy.Gameplay.Services.Factory
 
         public Task<TileActor> CreateTileActor(int x, int y, Transform parent)
         {
-            var prefab = _gameBoardConfiguration.TilePrefab;
+            var configuration = _staticDataService.GetTilesConfiguration();
             var builder = MonoActorUtility.GetBuilder<TileActor>();
             var pointStorage = new PointStorageComponent();
             pointStorage.SetPoint(new Vector2Int(x, y));
 
             return builder
-                .ForPrefab(prefab)
+                .ForPrefab(configuration.Prefab)
                 .WithParent(parent)
                 .WithComponent(pointStorage)
                 .Build();

@@ -2,7 +2,7 @@
 {
     public interface IGameplayStaticDataService
     {
-        GameBoardConfiguration GetGameBoardConfiguration();
+        GameBoardConfiguration GetGameBoardConfiguration(int levelId);
         TilesConfiguration GetTilesConfiguration();
     }
 }
