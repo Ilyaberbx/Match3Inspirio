@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Better.Locators.Runtime;
 using EndlessHeresy.Core;
 using EndlessHeresy.Gameplay.Services.Sprites;
@@ -9,11 +10,17 @@ namespace EndlessHeresy.Gameplay.Actors
     public sealed class TileActor : MonoActor
     {
         private ISpriteService _spriteService;
+        private IGameBoard _board;
         private PointStorageComponent _pointStorage;
         private ImageStorageComponent _imageStorage;
         private ItemStorageComponent _itemStorage;
+        private TileActor[] _neighbors;
 
         public ItemActor Item => _itemStorage.Item;
+        private TileActor Left => _board.GetTileActor(_pointStorage.Point.x - 1, _pointStorage.Point.y);
+        private TileActor Right => _board.GetTileActor(_pointStorage.Point.x + 1, _pointStorage.Point.y);
+        private TileActor Top => _board.GetTileActor(_pointStorage.Point.x, _pointStorage.Point.y - 1);
+        private TileActor Bottom => _board.GetTileActor(_pointStorage.Point.x, _pointStorage.Point.y + 1);
 
         protected override async Task OnInitializeAsync()
         {
@@ -27,12 +34,49 @@ namespace EndlessHeresy.Gameplay.Actors
             InitializeSprite();
         }
 
+        public void SetBoard(IGameBoard board)
+        {
+            _board = board;
+            _neighbors = new[]
+            {
+                Left,
+                Right,
+                Top,
+                Bottom,
+            };
+        }
+
         public void SetItem(ItemActor item)
         {
             _itemStorage.SetItem(item);
             var pointStorage = item.GetComponent<PointStorageComponent>();
             pointStorage.SetPoint(_pointStorage.Point);
             item.transform.SetParent(transform);
+        }
+
+        public IReadOnlyList<TileActor> GetConnected(List<TileActor> excluded = null)
+        {
+            var result = new List<TileActor>();
+            excluded ??= new List<TileActor>();
+            excluded.Add(this);
+            result.Add(this);
+
+            foreach (var neighbor in _neighbors)
+            {
+                if (neighbor == null || excluded.Contains(neighbor))
+                {
+                    continue;
+                }
+
+                if (neighbor.Item.Index != Item.Index)
+                {
+                    continue;
+                }
+
+                result.AddRange(neighbor.GetConnected(excluded));
+            }
+
+            return result;
         }
 
         private void InitializeSprite()

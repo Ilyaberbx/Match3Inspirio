@@ -14,6 +14,7 @@ namespace EndlessHeresy.Gameplay.Actors
         private ISpriteService _spriteService;
         private IdentifierStorageComponent _identifierStorage;
         private ButtonListenerComponent _buttonListener;
+        public int Index => _identifierStorage.Value;
 
         protected override async Task OnInitializeAsync()
         {
