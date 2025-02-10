@@ -6,7 +6,8 @@ namespace EndlessHeresy.Gameplay.Services.Factory
 {
     public interface IGameplayFactoryService
     {
-        Task<GameBoardActor> CreateGameBoardActor(int levelId);
-        Task<TileActor> CreateTileActor(int x, int y, Transform parent);
+        Task<GameBoardActor> CreateGameBoardAsync(int levelId);
+        Task<ItemActor> CreateItemAsync(int index, Transform parent);
+        Task<TileActor> CreateTileAsync(int x, int y, Transform parent);
     }
 }

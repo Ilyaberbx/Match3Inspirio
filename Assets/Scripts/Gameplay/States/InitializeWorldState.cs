@@ -13,7 +13,7 @@ namespace EndlessHeresy.Gameplay.States
         {
             await Task.CompletedTask;
             _gameplayFactoryService = ServiceLocator.Get<GameplayFactoryService>();
-            await _gameplayFactoryService.CreateGameBoardActor(0);
+            await _gameplayFactoryService.CreateGameBoardAsync(0);
         }
 
         public override Task ExitAsync(CancellationToken token)

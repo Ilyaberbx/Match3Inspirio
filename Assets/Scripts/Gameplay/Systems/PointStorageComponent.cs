@@ -1,7 +1,7 @@
 ﻿using EndlessHeresy.Core;
 using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.Services.StaticData
+namespace EndlessHeresy.Gameplay.Systems
 {
     public sealed class PointStorageComponent : PocoComponent
     {

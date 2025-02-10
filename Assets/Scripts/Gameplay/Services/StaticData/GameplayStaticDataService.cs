@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Better.Services.Runtime;
@@ -11,18 +12,12 @@ namespace EndlessHeresy.Gameplay.Services.StaticData
     {
         [SerializeField] private GameBoardConfiguration _gameBoardConfiguration;
         [SerializeField] private TilesConfiguration _tilesConfiguration;
-
-        public GameBoardConfiguration GetGameBoardConfiguration(int levelId) => _gameBoardConfiguration;
+        [SerializeField] private ItemsConfiguration _itemsConfiguration;
+        public GameBoardConfiguration GetGameBoardConfiguration(int id) => _gameBoardConfiguration;
         public TilesConfiguration GetTilesConfiguration() => _tilesConfiguration;
-
-        protected override Task OnInitializeAsync(CancellationToken cancellationToken)
-        {
-            return Task.CompletedTask;
-        }
-
-        protected override Task OnPostInitializeAsync(CancellationToken cancellationToken)
-        {
-            return Task.CompletedTask;
-        }
+        public ItemsConfiguration GetItemsConfiguration() => _itemsConfiguration;
+        public ItemConfiguration GetItemConfiguration(int index) => _itemsConfiguration.Items[index];
+        protected override Task OnInitializeAsync(CancellationToken cancellationToken) => Task.CompletedTask;
+        protected override Task OnPostInitializeAsync(CancellationToken cancellationToken) => Task.CompletedTask;
     }
 }

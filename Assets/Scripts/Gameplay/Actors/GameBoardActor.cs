@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Better.Locators.Runtime;
 using EndlessHeresy.Core;
 using EndlessHeresy.Gameplay.Services.Factory;
+using EndlessHeresy.Gameplay.Services.StaticData;
 using EndlessHeresy.Gameplay.Systems;
 
 namespace EndlessHeresy.Gameplay.Actors
@@ -9,23 +11,40 @@ namespace EndlessHeresy.Gameplay.Actors
     public sealed class GameBoardActor : MonoActor
     {
         private IGameplayFactoryService _gameplayFactoryService;
+        private IGameplayStaticDataService _gameplayStaticDataService;
+
         private TileActor[,] _tiles;
+        private Random _random;
+        private SizeStorageComponent _sizeStorage;
+        private GridStorageComponent _gridStorage;
 
         protected override async Task OnInitializeAsync()
         {
             await base.OnInitializeAsync();
 
             _gameplayFactoryService = ServiceLocator.Get<GameplayFactoryService>();
-            await InstantiateBoard();
+            _gameplayStaticDataService = ServiceLocator.Get<GameplayStaticDataService>();
+            _sizeStorage = GetComponent<SizeStorageComponent>();
+            _gridStorage = GetComponent<GridStorageComponent>();
+
+            InitializeRandom();
+            await InstantiateBoardAsync();
         }
 
-        private async Task InstantiateBoard()
+        private void InitializeRandom()
         {
-            var sizeStorage = GetComponent<SizeStorageComponent>();
-            var gridStorage = GetComponent<GridStorageComponent>();
-            var parent = gridStorage.Group.transform;
-            var width = sizeStorage.Width;
-            var height = sizeStorage.Height;
+            var idStorage = GetComponent<IdentifierStorageComponent>();
+            var idHashCode = idStorage.Value.GetHashCode();
+            _random = new Random(idHashCode);
+        }
+
+        private async Task InstantiateBoardAsync()
+        {
+            var gridRoot = _gridStorage.Group.transform;
+            var width = _sizeStorage.Width;
+            var height = _sizeStorage.Height;
+            var itemsConfiguration = _gameplayStaticDataService.GetItemsConfiguration();
+            var itemsCount = itemsConfiguration.Items.Length;
 
             _tiles = new TileActor[width, height];
 
@@ -33,7 +52,10 @@ namespace EndlessHeresy.Gameplay.Actors
             {
                 for (var x = 0; x < width; x++)
                 {
-                    var tile = await _gameplayFactoryService.CreateTileActor(x, y, parent);
+                    var index = _random.Next(0, itemsCount);
+                    var tile = await _gameplayFactoryService.CreateTileAsync(x, y, gridRoot);
+                    var item = await _gameplayFactoryService.CreateItemAsync(index, tile.transform);
+                    tile.SetItem(item);
                     _tiles[x, y] = tile;
                 }
             }

@@ -613,6 +613,7 @@ MonoBehaviour:
       data:
         _gameBoardConfiguration: {fileID: 11400000, guid: 0da08f395f2dd924dae5ae75104dc1f8, type: 2}
         _tilesConfiguration: {fileID: 11400000, guid: c5112956a28f5024fb8b6ab079e1ccb8, type: 2}
+        _itemsConfiguration: {fileID: 11400000, guid: b6405ee2e80f85445929c2b9d69e5475, type: 2}
     - rid: 9117324378338492419
       type: {class: GameplayStatesService, ns: EndlessHeresy.Gameplay.Services.StatesManagement, asm: Assembly-CSharp}
       data: 

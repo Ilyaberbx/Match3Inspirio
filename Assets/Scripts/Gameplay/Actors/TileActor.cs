@@ -12,6 +12,7 @@ namespace EndlessHeresy.Gameplay.Actors
         private ISpriteService _spriteService;
         private PointStorageComponent _pointStorage;
         private ImageStorageComponent _imageStorage;
+        private ItemStorageComponent _itemStorage;
 
         protected override async Task OnInitializeAsync()
         {
@@ -19,10 +20,13 @@ namespace EndlessHeresy.Gameplay.Actors
 
             _pointStorage = GetComponent<PointStorageComponent>();
             _imageStorage = GetComponent<ImageStorageComponent>();
+            _itemStorage = GetComponent<ItemStorageComponent>();
             _spriteService = ServiceLocator.Get<SpriteService>();
 
             InitializeSprite();
         }
+
+        public void SetItem(ItemActor item) => _itemStorage.SetItem(item);
 
         private void InitializeSprite()
         {

@@ -29,5 +29,11 @@ namespace EndlessHeresy.Gameplay.Services.Sprites
             var isEven = value % 2 == 0;
             return isEven ? _tilesConfiguration.EvenSprite : _tilesConfiguration.OddSprite;
         }
+
+        public Sprite GetItemSprite(int id)
+        {
+            var item = _gameplayConfigurationService.GetItemConfiguration(id);
+            return item.Sprite;
+        }
     }
 }
