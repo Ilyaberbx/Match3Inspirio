@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e43c60aa75f4df79fb933e53dfc013c, type: 3}
+  m_Name: FirstBoard
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 2212829661083990723, guid: 7774514907f4dcf48907f9bcd62ca70e, type: 3}
+  _width: 10
+  _height: 10

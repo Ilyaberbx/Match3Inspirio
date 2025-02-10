@@ -1,23 +1,23 @@
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Better.Services.Runtime;
 using Better.StateMachine.Runtime;
 using EndlessHeresy.Commons;
-using EndlessHeresy.Global.States;
+using EndlessHeresy.Gameplay.States;
 
-namespace EndlessHeresy.Global.Services.StatesManagement
+namespace EndlessHeresy.Gameplay.Services.StatesManagement
 {
     [Serializable]
-    public sealed class GameStatesService : PocoService, IDisposable, IGameStatesService
+    public sealed class GameplayStatesService : PocoService, IDisposable, IGameplayStatesService
     {
-        private IStateMachine<BaseGameState> _stateMachine;
+        private IStateMachine<BaseGameplayState> _stateMachine;
         private CancellationTokenSource _tokenSource;
 
         protected override Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            _stateMachine = new StateMachine<BaseGameState>();
-            _stateMachine.AddModule(new LoggerModule<BaseGameState>());
+            _stateMachine = new StateMachine<BaseGameplayState>();
+            _stateMachine.AddModule(new LoggerModule<BaseGameplayState>());
             _stateMachine.Run();
             _tokenSource = new CancellationTokenSource();
             return Task.CompletedTask;
@@ -28,7 +28,7 @@ namespace EndlessHeresy.Global.Services.StatesManagement
             return Task.CompletedTask;
         }
 
-        public Task ChangeStateAsync<TState>() where TState : BaseGameState, new()
+        public Task ChangeStateAsync<TState>() where TState : BaseGameplayState, new()
         {
             var state = new TState();
             return _stateMachine.ChangeStateAsync(state, _tokenSource.Token);

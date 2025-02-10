@@ -42,18 +42,6 @@ namespace EndlessHeresy.Core.Builder
             return this;
         }
 
-        public MonoActorBuilder<TActor> WithPosition(Vector2 position)
-        {
-            _at = position;
-            return this;
-        }
-
-        public MonoActorBuilder<TActor> WithRotation(Quaternion rotation)
-        {
-            _rotation = rotation;
-            return this;
-        }
-
         public MonoActorBuilder<TActor> WithParent(Transform parent)
         {
             _parent = parent;
@@ -79,7 +67,7 @@ namespace EndlessHeresy.Core.Builder
                 DebugUtility.LogException<NullReferenceException>(NoPrefabProvidedMessage);
             }
 
-            return Object.Instantiate(_prefab, _at, _rotation, _parent);
+            return Object.Instantiate(_prefab, _parent);
         }
     }
 }

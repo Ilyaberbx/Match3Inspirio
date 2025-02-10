@@ -54,6 +54,9 @@ namespace EndlessHeresy.Core
         public new bool TryGetComponent<TComponent>(out TComponent component) where TComponent : IComponent =>
             _componentsLocator.TryGetComponent(out component);
 
+        public new TComponent GetComponent<TComponent>() where TComponent : IComponent =>
+            _componentsLocator.GetComponent<TComponent>();
+
         public bool TryAddComponent<TComponent>(TComponent component) where TComponent : IComponent
         {
             if (_componentsLocator.TryAddComponent(component))
