@@ -1,10 +1,12 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Better.Locators.Runtime;
 using EndlessHeresy.Core;
 using EndlessHeresy.Gameplay.Services.Factory;
 using EndlessHeresy.Gameplay.Services.StaticData;
 using EndlessHeresy.Gameplay.Systems;
+using EndlessHeresy.Utilities;
+using Random = System.Random;
 
 namespace EndlessHeresy.Gameplay.Actors
 {
@@ -15,6 +17,8 @@ namespace EndlessHeresy.Gameplay.Actors
 
         private TileActor[,] _tiles;
         private Random _random;
+        private readonly List<ItemActor> _selectedItems = new();
+
         private SizeStorageComponent _sizeStorage;
         private GridStorageComponent _gridStorage;
 
@@ -29,6 +33,17 @@ namespace EndlessHeresy.Gameplay.Actors
 
             InitializeRandom();
             await InstantiateBoardAsync();
+        }
+
+        protected override void OnDispose()
+        {
+            base.OnDispose();
+
+            foreach (var tile in _tiles)
+            {
+                var item = tile.Item;
+                item.OnSelected -= OnItemSelected;
+            }
         }
 
         private void InitializeRandom()
@@ -57,8 +72,27 @@ namespace EndlessHeresy.Gameplay.Actors
                     var item = await _gameplayFactoryService.CreateItemAsync(index, tile.transform);
                     tile.SetItem(item);
                     _tiles[x, y] = tile;
+
+                    item.OnSelected += OnItemSelected;
                 }
             }
+        }
+
+        private void OnItemSelected(ItemActor item)
+        {
+            if (_selectedItems.Contains(item))
+            {
+                return;
+            }
+
+            _selectedItems.Add(item);
+
+            if (!MatchUtility.CanMatch(_selectedItems))
+            {
+                return;
+            }
+
+            _selectedItems.Clear();
         }
     }
 }

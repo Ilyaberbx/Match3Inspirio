@@ -2,7 +2,6 @@
 using Better.Locators.Runtime;
 using EndlessHeresy.Core;
 using EndlessHeresy.Gameplay.Services.Sprites;
-using EndlessHeresy.Gameplay.Services.StaticData;
 using EndlessHeresy.Gameplay.Systems;
 
 namespace EndlessHeresy.Gameplay.Actors
@@ -13,6 +12,8 @@ namespace EndlessHeresy.Gameplay.Actors
         private PointStorageComponent _pointStorage;
         private ImageStorageComponent _imageStorage;
         private ItemStorageComponent _itemStorage;
+
+        public ItemActor Item => _itemStorage.Item;
 
         protected override async Task OnInitializeAsync()
         {

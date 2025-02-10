@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Better.Locators.Runtime;
 using EndlessHeresy.Core;
 using EndlessHeresy.Gameplay.Services.Sprites;
@@ -8,8 +9,11 @@ namespace EndlessHeresy.Gameplay.Actors
 {
     public sealed class ItemActor : MonoActor
     {
+        public event Action<ItemActor> OnSelected;
+
         private ISpriteService _spriteService;
         private IdentifierStorageComponent _identifierStorage;
+        private ButtonListenerComponent _buttonListener;
 
         protected override async Task OnInitializeAsync()
         {
@@ -17,8 +21,18 @@ namespace EndlessHeresy.Gameplay.Actors
 
             _spriteService = ServiceLocator.Get<SpriteService>();
             _identifierStorage = GetComponent<IdentifierStorageComponent>();
+            _buttonListener = GetComponent<ButtonListenerComponent>();
 
             InitializeSprite();
+
+            _buttonListener.OnClicked += OnButtonClicked;
+        }
+
+        protected override void OnDispose()
+        {
+            base.OnDispose();
+
+            _buttonListener.OnClicked -= OnButtonClicked;
         }
 
         private void InitializeSprite()
@@ -27,5 +41,7 @@ namespace EndlessHeresy.Gameplay.Actors
             var sprite = _spriteService.GetItemSprite(_identifierStorage.Value);
             imageStorage.SetSprite(sprite);
         }
+
+        private void OnButtonClicked() => OnSelected?.Invoke(this);
     }
 }
