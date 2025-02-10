@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tilePrefab: {fileID: 3709748950187270231, guid: addde0419fa2f6c4a9912cc265059340, type: 3}
   _boardPrefab: {fileID: 2212829661083990723, guid: 7774514907f4dcf48907f9bcd62ca70e, type: 3}
-  _width: 10
-  _height: 10
+  _width: 5
+  _height: 6

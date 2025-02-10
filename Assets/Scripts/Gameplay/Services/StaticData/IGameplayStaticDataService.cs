@@ -3,5 +3,6 @@
     public interface IGameplayStaticDataService
     {
         GameBoardConfiguration GetGameBoardConfiguration();
+        TilesConfiguration GetTilesConfiguration();
     }
 }

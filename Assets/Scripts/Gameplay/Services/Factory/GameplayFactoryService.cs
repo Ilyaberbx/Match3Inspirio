@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Better.Locators.Runtime;
 using Better.Services.Runtime;
 using EndlessHeresy.Gameplay.Actors;
+using EndlessHeresy.Gameplay.Services.Sprites;
 using EndlessHeresy.Gameplay.Services.StaticData;
 using EndlessHeresy.Gameplay.Systems;
 using EndlessHeresy.Utilities;
@@ -46,14 +47,17 @@ namespace EndlessHeresy.Gameplay.Services.Factory
                 .Build();
         }
 
-        public Task<TileActor> CreateTileActor(Transform parent)
+        public Task<TileActor> CreateTileActor(int x, int y, Transform parent)
         {
             var prefab = _gameBoardConfiguration.TilePrefab;
             var builder = MonoActorUtility.GetBuilder<TileActor>();
+            var pointStorage = new PointStorageComponent();
+            pointStorage.SetPoint(new Vector2Int(x, y));
 
             return builder
                 .ForPrefab(prefab)
                 .WithParent(parent)
+                .WithComponent(pointStorage)
                 .Build();
         }
     }

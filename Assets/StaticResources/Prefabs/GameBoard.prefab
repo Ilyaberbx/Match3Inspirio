@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8761657038318044237}
   - component: {fileID: 1177031029476266889}
-  - component: {fileID: 8475167086137096349}
+  - component: {fileID: 5944620016446600564}
+  - component: {fileID: 5644771207837853460}
   m_Layer: 5
   m_Name: Contents
   m_TagString: Untagged
@@ -58,10 +59,10 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 300, y: 300}
-  m_Spacing: {x: 5, y: 10}
-  m_Constraint: 0
-  m_ConstraintCount: 2
---- !u!114 &8475167086137096349
+  m_Spacing: {x: 5, y: 5}
+  m_Constraint: 1
+  m_ConstraintCount: 5
+--- !u!114 &5944620016446600564
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -70,10 +71,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 2364552384219609398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e868b9c489c24db2a26e9e6a087383b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 012322abd9574d4e9fc7af4083b7fcfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _gridLayoutGroup: {fileID: 1177031029476266889}
+--- !u!114 &5644771207837853460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2364552384219609398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
 --- !u!1 &3687567753007738460
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.82641506, g: 0.80926305, b: 0.80926305, a: 1}
+  m_Color: {r: 0.05660379, g: 0.008864363, b: 0.008864363, a: 0.07450981}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -200,4 +215,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MonoComponents:
-  - {fileID: 8475167086137096349}
+  - {fileID: 5944620016446600564}

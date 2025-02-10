@@ -9,30 +9,32 @@ namespace EndlessHeresy.Gameplay.Actors
     public sealed class GameBoardActor : MonoActor
     {
         private IGameplayFactoryService _gameplayFactoryService;
+        private TileActor[,] _tiles;
 
         protected override async Task OnInitializeAsync()
         {
             await base.OnInitializeAsync();
 
             _gameplayFactoryService = ServiceLocator.Get<GameplayFactoryService>();
-
             await InstantiateBoard();
         }
 
         private async Task InstantiateBoard()
         {
-            var size = GetComponent<SizeStorageComponent>();
-            var tilesStorage = GetComponent<TilesStorageComponent>();
-            var parent = tilesStorage.transform;
-            var width = size.Width;
-            var height = size.Height;
+            var sizeStorage = GetComponent<SizeStorageComponent>();
+            var gridStorage = GetComponent<GridStorageComponent>();
+            var parent = gridStorage.Group.transform;
+            var width = sizeStorage.Width;
+            var height = sizeStorage.Height;
 
-            for (var x = 0; x < width; x++)
+            _tiles = new TileActor[width, height];
+
+            for (var y = 0; y < height; y++)
             {
-                for (var y = 0; y < height; y++)
+                for (var x = 0; x < width; x++)
                 {
-                    var tile = await _gameplayFactoryService.CreateTileActor(parent);
-                    tilesStorage.AddTile(tile);
+                    var tile = await _gameplayFactoryService.CreateTileActor(x, y, parent);
+                    _tiles[x, y] = tile;
                 }
             }
         }

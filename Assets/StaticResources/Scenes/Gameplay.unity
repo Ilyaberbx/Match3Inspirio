@@ -607,10 +607,12 @@ MonoBehaviour:
         - rid: 9117324378338492418
         - rid: 9117324378338492419
         - rid: 9117324378338492421
+        - rid: 9117324383988219904
     - rid: 9117324378338492418
       type: {class: GameplayStaticDataService, ns: EndlessHeresy.Gameplay.Services.StaticData, asm: Assembly-CSharp}
       data:
         _gameBoardConfiguration: {fileID: 11400000, guid: 0da08f395f2dd924dae5ae75104dc1f8, type: 2}
+        _tilesConfiguration: {fileID: 11400000, guid: c5112956a28f5024fb8b6ab079e1ccb8, type: 2}
     - rid: 9117324378338492419
       type: {class: GameplayStatesService, ns: EndlessHeresy.Gameplay.Services.StatesManagement, asm: Assembly-CSharp}
       data: 
@@ -618,6 +620,9 @@ MonoBehaviour:
       type: {class: GameplayFactoryService, ns: EndlessHeresy.Gameplay.Services.Factory, asm: Assembly-CSharp}
       data:
         _root: {fileID: 2136763070}
+    - rid: 9117324383988219904
+      type: {class: SpriteService, ns: EndlessHeresy.Gameplay.Services.Sprites, asm: Assembly-CSharp}
+      data: 
 --- !u!1 &2136763070
 GameObject:
   m_ObjectHideFlags: 0

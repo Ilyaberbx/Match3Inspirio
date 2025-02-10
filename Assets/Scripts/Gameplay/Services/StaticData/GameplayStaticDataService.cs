@@ -10,8 +10,10 @@ namespace EndlessHeresy.Gameplay.Services.StaticData
     public sealed class GameplayStaticDataService : PocoService, IGameplayStaticDataService
     {
         [SerializeField] private GameBoardConfiguration _gameBoardConfiguration;
+        [SerializeField] private TilesConfiguration _tilesConfiguration;
 
         public GameBoardConfiguration GetGameBoardConfiguration() => _gameBoardConfiguration;
+        public TilesConfiguration GetTilesConfiguration() => _tilesConfiguration;
 
         protected override Task OnInitializeAsync(CancellationToken cancellationToken)
         {
