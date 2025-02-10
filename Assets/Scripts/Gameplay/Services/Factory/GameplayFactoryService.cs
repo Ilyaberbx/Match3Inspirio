@@ -53,13 +53,15 @@ namespace EndlessHeresy.Gameplay.Services.Factory
             var builder = MonoActorUtility.GetBuilder<ItemActor>();
             var configuration = _staticDataService.GetItemConfiguration(index);
             var idStorage = new IdentifierStorageComponent();
-            
+            var pointStorage = new PointStorageComponent();
+
             idStorage.Setup(index);
 
             return builder
                 .ForPrefab(configuration.Prefab)
                 .WithParent(parent)
                 .WithComponent(idStorage)
+                .WithComponent(pointStorage)
                 .Build();
         }
 
@@ -69,7 +71,7 @@ namespace EndlessHeresy.Gameplay.Services.Factory
             var builder = MonoActorUtility.GetBuilder<TileActor>();
             var pointStorage = new PointStorageComponent();
             var itemStorage = new ItemStorageComponent();
-            
+
             pointStorage.SetPoint(new Vector2Int(x, y));
 
             return builder

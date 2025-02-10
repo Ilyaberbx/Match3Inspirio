@@ -27,7 +27,13 @@ namespace EndlessHeresy.Gameplay.Actors
             InitializeSprite();
         }
 
-        public void SetItem(ItemActor item) => _itemStorage.SetItem(item);
+        public void SetItem(ItemActor item)
+        {
+            _itemStorage.SetItem(item);
+            var pointStorage = item.GetComponent<PointStorageComponent>();
+            pointStorage.SetPoint(_pointStorage.Point);
+            item.transform.SetParent(transform);
+        }
 
         private void InitializeSprite()
         {

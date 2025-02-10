@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Better.Locators.Runtime;
+using DG.Tweening;
 using EndlessHeresy.Core;
+using EndlessHeresy.Extensions;
 using EndlessHeresy.Gameplay.Services.Factory;
 using EndlessHeresy.Gameplay.Services.StaticData;
 using EndlessHeresy.Gameplay.Systems;
@@ -12,6 +14,7 @@ namespace EndlessHeresy.Gameplay.Actors
 {
     public sealed class GameBoardActor : MonoActor
     {
+        private const float Duration = 0.5f;
         private IGameplayFactoryService _gameplayFactoryService;
         private IGameplayStaticDataService _gameplayStaticDataService;
 
@@ -78,7 +81,7 @@ namespace EndlessHeresy.Gameplay.Actors
             }
         }
 
-        private void OnItemSelected(ItemActor item)
+        private async void OnItemSelected(ItemActor item)
         {
             if (_selectedItems.Contains(item))
             {
@@ -92,7 +95,40 @@ namespace EndlessHeresy.Gameplay.Actors
                 return;
             }
 
+            await SwapAsync(_selectedItems[0], _selectedItems[1]);
             _selectedItems.Clear();
+        }
+
+        private async Task SwapAsync(ItemActor first, ItemActor second)
+        {
+            var firstTransform = first.transform;
+            var secondTransform = second.transform;
+            var firstTile = GetTileOf(first);
+            var secondTile = GetTileOf(second);
+
+            var firstTween = firstTransform
+                .DOMove(secondTile.transform.position, Duration);
+            var secondTween = secondTransform
+                .DOMove(firstTile.transform.position, Duration);
+
+            firstTransform.SetParent(transform);
+            secondTransform.SetParent(transform);
+            
+            await DOTween
+                .Sequence()
+                .Join(firstTween)
+                .Join(secondTween)
+                .SetId(this)
+                .AsTask(destroyCancellationToken);
+
+            firstTile.SetItem(second);
+            secondTile.SetItem(first);
+        }
+
+        private TileActor GetTileOf(ItemActor item)
+        {
+            var point = item.GetComponent<PointStorageComponent>().Point;
+            return _tiles[point.x, point.y];
         }
     }
 }
