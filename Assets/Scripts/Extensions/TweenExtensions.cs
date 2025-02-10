@@ -2,7 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using DG.Tweening;
 
-namespace EndlessHeresy.Gameplay.Extensions
+namespace EndlessHeresy.Extensions
 {
     public static class TweenExtensions
     {

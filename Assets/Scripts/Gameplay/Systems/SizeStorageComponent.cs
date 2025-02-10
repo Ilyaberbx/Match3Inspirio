@@ -1,6 +1,6 @@
 ﻿using EndlessHeresy.Core;
 
-namespace EndlessHeresy.Systems
+namespace EndlessHeresy.Gameplay.Systems
 {
     public sealed class SizeStorageComponent : PocoComponent
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.Extensions
+namespace EndlessHeresy.Extensions
 {
     public static class VectorExtensions
     {

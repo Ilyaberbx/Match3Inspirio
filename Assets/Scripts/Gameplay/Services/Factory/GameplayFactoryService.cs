@@ -3,9 +3,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Better.Locators.Runtime;
 using Better.Services.Runtime;
-using EndlessHeresy.Gameplay.Actors.GameBoard;
+using EndlessHeresy.Gameplay.Actors;
 using EndlessHeresy.Gameplay.Services.StaticData;
-using EndlessHeresy.Systems;
+using EndlessHeresy.Gameplay.Systems;
 using EndlessHeresy.Utilities;
 using UnityEngine;
 
@@ -34,7 +34,7 @@ namespace EndlessHeresy.Gameplay.Services.Factory
 
         public Task<GameBoardActor> CreateGameBoardActor()
         {
-            var prefab = _gameBoardConfiguration.Prefab;
+            var prefab = _gameBoardConfiguration.BoardPrefab;
             var builder = MonoActorUtility.GetBuilder<GameBoardActor>();
             var sizeStorage = new SizeStorageComponent();
             sizeStorage.Setup(_gameBoardConfiguration.Width, _gameBoardConfiguration.Height);
@@ -43,6 +43,17 @@ namespace EndlessHeresy.Gameplay.Services.Factory
                 .ForPrefab(prefab)
                 .WithParent(_root.GetComponent<RectTransform>())
                 .WithComponent(sizeStorage)
+                .Build();
+        }
+
+        public Task<TileActor> CreateTileActor(Transform parent)
+        {
+            var prefab = _gameBoardConfiguration.TilePrefab;
+            var builder = MonoActorUtility.GetBuilder<TileActor>();
+
+            return builder
+                .ForPrefab(prefab)
+                .WithParent(parent)
                 .Build();
         }
     }

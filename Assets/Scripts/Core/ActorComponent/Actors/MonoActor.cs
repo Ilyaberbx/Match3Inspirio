@@ -17,18 +17,7 @@ namespace EndlessHeresy.Core
         public GameObject GameObject => _gameObject;
         public Transform Transform => _transform;
         public bool ActiveSelf => GameObject.activeSelf;
-
-        private void Awake()
-        {
-            if (_componentsLocator != null)
-            {
-                return;
-            }
-
-            _componentsLocator = new ComponentsLocator();
-            InitializeMonoComponents();
-        }
-
+        
         public async Task InitializeAsync(IComponentsLocator locator)
         {
             _componentsLocator = locator;

@@ -2,7 +2,7 @@
 using Better.StateMachine.Runtime.Modules.Transitions;
 using Better.StateMachine.Runtime.States;
 
-namespace EndlessHeresy.Gameplay.Extensions
+namespace EndlessHeresy.Extensions
 {
     public static class TransitionsExtensions
     {

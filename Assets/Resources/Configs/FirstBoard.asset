@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43c60aa75f4df79fb933e53dfc013c, type: 3}
   m_Name: FirstBoard
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 2212829661083990723, guid: 7774514907f4dcf48907f9bcd62ca70e, type: 3}
+  _tilePrefab: {fileID: 3709748950187270231, guid: addde0419fa2f6c4a9912cc265059340, type: 3}
+  _boardPrefab: {fileID: 2212829661083990723, guid: 7774514907f4dcf48907f9bcd62ca70e, type: 3}
   _width: 10
   _height: 10
