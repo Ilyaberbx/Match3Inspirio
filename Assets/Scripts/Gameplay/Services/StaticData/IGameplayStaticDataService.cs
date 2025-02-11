@@ -6,5 +6,6 @@
         TilesConfiguration GetTilesConfiguration();
         ItemsConfiguration GetItemsConfiguration();
         ItemConfiguration GetItemConfiguration(int index);
+        ScoreConfiguration GetScoreConfiguration();
     }
 }

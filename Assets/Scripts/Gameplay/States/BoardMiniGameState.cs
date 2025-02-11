@@ -10,6 +10,7 @@ namespace EndlessHeresy.Gameplay.States
         {
             await AddModuleAsync<InitializeBoardModule>();
             await AddModuleAsync<PauseModule>();
+            await AddModuleAsync<ScoreModule>();
         }
 
         public override Task ExitAsync(CancellationToken token)

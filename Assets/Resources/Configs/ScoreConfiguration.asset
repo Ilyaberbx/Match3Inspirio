@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dac0369e8844e37a7244162d4aa6c6c, type: 3}
+  m_Name: ScoreConfiguration
+  m_EditorClassIdentifier: 
+  _scoreForItems:
+  - _itemsCount: 3
+    _scoreCount: 50
+  - _itemsCount: 4
+    _scoreCount: 100
+  - _itemsCount: 5
+    _scoreCount: 200
+  - _itemsCount: 6
+    _scoreCount: 400
+  - _itemsCount: 6
+    _scoreCount: 700
+  _scoreForStars: c8000000f401000020030000

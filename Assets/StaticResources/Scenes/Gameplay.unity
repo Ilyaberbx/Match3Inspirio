@@ -610,11 +610,14 @@ MonoBehaviour:
         - rid: 9117324383988219904
         - rid: 9117324400301703168
         - rid: 9117324402366349312
+        - rid: 9117324407724834816
+        - rid: 9117324407724834817
     - rid: 9117324378338492418
       type: {class: GameplayStaticDataService, ns: EndlessHeresy.Gameplay.Services.StaticData, asm: Assembly-CSharp}
       data:
         _gameBoardConfiguration: {fileID: 11400000, guid: 0da08f395f2dd924dae5ae75104dc1f8, type: 2}
         _tilesConfiguration: {fileID: 11400000, guid: c5112956a28f5024fb8b6ab079e1ccb8, type: 2}
+        _scoreConfiguration: {fileID: 11400000, guid: 235c7f5df7f77384d9e7099cf7918b75, type: 2}
         _itemsConfiguration: {fileID: 11400000, guid: b6405ee2e80f85445929c2b9d69e5475, type: 2}
     - rid: 9117324378338492419
       type: {class: GameplayStatesService, ns: EndlessHeresy.Gameplay.Services.StatesManagement, asm: Assembly-CSharp}
@@ -631,6 +634,12 @@ MonoBehaviour:
       data: 
     - rid: 9117324402366349312
       type: {class: PauseService, ns: EndlessHeresy.Gameplay.Services.Pause, asm: Assembly-CSharp}
+      data: 
+    - rid: 9117324407724834816
+      type: {class: LevelService, ns: EndlessHeresy.Gameplay.Services.Level, asm: Assembly-CSharp}
+      data: 
+    - rid: 9117324407724834817
+      type: {class: ScoreService, ns: EndlessHeresy.Gameplay.Services.Score, asm: Assembly-CSharp}
       data: 
 --- !u!1 &2136763070
 GameObject:

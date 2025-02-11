@@ -9,6 +9,7 @@ using EndlessHeresy.Core;
 using EndlessHeresy.Extensions;
 using EndlessHeresy.Gameplay.Services.Factory;
 using EndlessHeresy.Gameplay.Services.Input;
+using EndlessHeresy.Gameplay.Services.Level;
 using EndlessHeresy.Gameplay.Services.Pause;
 using EndlessHeresy.Gameplay.Services.StaticData;
 using EndlessHeresy.Gameplay.Systems;
@@ -24,6 +25,7 @@ namespace EndlessHeresy.Gameplay.Actors
 
         private IGameplayFactoryService _gameplayFactoryService;
         private IGameplayStaticDataService _gameplayStaticDataService;
+        private ILevelService _levelService;
         private IInputService _inputService;
 
         private TileActor[,] _tiles;
@@ -42,6 +44,7 @@ namespace EndlessHeresy.Gameplay.Actors
             _gameplayFactoryService = ServiceLocator.Get<GameplayFactoryService>();
             _gameplayStaticDataService = ServiceLocator.Get<GameplayStaticDataService>();
             _inputService = ServiceLocator.Get<InputService>();
+            _levelService = ServiceLocator.Get<LevelService>();
             _sizeStorage = GetComponent<SizeStorageComponent>();
             _gridStorage = GetComponent<GridStorageComponent>();
 
@@ -225,6 +228,7 @@ namespace EndlessHeresy.Gameplay.Actors
             while (true)
             {
                 await DeflateTilesAsync(connected);
+                _levelService.FireItemsPopped(connected.Select(t => t.Item));
                 await InflateTilesAsync(connected);
 
                 if (MatchUtility.TryGetTilesToPop(_tiles, out var toPop))
