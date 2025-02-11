@@ -111,7 +111,10 @@ namespace EndlessHeresy.Gameplay.Actors
                 tile.SetBoard(this);
             }
 
-            if (MatchUtility.CanPop(_tiles))
+            var noPossibleMoves = !MatchUtility.HasPossibleMoves(_tiles);
+            var canPop = MatchUtility.CanPop(_tiles);
+
+            if (canPop || noPossibleMoves)
             {
                 Dispose(items);
                 await InitializeItemsAsync(tiles);
@@ -120,6 +123,50 @@ namespace EndlessHeresy.Gameplay.Actors
 
         private int GetRandomItemIndex() => _random.Next(0, ItemsCount);
         private void OnItemSelected(ItemActor item) => SelectItemAsync(item).Forget();
+
+        private async Task ShuffleBoardAsync()
+        {
+            _inputService.Lock();
+
+            var items = _tiles.Cast<TileActor>().Select(t => t.Item).ToList();
+
+            for (var i = items.Count - 1; i > 0; i--)
+            {
+                var j = _random.Next(i + 1);
+                (items[i], items[j]) = (items[j], items[i]);
+            }
+
+            var sequence = DOTween.Sequence();
+            var index = 0;
+
+            foreach (var oldTile in _tiles)
+            {
+                var oldTileTransform = oldTile.transform;
+                var newItem = items[index++];
+                var oldItem = oldTile.Item;
+                var newTile = GetTileOf(newItem);
+                var newTileTransform = newTile.transform;
+                var newItemShuffleTween = newItem.transform.DOMove(oldTileTransform.position, Duration);
+                var oldItemShuffleTween = oldItem.transform.DOMove(newTileTransform.position, Duration);
+
+                sequence.Join(newItemShuffleTween)
+                    .Join(oldItemShuffleTween);
+
+                oldTile.SetItem(newItem);
+                newTile.SetItem(oldItem);
+            }
+
+            await sequence.AsTask(destroyCancellationToken);
+
+            _inputService.Unlock();
+
+            var noPossibleMoves = !MatchUtility.HasPossibleMoves(_tiles);
+
+            if (noPossibleMoves)
+            {
+                await ShuffleBoardAsync();
+            }
+        }
 
         private async Task SelectItemAsync(ItemActor item)
         {
@@ -185,6 +232,13 @@ namespace EndlessHeresy.Gameplay.Actors
                 }
 
                 break;
+            }
+
+            var noPossibleMoves = !MatchUtility.HasPossibleMoves(_tiles);
+
+            if (noPossibleMoves)
+            {
+                await ShuffleBoardAsync();
             }
         }
 
