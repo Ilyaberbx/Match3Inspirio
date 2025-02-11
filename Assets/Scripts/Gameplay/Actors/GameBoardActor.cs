@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
@@ -18,6 +19,7 @@ namespace EndlessHeresy.Gameplay.Actors
     public sealed class GameBoardActor : MonoActor, IGameBoard
     {
         private const float Duration = 0.5f;
+
         private IGameplayFactoryService _gameplayFactoryService;
         private IGameplayStaticDataService _gameplayStaticDataService;
         private IInputService _inputService;
@@ -42,11 +44,7 @@ namespace EndlessHeresy.Gameplay.Actors
             _gridStorage = GetComponent<GridStorageComponent>();
 
             InitializeRandom();
-            await InstantiateBoardAsync();
-            foreach (var tile in _tiles)
-            {
-                tile.SetBoard(this);
-            }
+            await InitializeBoardAsync();
         }
 
         protected override void OnDispose()
@@ -68,12 +66,19 @@ namespace EndlessHeresy.Gameplay.Actors
             _random = new Random(idHashCode);
         }
 
-        private async Task InstantiateBoardAsync()
+        private async Task InitializeBoardAsync()
+        {
+            var tiles = await InitializeTilesAsync();
+            await InitializeItemsAsync(tiles);
+        }
+
+        private async Task<List<TileActor>> InitializeTilesAsync()
         {
             var gridRoot = _gridStorage.Group.transform;
             var width = _sizeStorage.Width;
             var height = _sizeStorage.Height;
 
+            var tiles = new List<TileActor>();
             _tiles = new TileActor[width, height];
 
             for (var y = 0; y < height; y++)
@@ -81,11 +86,35 @@ namespace EndlessHeresy.Gameplay.Actors
                 for (var x = 0; x < width; x++)
                 {
                     var tile = await _gameplayFactoryService.CreateTileAsync(x, y, gridRoot);
-                    var item = await GetRandomItemAsync(tile.transform);
-                    tile.SetItem(item);
+                    tiles.Add(tile);
                     _tiles[x, y] = tile;
-                    item.OnSelected += OnItemSelected;
                 }
+            }
+
+            return tiles;
+        }
+
+        private async Task InitializeItemsAsync(List<TileActor> tiles)
+        {
+            var items = new List<ItemActor>();
+
+            foreach (var tile in tiles)
+            {
+                var item = await GetRandomItemAsync(tile.transform);
+                tile.SetItem(item);
+                item.OnSelected += OnItemSelected;
+                items.Add(item);
+            }
+
+            foreach (var tile in _tiles)
+            {
+                tile.SetBoard(this);
+            }
+
+            if (MatchUtility.CanPop(_tiles))
+            {
+                Dispose(items);
+                await InitializeItemsAsync(tiles);
             }
         }
 
@@ -94,11 +123,6 @@ namespace EndlessHeresy.Gameplay.Actors
 
         private async Task SelectItemAsync(ItemActor item)
         {
-            if (_inputService.IsLocked)
-            {
-                return;
-            }
-
             if (!CanSelect(item))
             {
                 return;
@@ -168,14 +192,26 @@ namespace EndlessHeresy.Gameplay.Actors
         {
             var sequence = DOTween.Sequence();
 
-            foreach (var tile in tiles)
+            var items = tiles.Select(temp => temp.Item).ToArray();
+
+            foreach (var item in items)
             {
-                var item = tile.Item;
                 var tween = item.transform.DOScale(Vector3.zero, Duration);
                 sequence.Join(tween);
             }
 
             await sequence.AsTask(destroyCancellationToken);
+
+            Dispose(items);
+        }
+
+        private void Dispose(IEnumerable<ItemActor> items)
+        {
+            foreach (var item in items)
+            {
+                item.OnSelected -= OnItemSelected;
+                _gameplayFactoryService.Dispose(item);
+            }
         }
 
         private async Task InflateTilesAsync(IReadOnlyList<TileActor> tiles)
