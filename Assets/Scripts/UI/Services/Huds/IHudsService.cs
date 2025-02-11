@@ -1,0 +1,14 @@
+﻿using System.Threading.Tasks;
+using EndlessHeresy.UI.MVC;
+
+namespace EndlessHeresy.UI.Services.Huds
+{
+    public interface IHudsService
+    {
+        Task<TController> Show<TController, TModel>(TModel model, ShowType showType)
+            where TController : BaseController<TModel>, new()
+            where TModel : IModel;
+
+        void HideAll();
+    }
+}
