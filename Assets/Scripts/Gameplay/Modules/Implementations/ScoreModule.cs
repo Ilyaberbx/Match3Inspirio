@@ -17,7 +17,7 @@ namespace EndlessHeresy.Gameplay.Modules
         private IGameplayStaticDataService _gameplayStaticDataService;
         private IScoreService _scoreService;
         private IHudsService _hudService;
-        private ScoreConfiguration _scoreConfiguration;
+        private LevelConfiguration _levelConfiguration;
 
         public override Task InitializeAsync()
         {
@@ -26,7 +26,7 @@ namespace EndlessHeresy.Gameplay.Modules
             _hudService = ServiceLocator.Get<HudsService>();
             _scoreService = ServiceLocator.Get<ScoreService>();
 
-            _scoreConfiguration = _gameplayStaticDataService.GetScoreConfiguration();
+            _levelConfiguration = _gameplayStaticDataService.GetLevelConfiguration();
             _levelService.OnItemsPopped += OnItemsPopped;
             _hudService.Show<ScoreHudController, ScoreHudModel>(ScoreHudModel.New(), ShowType.Additive);
             return Task.CompletedTask;
@@ -37,12 +37,12 @@ namespace EndlessHeresy.Gameplay.Modules
         private void OnItemsPopped(IEnumerable<ItemActor> items)
         {
             var itemsCount = items.Count();
-            var data = _scoreConfiguration.ScoreForItems.FirstOrDefault(temp => temp.ItemsCount == itemsCount);
+            var data = _levelConfiguration.ScoreForItems.FirstOrDefault(temp => temp.ItemsCount == itemsCount);
 
             if (data == null)
             {
-                var maxItems = _scoreConfiguration.ScoreForItems.Max(temp => temp.ItemsCount);
-                data = _scoreConfiguration.ScoreForItems.FirstOrDefault(temp => temp.ItemsCount == maxItems);
+                var maxItems = _levelConfiguration.ScoreForItems.Max(temp => temp.ItemsCount);
+                data = _levelConfiguration.ScoreForItems.FirstOrDefault(temp => temp.ItemsCount == maxItems);
 
                 if (data == null)
                 {

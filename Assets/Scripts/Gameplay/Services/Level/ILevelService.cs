@@ -7,6 +7,9 @@ namespace EndlessHeresy.Gameplay.Services.Level
     public interface ILevelService
     {
         event Action<IEnumerable<ItemActor>> OnItemsPopped;
+        event Action OnMove;
         public void FireItemsPopped(IEnumerable<ItemActor> items);
+        public void FireMove();
+        
     }
 }

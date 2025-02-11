@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Better.Commons.Runtime.Extensions;
@@ -10,7 +9,6 @@ using EndlessHeresy.Extensions;
 using EndlessHeresy.Gameplay.Services.Factory;
 using EndlessHeresy.Gameplay.Services.Input;
 using EndlessHeresy.Gameplay.Services.Level;
-using EndlessHeresy.Gameplay.Services.Pause;
 using EndlessHeresy.Gameplay.Services.StaticData;
 using EndlessHeresy.Gameplay.Systems;
 using EndlessHeresy.Utilities;
@@ -202,6 +200,7 @@ namespace EndlessHeresy.Gameplay.Actors
                 await SwapAsync(secondSelected, firstSelected);
             }
 
+            _levelService.FireMove();
             _selectedItems.Clear();
             _inputService.Unlock();
         }

@@ -11,10 +11,11 @@ namespace EndlessHeresy.Gameplay.Services.Level
     public sealed class LevelService : PocoService, ILevelService
     {
         public event Action<IEnumerable<ItemActor>> OnItemsPopped;
+        public event Action OnMove;
 
         protected override Task OnInitializeAsync(CancellationToken cancellationToken) => Task.CompletedTask;
         protected override Task OnPostInitializeAsync(CancellationToken cancellationToken) => Task.CompletedTask;
-
         public void FireItemsPopped(IEnumerable<ItemActor> items) => OnItemsPopped?.Invoke(items);
+        public void FireMove() => OnMove?.Invoke();
     }
 }

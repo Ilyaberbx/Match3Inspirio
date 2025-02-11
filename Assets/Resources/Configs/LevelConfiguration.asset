@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6dac0369e8844e37a7244162d4aa6c6c, type: 3}
-  m_Name: ScoreConfiguration
+  m_Name: LevelConfiguration
   m_EditorClassIdentifier: 
   _scoreForItems:
   - _itemsCount: 3
-    _scoreCount: 50
+    _scoreCount: 500
   - _itemsCount: 4
     _scoreCount: 100
   - _itemsCount: 5
@@ -24,3 +24,5 @@ MonoBehaviour:
   - _itemsCount: 6
     _scoreCount: 700
   _scoreForStars: c8000000f401000020030000
+  _moves: 500
+  _scorePerMoveLeft: 100
