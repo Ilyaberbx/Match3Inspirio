@@ -608,6 +608,7 @@ MonoBehaviour:
         - rid: 9117324378338492419
         - rid: 9117324378338492421
         - rid: 9117324383988219904
+        - rid: 9117324400301703168
     - rid: 9117324378338492418
       type: {class: GameplayStaticDataService, ns: EndlessHeresy.Gameplay.Services.StaticData, asm: Assembly-CSharp}
       data:
@@ -623,6 +624,9 @@ MonoBehaviour:
         _root: {fileID: 2136763070}
     - rid: 9117324383988219904
       type: {class: SpriteService, ns: EndlessHeresy.Gameplay.Services.Sprites, asm: Assembly-CSharp}
+      data: 
+    - rid: 9117324400301703168
+      type: {class: InputService, ns: EndlessHeresy.Gameplay.Services.Input, asm: Assembly-CSharp}
       data: 
 --- !u!1 &2136763070
 GameObject:

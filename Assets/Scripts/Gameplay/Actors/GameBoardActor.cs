@@ -6,6 +6,7 @@ using DG.Tweening;
 using EndlessHeresy.Core;
 using EndlessHeresy.Extensions;
 using EndlessHeresy.Gameplay.Services.Factory;
+using EndlessHeresy.Gameplay.Services.Input;
 using EndlessHeresy.Gameplay.Services.StaticData;
 using EndlessHeresy.Gameplay.Systems;
 using EndlessHeresy.Utilities;
@@ -19,6 +20,7 @@ namespace EndlessHeresy.Gameplay.Actors
         private const float Duration = 0.5f;
         private IGameplayFactoryService _gameplayFactoryService;
         private IGameplayStaticDataService _gameplayStaticDataService;
+        private IInputService _inputService;
 
         private TileActor[,] _tiles;
         private Random _random;
@@ -27,12 +29,15 @@ namespace EndlessHeresy.Gameplay.Actors
         private SizeStorageComponent _sizeStorage;
         private GridStorageComponent _gridStorage;
 
+        private int ItemsCount => _gameplayStaticDataService.GetItemsConfiguration().Items.Length;
+
         protected override async Task OnInitializeAsync()
         {
             await base.OnInitializeAsync();
 
             _gameplayFactoryService = ServiceLocator.Get<GameplayFactoryService>();
             _gameplayStaticDataService = ServiceLocator.Get<GameplayStaticDataService>();
+            _inputService = ServiceLocator.Get<InputService>();
             _sizeStorage = GetComponent<SizeStorageComponent>();
             _gridStorage = GetComponent<GridStorageComponent>();
 
@@ -52,6 +57,7 @@ namespace EndlessHeresy.Gameplay.Actors
             {
                 var item = tile.Item;
                 item.OnSelected -= OnItemSelected;
+                _gameplayFactoryService.Dispose(tile);
             }
         }
 
@@ -67,8 +73,6 @@ namespace EndlessHeresy.Gameplay.Actors
             var gridRoot = _gridStorage.Group.transform;
             var width = _sizeStorage.Width;
             var height = _sizeStorage.Height;
-            var itemsConfiguration = _gameplayStaticDataService.GetItemsConfiguration();
-            var itemsCount = itemsConfiguration.Items.Length;
 
             _tiles = new TileActor[width, height];
 
@@ -76,9 +80,8 @@ namespace EndlessHeresy.Gameplay.Actors
             {
                 for (var x = 0; x < width; x++)
                 {
-                    var index = _random.Next(0, itemsCount);
                     var tile = await _gameplayFactoryService.CreateTileAsync(x, y, gridRoot);
-                    var item = await _gameplayFactoryService.CreateItemAsync(index, tile.transform);
+                    var item = await GetRandomItemAsync(tile.transform);
                     tile.SetItem(item);
                     _tiles[x, y] = tile;
                     item.OnSelected += OnItemSelected;
@@ -86,14 +89,17 @@ namespace EndlessHeresy.Gameplay.Actors
             }
         }
 
-        private void OnItemSelected(ItemActor item)
-        {
-            Select(item).Forget();
-        }
+        private int GetRandomItemIndex() => _random.Next(0, ItemsCount);
+        private void OnItemSelected(ItemActor item) => SelectItemAsync(item).Forget();
 
-        private async Task Select(ItemActor item)
+        private async Task SelectItemAsync(ItemActor item)
         {
-            if (_selectedItems.Contains(item))
+            if (_inputService.IsLocked)
+            {
+                return;
+            }
+
+            if (!CanSelect(item))
             {
                 return;
             }
@@ -105,52 +111,48 @@ namespace EndlessHeresy.Gameplay.Actors
                 return;
             }
 
-            await SwapAsync(_selectedItems[0], _selectedItems[1]);
+            var firstSelected = _selectedItems[0];
+            var secondSelected = _selectedItems[1];
+            _inputService.Lock();
+
+            await SwapAsync(firstSelected, secondSelected);
 
             if (MatchUtility.TryGetTilesToPop(_tiles, out var toPop))
             {
-                await Pop(toPop);
+                await PopTilesAsync(toPop);
             }
             else
             {
-                await SwapAsync(_selectedItems[1], _selectedItems[0]);
+                await SwapAsync(secondSelected, firstSelected);
             }
 
             _selectedItems.Clear();
+            _inputService.Unlock();
         }
 
-        //TODO: Dry, refactor this code
-        private async Task Pop(IReadOnlyList<TileActor> connected)
+        private bool CanSelect(ItemActor item)
+        {
+            if (_selectedItems.Contains(item))
+            {
+                return false;
+            }
+
+            if (_selectedItems.Count <= 0)
+            {
+                return true;
+            }
+
+            var firstSelected = GetTileOf(_selectedItems[0]);
+            var tryToSelect = GetTileOf(item);
+            return firstSelected.IsNeighbor(tryToSelect);
+        }
+
+        private async Task PopTilesAsync(IReadOnlyList<TileActor> connected)
         {
             while (true)
             {
-                var deflateSequence = DOTween.Sequence();
-
-                foreach (var tile in connected)
-                {
-                    var item = tile.Item;
-                    var deflateTween = item.transform.DOScale(Vector3.zero, Duration);
-                    deflateSequence.Join(deflateTween);
-                }
-
-                await deflateSequence.AsTask(destroyCancellationToken);
-
-                var itemsConfiguration = _gameplayStaticDataService.GetItemsConfiguration();
-                var itemsCount = itemsConfiguration.Items.Length;
-
-                var inflateSequence = DOTween.Sequence();
-
-                foreach (var tile in connected)
-                {
-                    var index = _random.Next(0, itemsCount);
-                    var item = await _gameplayFactoryService.CreateItemAsync(index, tile.transform);
-                    item.OnSelected += OnItemSelected;
-                    tile.SetItem(item);
-                    var inflateTween = item.transform.DOScale(Vector3.zero, Duration).From();
-                    inflateSequence.Join(inflateTween);
-                }
-
-                await inflateSequence.AsTask(destroyCancellationToken);
+                await DeflateTilesAsync(connected);
+                await InflateTilesAsync(connected);
 
                 if (MatchUtility.TryGetTilesToPop(_tiles, out var toPop))
                 {
@@ -160,6 +162,37 @@ namespace EndlessHeresy.Gameplay.Actors
 
                 break;
             }
+        }
+
+        private async Task DeflateTilesAsync(IReadOnlyList<TileActor> tiles)
+        {
+            var sequence = DOTween.Sequence();
+
+            foreach (var tile in tiles)
+            {
+                var item = tile.Item;
+                var tween = item.transform.DOScale(Vector3.zero, Duration);
+                sequence.Join(tween);
+            }
+
+            await sequence.AsTask(destroyCancellationToken);
+        }
+
+        private async Task InflateTilesAsync(IReadOnlyList<TileActor> tiles)
+        {
+            var sequence = DOTween.Sequence();
+
+            foreach (var tile in tiles)
+            {
+                var item = await GetRandomItemAsync(tile.transform);
+                item.OnSelected += OnItemSelected;
+                tile.SetItem(item);
+
+                var tween = item.transform.DOScale(Vector3.zero, Duration).From();
+                sequence.Join(tween);
+            }
+
+            await sequence.AsTask(destroyCancellationToken);
         }
 
         private async Task SwapAsync(ItemActor first, ItemActor second)
@@ -188,6 +221,12 @@ namespace EndlessHeresy.Gameplay.Actors
             secondTile.SetItem(first);
         }
 
+        private Task<ItemActor> GetRandomItemAsync(Transform parent)
+        {
+            var index = GetRandomItemIndex();
+            return _gameplayFactoryService.CreateItemAsync(index, parent);
+        }
+
         private TileActor GetTileOf(ItemActor item)
         {
             var point = item.GetComponent<PointStorageComponent>().Point;
@@ -197,14 +236,10 @@ namespace EndlessHeresy.Gameplay.Actors
         public TileActor GetTileActor(int x, int y)
         {
             if (x < 0 || y < 0)
-            {
                 return null;
-            }
 
             if (_tiles.GetLength(0) > x && _tiles.GetLength(1) > y)
-            {
                 return _tiles[x, y];
-            }
 
             return null;
         }

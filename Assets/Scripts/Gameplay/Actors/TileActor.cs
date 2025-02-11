@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Better.Locators.Runtime;
 using EndlessHeresy.Core;
+using EndlessHeresy.Gameplay.Services.Factory;
 using EndlessHeresy.Gameplay.Services.Sprites;
 using EndlessHeresy.Gameplay.Systems;
 
@@ -10,11 +12,12 @@ namespace EndlessHeresy.Gameplay.Actors
     public sealed class TileActor : MonoActor
     {
         private ISpriteService _spriteService;
-        private IGameBoard _board;
+        private IGameplayFactoryService _gameplayFactoryService;
         private PointStorageComponent _pointStorage;
         private ImageStorageComponent _imageStorage;
         private ItemStorageComponent _itemStorage;
         private TileActor[] _neighbors;
+        private IGameBoard _board;
 
         public ItemActor Item => _itemStorage.Item;
         private TileActor Left => _board.GetTileActor(_pointStorage.Point.x - 1, _pointStorage.Point.y);
@@ -30,8 +33,18 @@ namespace EndlessHeresy.Gameplay.Actors
             _imageStorage = GetComponent<ImageStorageComponent>();
             _itemStorage = GetComponent<ItemStorageComponent>();
             _spriteService = ServiceLocator.Get<SpriteService>();
+            _gameplayFactoryService = ServiceLocator.Get<GameplayFactoryService>();
 
             InitializeSprite();
+        }
+
+        protected override void OnDispose()
+        {
+            base.OnDispose();
+
+            if (Item == null) return;
+
+            _gameplayFactoryService.Dispose(Item);
         }
 
         public void SetBoard(IGameBoard board)
@@ -45,6 +58,8 @@ namespace EndlessHeresy.Gameplay.Actors
                 Bottom,
             };
         }
+
+        public bool IsNeighbor(TileActor tile) => _neighbors.Contains(tile);
 
         public void SetItem(ItemActor item)
         {

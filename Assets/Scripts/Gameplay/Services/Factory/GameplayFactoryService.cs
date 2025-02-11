@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Better.Locators.Runtime;
 using Better.Services.Runtime;
+using EndlessHeresy.Core;
 using EndlessHeresy.Gameplay.Actors;
 using EndlessHeresy.Gameplay.Services.StaticData;
 using EndlessHeresy.Gameplay.Systems;
@@ -81,5 +82,7 @@ namespace EndlessHeresy.Gameplay.Services.Factory
                 .WithComponent(itemStorage)
                 .Build();
         }
+
+        public void Dispose(MonoActor actor) => actor.Dispose();
     }
 }
