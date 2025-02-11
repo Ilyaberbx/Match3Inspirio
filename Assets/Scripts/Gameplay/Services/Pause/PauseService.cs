@@ -5,6 +5,7 @@ using Better.Services.Runtime;
 
 namespace EndlessHeresy.Gameplay.Services.Pause
 {
+    [Serializable]
     public sealed class PauseService : PocoService, IPauseService
     {
         public event Action<bool> OnPauseChanged;

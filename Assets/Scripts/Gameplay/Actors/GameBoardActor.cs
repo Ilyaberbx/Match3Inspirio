@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Better.Commons.Runtime.Extensions;
@@ -8,6 +9,7 @@ using EndlessHeresy.Core;
 using EndlessHeresy.Extensions;
 using EndlessHeresy.Gameplay.Services.Factory;
 using EndlessHeresy.Gameplay.Services.Input;
+using EndlessHeresy.Gameplay.Services.Pause;
 using EndlessHeresy.Gameplay.Services.StaticData;
 using EndlessHeresy.Gameplay.Systems;
 using EndlessHeresy.Utilities;
