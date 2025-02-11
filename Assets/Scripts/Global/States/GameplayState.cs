@@ -18,7 +18,7 @@ namespace EndlessHeresy.Global.States
 
             _gameplayStatesService = ServiceLocator.Get<GameplayStatesService>();
 
-            await _gameplayStatesService.ChangeStateAsync<InitializeWorldState>();
+            await _gameplayStatesService.ChangeStateAsync<BoardMiniGameState>();
         }
 
         public override async Task ExitAsync(CancellationToken token)
