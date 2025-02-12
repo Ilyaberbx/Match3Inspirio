@@ -32,9 +32,6 @@ namespace EndlessHeresy.Global.States
             await SceneManager.UnloadSceneAsync(sceneName);
         }
 
-        protected virtual Task OnSceneLoaded()
-        {
-            return Task.CompletedTask;
-        }
+        protected abstract Task OnSceneLoaded();
     }
 }

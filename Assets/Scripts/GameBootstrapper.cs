@@ -13,7 +13,7 @@ namespace EndlessHeresy
         private void Start()
         {
             _gameStatesService = ServiceLocator.Get<GameStatesService>();
-            _gameStatesService.ChangeStateAsync<GameplayState>().Forget();
+            _gameStatesService.ChangeStateAsync<GameInitializationState>().Forget();
         }
 
         private void OnDestroy()

@@ -16,7 +16,7 @@ namespace EndlessHeresy.Global.States
             return Task.CompletedTask;
         }
 
-        public sealed override void OnEntered()
+        public override void OnEntered()
         {
         }
 
