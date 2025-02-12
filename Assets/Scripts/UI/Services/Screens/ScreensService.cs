@@ -29,7 +29,7 @@ namespace EndlessHeresy.UI.Services.Screens
             return Task.CompletedTask;
         }
 
-        public async Task<TController> Show<TController, TModel>(TModel model)
+        public async Task<TController> ShowAsync<TController, TModel>(TModel model)
             where TController : BaseController<TModel>, new()
             where TModel : IModel
         {

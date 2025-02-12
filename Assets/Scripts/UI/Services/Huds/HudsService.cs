@@ -31,7 +31,7 @@ namespace EndlessHeresy.UI.Services.Huds
             return Task.CompletedTask;
         }
 
-        public async Task<TController> Show<TController, TModel>(TModel model, ShowType showType)
+        public async Task<TController> ShowAsync<TController, TModel>(TModel model, ShowType showType)
             where TController : BaseController<TModel>, new()
             where TModel : IModel
         {

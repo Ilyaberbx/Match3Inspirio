@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
 using EndlessHeresy.Gameplay.Services.Level;
 using EndlessHeresy.Gameplay.Services.Score;
@@ -49,17 +50,19 @@ namespace EndlessHeresy.Gameplay.Modules
 
                 var scoreToAdd = movesLeft * _levelsConfiguration.ScorePerMoveLeft;
                 _scoreService.AddScore(scoreToAdd);
-                _popupsService.Show<LevelWinPopupController, LevelWinPopupModel>(LevelWinPopupModel.New());
+                _popupsService.ShowAsync<LevelWinPopupController, LevelWinPopupModel>(LevelWinPopupModel.New())
+                    .Forget();
                 return;
             }
 
             if (score >= minScoreToWin)
             {
-                _popupsService.Show<LevelWinPopupController, LevelWinPopupModel>(LevelWinPopupModel.New());
+                _popupsService.ShowAsync<LevelWinPopupController, LevelWinPopupModel>(LevelWinPopupModel.New())
+                    .Forget();
                 return;
             }
 
-            _popupsService.Show<LevelLosePopupController, LevelLosePopupModel>(LevelLosePopupModel.New());
+            _popupsService.ShowAsync<LevelLosePopupController, LevelLosePopupModel>(LevelLosePopupModel.New()).Forget();
         }
     }
 }

@@ -17,8 +17,7 @@ namespace EndlessHeresy.Gameplay.Modules
             _gameplayStaticDataService = ServiceLocator.Get<GameplayStaticDataService>();
             var levelsCount = _gameplayStaticDataService.GetLevelConfiguration().BoardConfigurations.Length;
             var model = new RoadMapScreenModel(levelsCount);
-            _screensService.Show<RoadMapScreenController, RoadMapScreenModel>(model);
-            return Task.CompletedTask;
+            return _screensService.ShowAsync<RoadMapScreenController, RoadMapScreenModel>(model);
         }
 
         public override void Dispose() => _screensService.Hide();

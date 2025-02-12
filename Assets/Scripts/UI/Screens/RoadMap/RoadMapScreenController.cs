@@ -1,4 +1,5 @@
 ﻿using System;
+using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
 using EndlessHeresy.UI.MVC;
 using EndlessHeresy.UI.Popups.LevelStart;
@@ -40,7 +41,9 @@ namespace EndlessHeresy.UI.Screens.RoadMap
         private void OnNodeClicked(RoadMapNodeView node)
         {
             var levelIndex = Array.IndexOf(View.Nodes, node);
-            _popupsService.Show<LevelStartPopupController, LevelStartPopupModel>(new LevelStartPopupModel(levelIndex));
+            _popupsService
+                .ShowAsync<LevelStartPopupController, LevelStartPopupModel>(new LevelStartPopupModel(levelIndex))
+                .Forget();
         }
     }
 }

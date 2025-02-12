@@ -20,8 +20,7 @@ namespace EndlessHeresy.Gameplay.Modules
             _inputService = ServiceLocator.Get<InputService>();
             _hudsService = ServiceLocator.Get<HudsService>();
             _pauseService.OnPauseChanged += OnPauseChanged;
-            _hudsService.Show<PauseHudController, PauseHudModel>(PauseHudModel.New(), ShowType.Additive);
-            return Task.CompletedTask;
+            return _hudsService.ShowAsync<PauseHudController, PauseHudModel>(PauseHudModel.New(), ShowType.Additive);
         }
 
         public override void Dispose() => _pauseService.OnPauseChanged -= OnPauseChanged;

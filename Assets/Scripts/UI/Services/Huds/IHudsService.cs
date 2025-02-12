@@ -5,7 +5,7 @@ namespace EndlessHeresy.UI.Services.Huds
 {
     public interface IHudsService
     {
-        Task<TController> Show<TController, TModel>(TModel model, ShowType showType)
+        Task<TController> ShowAsync<TController, TModel>(TModel model, ShowType showType)
             where TController : BaseController<TModel>, new()
             where TModel : IModel;
 

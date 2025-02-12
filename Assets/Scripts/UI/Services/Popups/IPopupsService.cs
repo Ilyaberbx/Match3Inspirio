@@ -5,7 +5,7 @@ namespace EndlessHeresy.UI.Services.Popups
 {
     public interface IPopupsService
     {
-        Task<TController> Show<TController, TModel>(TModel model)
+        Task<TController> ShowAsync<TController, TModel>(TModel model)
             where TController : BaseController<TModel>, new()
             where TModel : IModel;
 

@@ -28,8 +28,7 @@ namespace EndlessHeresy.Gameplay.Modules
 
             _levelsConfiguration = _gameplayStaticDataService.GetLevelConfiguration();
             _levelService.OnItemsPopped += OnItemsPopped;
-            _hudService.Show<ScoreHudController, ScoreHudModel>(ScoreHudModel.New(), ShowType.Additive);
-            return Task.CompletedTask;
+            return _hudService.ShowAsync<ScoreHudController, ScoreHudModel>(ScoreHudModel.New(), ShowType.Additive);
         }
 
         public override void Dispose() => _levelService.OnItemsPopped -= OnItemsPopped;

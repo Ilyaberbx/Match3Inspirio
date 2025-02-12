@@ -12,8 +12,7 @@ namespace EndlessHeresy.Gameplay.Modules
         public override Task InitializeAsync()
         {
             _screensService = ServiceLocator.Get<ScreensService>();
-            _screensService.Show<MenuScreenController, MenuScreenModel>(MenuScreenModel.New());
-            return Task.CompletedTask;
+            return _screensService.ShowAsync<MenuScreenController, MenuScreenModel>(MenuScreenModel.New());
         }
 
         public override void Dispose() => _screensService.Hide();
