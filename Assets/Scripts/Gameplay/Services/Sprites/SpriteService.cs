@@ -13,6 +13,7 @@ namespace EndlessHeresy.Gameplay.Services.Sprites
     {
         private IGameplayStaticDataService _gameplayConfigurationService;
         private TilesConfiguration _tilesConfiguration;
+        private UIWinConfiguration _uiWinConfiguration;
 
         protected override Task OnInitializeAsync(CancellationToken cancellationToken) => Task.CompletedTask;
 
@@ -20,6 +21,7 @@ namespace EndlessHeresy.Gameplay.Services.Sprites
         {
             _gameplayConfigurationService = ServiceLocator.Get<GameplayStaticDataService>();
             _tilesConfiguration = _gameplayConfigurationService.GetTilesConfiguration();
+            _uiWinConfiguration = _gameplayConfigurationService.GetUIWinConfiguration();
             return Task.CompletedTask;
         }
 
@@ -30,10 +32,7 @@ namespace EndlessHeresy.Gameplay.Services.Sprites
             return isEven ? _tilesConfiguration.EvenSprite : _tilesConfiguration.OddSprite;
         }
 
-        public Sprite GetItemSprite(int id)
-        {
-            var item = _gameplayConfigurationService.GetItemConfiguration(id);
-            return item.Sprite;
-        }
+        public Sprite GetItemSprite(int id) => _gameplayConfigurationService.GetItemConfiguration(id).Sprite;
+        public Sprite GetStatusSprite(int index) => _uiWinConfiguration.IconsForStars[index];
     }
 }

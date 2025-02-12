@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EndlessHeresy.UI.ViewComponents
 {
-    public sealed class StarView : UIMonoBehaviour
+    public sealed class StarNodeView : UIMonoBehaviour
     {
         [SerializeField] private GameObject _filledContainer;
         [SerializeField] private GameObject _emptyContainer;

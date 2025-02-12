@@ -8,9 +8,9 @@ namespace EndlessHeresy.UI.Huds.Score
     public sealed class ScoreHudView : BaseView
     {
         [SerializeField] private Image _fillerImage;
-        [SerializeField] private StarView[] _starViews;
+        [SerializeField] private StarNodeView[] _starViews;
 
-        public StarView[] StarViews => _starViews;
+        public StarNodeView[] StarViews => _starViews;
 
         public void UpdateScoreFill(int currentScore, int totalScore)
         {

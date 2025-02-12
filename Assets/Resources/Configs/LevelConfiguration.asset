@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scoreForItems:
   - _itemsCount: 3
-    _scoreCount: 50
+    _scoreCount: 100
   - _itemsCount: 4
     _scoreCount: 100
   - _itemsCount: 5
@@ -24,7 +24,7 @@ MonoBehaviour:
   - _itemsCount: 6
     _scoreCount: 700
   _scoreForStars: c8000000f401000020030000
-  _moves: 2
+  _moves: 4
   _scorePerMoveLeft: 100
   _boardConfigurations:
   - {fileID: 11400000, guid: 0da08f395f2dd924dae5ae75104dc1f8, type: 2}

@@ -7,5 +7,6 @@
         ItemsConfiguration GetItemsConfiguration();
         ItemConfiguration GetItemConfiguration(int index);
         LevelsConfiguration GetLevelConfiguration();
+        UIWinConfiguration GetUIWinConfiguration();
     }
 }
