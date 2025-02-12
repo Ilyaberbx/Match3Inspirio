@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Better.Commons.Runtime.Extensions;
+﻿using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
 using EndlessHeresy.Gameplay.Services.Level;
 using EndlessHeresy.Gameplay.Services.StatesManagement;
@@ -11,6 +10,7 @@ namespace EndlessHeresy.UI.Popups.LevelStart
 {
     public sealed class LevelStartPopupController : BaseController<LevelStartPopupModel, LevelStartPopupView>
     {
+        private const string LevelFormat = "Level {0}";
         private IGameplayStatesService _gameplayStatesService;
         private ILevelService _levelService;
         private IPopupsService _popupsService;
@@ -23,17 +23,27 @@ namespace EndlessHeresy.UI.Popups.LevelStart
             _popupsService = ServiceLocator.Get<PopupsService>();
             _levelService = ServiceLocator.Get<LevelService>();
 
-            View.SetLevel(model.LevelIndex + 1);
+            UpdateLevelText(model);
             View.OnLevelStartClicked += OnLevelStartClicked;
+            View.OnCloseClicked += OnCloseClicked;
         }
 
         protected override void Hide()
         {
             base.Hide();
             View.OnLevelStartClicked -= OnLevelStartClicked;
+            View.OnCloseClicked -= OnCloseClicked;
         }
 
         private void OnLevelStartClicked() => StartLevel();
+        private void OnCloseClicked() => _popupsService.Hide();
+
+        private void UpdateLevelText(LevelStartPopupModel model)
+        {
+            var level = model.LevelIndex + 1;
+            var levelText = string.Format(LevelFormat, level);
+            View.SetLevelText(levelText);
+        }
 
         private void StartLevel()
         {

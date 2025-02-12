@@ -1,8 +1,6 @@
-﻿using EndlessHeresy.UI.MVC;
-
-namespace EndlessHeresy.UI.Popups.LevelLose
+﻿namespace EndlessHeresy.UI.Popups.LevelLose
 {
-    public sealed class LevelLosePopupView : BaseView
+    public sealed class LevelLosePopupView : BasePopupView
     {
     }
 }
