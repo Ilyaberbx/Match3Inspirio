@@ -1,5 +1,6 @@
 ﻿using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
+using EndlessHeresy.Gameplay.Services.Level;
 using EndlessHeresy.Gameplay.Services.Score;
 using EndlessHeresy.Gameplay.Services.StatesManagement;
 using EndlessHeresy.Gameplay.Services.StaticData;
@@ -16,6 +17,7 @@ namespace EndlessHeresy.UI.Popups.LevelWin
         private IGameplayStatesService _gameplayStatesService;
         private IScoreService _scoreService;
         private IGameplayStaticDataService _gameplayStaticDataService;
+        private ILevelService _levelService;
         private LevelsConfiguration _levelConfiguration;
 
         protected override void Show(LevelWinPopupModel model, LevelWinPopupView view)
@@ -25,6 +27,7 @@ namespace EndlessHeresy.UI.Popups.LevelWin
             _gameplayStatesService = ServiceLocator.Get<GameplayStatesService>();
             _gameplayStaticDataService = ServiceLocator.Get<GameplayStaticDataService>();
             _scoreService = ServiceLocator.Get<ScoreService>();
+            _levelService = ServiceLocator.Get<LevelService>();
             _levelConfiguration = _gameplayStaticDataService.GetLevelConfiguration();
 
             Model.WinDescription.Subscribe(OnWinDescriptionChanged);
@@ -33,6 +36,7 @@ namespace EndlessHeresy.UI.Popups.LevelWin
             Model.WinIcon.Subscribe(OnWinIconChanged);
             Model.StarsFilled.Subscribe(OnStarsFilledChanged);
             View.OnCloseClicked += OnCloseClicked;
+            View.OnNextLevelClicked += OnNextLevelClicked;
 
             UpdateModel();
         }
@@ -47,6 +51,7 @@ namespace EndlessHeresy.UI.Popups.LevelWin
             Model.WinIcon.Unsubscribe(OnWinIconChanged);
             Model.StarsFilled.Unsubscribe(OnStarsFilledChanged);
             View.OnCloseClicked -= OnCloseClicked;
+            View.OnNextLevelClicked -= OnNextLevelClicked;
         }
 
         private void UpdateModel()
@@ -86,6 +91,12 @@ namespace EndlessHeresy.UI.Popups.LevelWin
             Model.WinDescription.Value = winDescription;
             Model.WinColor.Value = winColor;
             Model.WinIcon.Value = winIcon;
+        }
+
+        private void OnNextLevelClicked()
+        {
+            _levelService.FireNextLevel();
+            _gameplayStatesService.ChangeStateAsync<BoardMiniGameState>().Forget();
         }
 
         private void OnCloseClicked() => _gameplayStatesService.ChangeStateAsync<RoadMapState>().Forget();

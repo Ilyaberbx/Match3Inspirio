@@ -31,7 +31,11 @@ namespace EndlessHeresy.Gameplay.Modules
             return _hudService.ShowAsync<ScoreHudController, ScoreHudModel>(ScoreHudModel.New(), ShowType.Additive);
         }
 
-        public override void Dispose() => _levelService.OnItemsPopped -= OnItemsPopped;
+        public override void Dispose()
+        {
+            _levelService.OnItemsPopped -= OnItemsPopped;
+            _scoreService.ClearScore();
+        }
 
         private void OnItemsPopped(IEnumerable<ItemActor> items)
         {

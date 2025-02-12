@@ -9,15 +9,11 @@ namespace EndlessHeresy.Gameplay.Modules
     public class RoadMapModule : BaseGameplayModule
     {
         private IScreensService _screensService;
-        private IGameplayStaticDataService _gameplayStaticDataService;
 
         public override Task InitializeAsync()
         {
             _screensService = ServiceLocator.Get<ScreensService>();
-            _gameplayStaticDataService = ServiceLocator.Get<GameplayStaticDataService>();
-            var levelsCount = _gameplayStaticDataService.GetLevelConfiguration().BoardConfigurations.Length;
-            var model = new RoadMapScreenModel(levelsCount);
-            return _screensService.ShowAsync<RoadMapScreenController, RoadMapScreenModel>(model);
+            return _screensService.ShowAsync<RoadMapScreenController, RoadMapScreenModel>(RoadMapScreenModel.New());
         }
 
         public override void Dispose() => _screensService.Hide();

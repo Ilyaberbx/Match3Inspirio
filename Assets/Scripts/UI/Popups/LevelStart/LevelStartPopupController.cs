@@ -47,7 +47,7 @@ namespace EndlessHeresy.UI.Popups.LevelStart
 
         private void StartLevel()
         {
-            _levelService.SelectLevel(Model.LevelIndex);
+            _levelService.FireSelectLevel(Model.LevelIndex);
             _popupsService.Hide();
             _gameplayStatesService.ChangeStateAsync<BoardMiniGameState>().Forget();
         }

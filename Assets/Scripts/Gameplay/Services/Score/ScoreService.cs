@@ -19,8 +19,9 @@ namespace EndlessHeresy.Gameplay.Services.Score
         public void AddScore(int score)
         {
             Score = Mathf.Clamp(Score + score, 0, int.MaxValue);
-            Debug.Log("Score: " + Score);
             OnScoreChanged?.Invoke(Score);
         }
+
+        public void ClearScore() => Score = 0;
     }
 }

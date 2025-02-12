@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Better.Locators.Runtime;
 using Better.Services.Runtime;
 using EndlessHeresy.Gameplay.Actors;
+using EndlessHeresy.Gameplay.Services.StaticData;
+using EndlessHeresy.Global.Services.User;
 
 namespace EndlessHeresy.Gameplay.Services.Level
 {
@@ -12,11 +15,35 @@ namespace EndlessHeresy.Gameplay.Services.Level
     {
         public event Action<IEnumerable<ItemActor>> OnItemsPopped;
         public event Action OnMove;
+
+        private IGameplayStaticDataService _gameplayStaticDataService;
+
+        private LevelsConfiguration _levelConfiguration;
         protected override Task OnInitializeAsync(CancellationToken cancellationToken) => Task.CompletedTask;
-        protected override Task OnPostInitializeAsync(CancellationToken cancellationToken) => Task.CompletedTask;
+
+        protected override Task OnPostInitializeAsync(CancellationToken cancellationToken)
+        {
+            _gameplayStaticDataService = ServiceLocator.Get<GameplayStaticDataService>();
+            _levelConfiguration = _gameplayStaticDataService.GetLevelConfiguration();
+            return Task.CompletedTask;
+        }
+
         public int SelectedLevelIndex { get; private set; }
         public void FireItemsPopped(IEnumerable<ItemActor> items) => OnItemsPopped?.Invoke(items);
         public void FireMove() => OnMove?.Invoke();
-        public void SelectLevel(int index) => SelectedLevelIndex = index;
+        public void FireSelectLevel(int index) => SelectedLevelIndex = index;
+
+        public void FireNextLevel()
+        {
+            var nextLevel = SelectedLevelIndex + 1;
+            var maxLevelsCount = _levelConfiguration.BoardConfigurations.Length - 1;
+
+            if (nextLevel > maxLevelsCount)
+            {
+                nextLevel = maxLevelsCount;
+            }
+
+            FireSelectLevel(nextLevel);
+        }
     }
 }

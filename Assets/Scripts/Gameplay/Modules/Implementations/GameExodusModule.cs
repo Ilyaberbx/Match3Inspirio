@@ -4,6 +4,7 @@ using Better.Locators.Runtime;
 using EndlessHeresy.Gameplay.Services.Level;
 using EndlessHeresy.Gameplay.Services.Score;
 using EndlessHeresy.Gameplay.Services.StaticData;
+using EndlessHeresy.Global.Services.User;
 using EndlessHeresy.UI.Popups.LevelLose;
 using EndlessHeresy.UI.Popups.LevelWin;
 using EndlessHeresy.UI.Services.Popups;
@@ -16,6 +17,7 @@ namespace EndlessHeresy.Gameplay.Modules
         private IPopupsService _popupsService;
         private IGameplayStaticDataService _gameplayStaticDataService;
         private ILevelService _levelService;
+        private IUserService _userService;
         private LevelsConfiguration _levelsConfiguration;
         private int _usedMoves;
 
@@ -24,6 +26,7 @@ namespace EndlessHeresy.Gameplay.Modules
             _scoreService = ServiceLocator.Get<ScoreService>();
             _popupsService = ServiceLocator.Get<PopupsService>();
             _levelService = ServiceLocator.Get<LevelService>();
+            _userService = ServiceLocator.Get<UserService>();
             _gameplayStaticDataService = ServiceLocator.Get<GameplayStaticDataService>();
             _levelsConfiguration = _gameplayStaticDataService.GetLevelConfiguration();
             _levelService.OnMove += OnMoved;
@@ -50,19 +53,39 @@ namespace EndlessHeresy.Gameplay.Modules
 
                 var scoreToAdd = movesLeft * _levelsConfiguration.ScorePerMoveLeft;
                 _scoreService.AddScore(scoreToAdd);
-                _popupsService.ShowAsync<LevelWinPopupController, LevelWinPopupModel>(LevelWinPopupModel.New())
-                    .Forget();
+                Win();
                 return;
             }
 
             if (score >= minScoreToWin)
             {
-                _popupsService.ShowAsync<LevelWinPopupController, LevelWinPopupModel>(LevelWinPopupModel.New())
-                    .Forget();
+                Win();
                 return;
             }
 
-            _popupsService.ShowAsync<LevelLosePopupController, LevelLosePopupModel>(LevelLosePopupModel.New()).Forget();
+            Lose();
+        }
+
+        private void Lose() => _popupsService
+            .ShowAsync<LevelLosePopupController, LevelLosePopupModel>(LevelLosePopupModel.New()).Forget();
+
+        private void Win()
+        {
+            CompleteSelectedLevel();
+
+            _popupsService.ShowAsync<LevelWinPopupController, LevelWinPopupModel>(LevelWinPopupModel.New())
+                .Forget();
+        }
+
+        private void CompleteSelectedLevel()
+        {
+            var lastLevel = _userService.LastLevelIndex.Value;
+            var selectedLevel = _levelService.SelectedLevelIndex;
+
+            if (selectedLevel > lastLevel)
+            {
+                _userService.LastLevelIndex.Value = selectedLevel;
+            }
         }
     }
 }

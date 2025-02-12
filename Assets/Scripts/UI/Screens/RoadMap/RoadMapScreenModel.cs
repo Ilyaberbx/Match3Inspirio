@@ -1,14 +1,11 @@
-﻿using EndlessHeresy.UI.MVC;
+﻿using Better.Commons.Runtime.DataStructures.Properties;
+using EndlessHeresy.UI.MVC;
 
 namespace EndlessHeresy.UI.Screens.RoadMap
 {
     public sealed class RoadMapScreenModel : IModel
     {
-        public RoadMapScreenModel(int levelsCount)
-        {
-            LevelsCount = levelsCount;
-        }
-
-        public int LevelsCount { get; }
+        public static RoadMapScreenModel New() => new();
+        public ReactiveProperty<int> LastLevelIndex = new();
     }
 }

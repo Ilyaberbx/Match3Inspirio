@@ -463,6 +463,7 @@ MonoBehaviour:
   - {fileID: 2121827346034649658}
   - {fileID: 4338142271984676425}
   _winIconImage: {fileID: 4965744554159019429}
+  _nextLevelButton: {fileID: 5335726458953973155}
   _descriptionText: {fileID: 3242698949065169217}
   _scoreText: {fileID: 5613095426426897652}
 --- !u!1 &4462129403743713272

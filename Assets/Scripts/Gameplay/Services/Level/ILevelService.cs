@@ -11,6 +11,7 @@ namespace EndlessHeresy.Gameplay.Services.Level
         public int SelectedLevelIndex { get; }
         public void FireItemsPopped(IEnumerable<ItemActor> items);
         public void FireMove();
-        public void SelectLevel(int index);
+        public void FireSelectLevel(int index);
+        public void FireNextLevel();
     }
 }

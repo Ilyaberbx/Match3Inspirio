@@ -586,6 +586,7 @@ MonoBehaviour:
       type: {class: PocoServicesInstaller, ns: Better.Contexts.Runtime.Installers, asm: Better.Contexts.Runtime}
       data:
         _services:
+        - rid: 9117324423403929603
         - rid: 6450054396463284224
         - rid: 9117324402366349314
         - rid: 9117324402366349315
@@ -610,6 +611,9 @@ MonoBehaviour:
       type: {class: ScreensService, ns: EndlessHeresy.UI.Services.Screens, asm: Assembly-CSharp}
       data:
         _root: {fileID: 564528221}
+    - rid: 9117324423403929603
+      type: {class: UserService, ns: EndlessHeresy.Global.Services.User, asm: Assembly-CSharp}
+      data: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
