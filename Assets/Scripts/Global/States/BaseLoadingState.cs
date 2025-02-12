@@ -2,7 +2,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Better.Commons.Runtime.Extensions;
 using EndlessHeresy.Commons;
-using EndlessHeresy.Core;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
