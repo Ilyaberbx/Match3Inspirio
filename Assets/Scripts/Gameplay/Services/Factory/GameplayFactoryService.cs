@@ -31,14 +31,14 @@ namespace EndlessHeresy.Gameplay.Services.Factory
             _staticDataService = ServiceLocator.Get<GameplayStaticDataService>();
         }
 
-        public Task<GameBoardActor> CreateGameBoardAsync(int levelId)
+        public Task<GameBoardActor> CreateGameBoardAsync(int index)
         {
-            var configuration = _staticDataService.GetGameBoardConfiguration(levelId);
+            var configuration = _staticDataService.GetGameBoardConfiguration(index);
             var builder = MonoActorUtility.GetBuilder<GameBoardActor>();
             var sizeStorage = new SizeStorageComponent();
             var idStorage = new IdentifierStorageComponent();
 
-            idStorage.Setup(levelId);
+            idStorage.Setup(index);
             sizeStorage.Setup(configuration.Width, configuration.Height);
 
             return builder

@@ -12,19 +12,19 @@ namespace EndlessHeresy.Gameplay.Modules
     public sealed class GameExodusModule : BaseGameplayModule
     {
         private IScoreService _scoreService;
-        private IPopupService _popupService;
+        private IPopupsService _popupsService;
         private IGameplayStaticDataService _gameplayStaticDataService;
         private ILevelService _levelService;
-        private LevelConfiguration _levelConfiguration;
+        private LevelsConfiguration _levelsConfiguration;
         private int _usedMoves;
 
         public override Task InitializeAsync()
         {
             _scoreService = ServiceLocator.Get<ScoreService>();
-            _popupService = ServiceLocator.Get<PopupService>();
+            _popupsService = ServiceLocator.Get<PopupsService>();
             _levelService = ServiceLocator.Get<LevelService>();
             _gameplayStaticDataService = ServiceLocator.Get<GameplayStaticDataService>();
-            _levelConfiguration = _gameplayStaticDataService.GetLevelConfiguration();
+            _levelsConfiguration = _gameplayStaticDataService.GetLevelConfiguration();
             _levelService.OnMove += OnMoved;
             return Task.CompletedTask;
         }
@@ -34,11 +34,11 @@ namespace EndlessHeresy.Gameplay.Modules
         private void OnMoved()
         {
             _usedMoves++;
-            var maxMoves = _levelConfiguration.Moves;
+            var maxMoves = _levelsConfiguration.Moves;
             var movesLeft = maxMoves - _usedMoves;
             var score = _scoreService.Score;
-            var minScoreToWin = _levelConfiguration.ScoreForStars[0];
-            var maxScoreToWin = _levelConfiguration.ScoreForStars[^1];
+            var minScoreToWin = _levelsConfiguration.ScoreForStars[0];
+            var maxScoreToWin = _levelsConfiguration.ScoreForStars[^1];
 
             if (movesLeft > 0)
             {
@@ -47,19 +47,19 @@ namespace EndlessHeresy.Gameplay.Modules
                     return;
                 }
 
-                var scoreToAdd = movesLeft * _levelConfiguration.ScorePerMoveLeft;
+                var scoreToAdd = movesLeft * _levelsConfiguration.ScorePerMoveLeft;
                 _scoreService.AddScore(scoreToAdd);
-                _popupService.Show<LevelWinPopupController, LevelWinPopupModel>(LevelWinPopupModel.New());
+                _popupsService.Show<LevelWinPopupController, LevelWinPopupModel>(LevelWinPopupModel.New());
                 return;
             }
 
             if (score >= minScoreToWin)
             {
-                _popupService.Show<LevelWinPopupController, LevelWinPopupModel>(LevelWinPopupModel.New());
+                _popupsService.Show<LevelWinPopupController, LevelWinPopupModel>(LevelWinPopupModel.New());
                 return;
             }
 
-            _popupService.Show<LevelLosePopupController, LevelLosePopupModel>(LevelLosePopupModel.New());
+            _popupsService.Show<LevelLosePopupController, LevelLosePopupModel>(LevelLosePopupModel.New());
         }
     }
 }

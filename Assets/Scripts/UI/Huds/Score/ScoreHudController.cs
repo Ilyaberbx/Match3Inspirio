@@ -9,7 +9,7 @@ namespace EndlessHeresy.UI.Huds.Score
     {
         private IScoreService _scoreService;
         private IGameplayStaticDataService _gameplayStaticDataService;
-        private LevelConfiguration _levelConfiguration;
+        private LevelsConfiguration _levelsConfiguration;
 
         protected override void Show(ScoreHudModel model, ScoreHudView view)
         {
@@ -17,7 +17,7 @@ namespace EndlessHeresy.UI.Huds.Score
 
             _scoreService = ServiceLocator.Get<ScoreService>();
             _gameplayStaticDataService = ServiceLocator.Get<GameplayStaticDataService>();
-            _levelConfiguration = _gameplayStaticDataService.GetLevelConfiguration();
+            _levelsConfiguration = _gameplayStaticDataService.GetLevelConfiguration();
             _scoreService.OnScoreChanged += OnScoreChanged;
 
             Model.OnScoreUpdated += OnScoreUpdated;
@@ -40,12 +40,12 @@ namespace EndlessHeresy.UI.Huds.Score
         private void OnScoreUpdated(ScoreHudModel model)
         {
             var score = model.Score;
-            var totalScore = _levelConfiguration.ScoreForStars[^1];
+            var totalScore = _levelsConfiguration.ScoreForStars[^1];
             View.UpdateScoreFill(score, totalScore);
 
-            for (var i = 0; i < _levelConfiguration.ScoreForStars.Count; i++)
+            for (var i = 0; i < _levelsConfiguration.ScoreForStars.Count; i++)
             {
-                var scoreForStar = _levelConfiguration.ScoreForStars[i];
+                var scoreForStar = _levelsConfiguration.ScoreForStars[i];
                 var starView = View.StarViews[i];
                 var hasEnough = score >= scoreForStar;
                 starView.SetFilled(hasEnough);

@@ -8,25 +8,20 @@ using EndlessHeresy.UI.MVC;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace EndlessHeresy.UI.Services.Popups
+namespace EndlessHeresy.UI.Services.Screens
 {
     [Serializable]
-    public sealed class PopupService : PocoService, IPopupService
+    public sealed class ScreensService : PocoService, IScreensService
     {
         private const string ControllerPostfix = "Controller";
-        private const string ViewPathFormat = "Popups/{0}";
+        private const string ViewPathFormat = "Screens/{0}";
 
-        [SerializeField] private CanvasGroup _backgroundGroup;
         [SerializeField] private Transform _root;
 
         private BaseController _currentController;
         private IAssetsService _assetsService;
 
-        protected override Task OnInitializeAsync(CancellationToken cancellationToken)
-        {
-            HideBackground();
-            return Task.CompletedTask;
-        }
+        protected override Task OnInitializeAsync(CancellationToken cancellationToken) => Task.CompletedTask;
 
         protected override Task OnPostInitializeAsync(CancellationToken cancellationToken)
         {
@@ -56,7 +51,6 @@ namespace EndlessHeresy.UI.Services.Popups
             controller.Initialize(view, model);
             _currentController = controller;
 
-            ShowBackground();
             return controller;
         }
 
@@ -71,21 +65,6 @@ namespace EndlessHeresy.UI.Services.Popups
             _currentController.Dispose();
             _currentController = null;
             Object.Destroy(viewGameObject);
-            HideBackground();
-        }
-
-        private void ShowBackground()
-        {
-            _backgroundGroup.alpha = 1;
-            _backgroundGroup.interactable = true;
-            _backgroundGroup.blocksRaycasts = true;
-        }
-
-        private void HideBackground()
-        {
-            _backgroundGroup.alpha = 0;
-            _backgroundGroup.interactable = false;
-            _backgroundGroup.blocksRaycasts = false;
         }
     }
 }

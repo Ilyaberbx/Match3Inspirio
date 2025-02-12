@@ -296,6 +296,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 564528221}
   - {fileID: 420250335}
   - {fileID: 1825598694}
   m_Father: {fileID: 0}
@@ -305,6 +306,41 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &564528220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 564528221}
+  m_Layer: 5
+  m_Name: Screens
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &564528221
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564528220}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 519732469}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &575406848
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,7 +589,8 @@ MonoBehaviour:
         - rid: 6450054396463284224
         - rid: 9117324402366349314
         - rid: 9117324402366349315
-        - rid: 9117324408951930880
+        - rid: 9117324423403929600
+        - rid: 9117324423403929601
     - rid: 6450054396463284224
       type: {class: GameStatesService, ns: EndlessHeresy.Global.Services.StatesManagement, asm: Assembly-CSharp}
       data: 
@@ -564,11 +601,15 @@ MonoBehaviour:
     - rid: 9117324402366349315
       type: {class: ResourcesAssetsService, ns: EndlessHeresy.Global.Services.AssetsManagement, asm: Assembly-CSharp}
       data: 
-    - rid: 9117324408951930880
-      type: {class: PopupService, ns: EndlessHeresy.UI.Services.Popups, asm: Assembly-CSharp}
+    - rid: 9117324423403929600
+      type: {class: PopupsService, ns: EndlessHeresy.UI.Services.Popups, asm: Assembly-CSharp}
       data:
         _backgroundGroup: {fileID: 575406852}
         _root: {fileID: 1825598694}
+    - rid: 9117324423403929601
+      type: {class: ScreensService, ns: EndlessHeresy.UI.Services.Screens, asm: Assembly-CSharp}
+      data:
+        _root: {fileID: 564528221}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
