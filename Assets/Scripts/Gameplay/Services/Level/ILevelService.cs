@@ -8,6 +8,7 @@ namespace EndlessHeresy.Gameplay.Services.Level
     {
         event Action<IEnumerable<ItemActor>> OnItemsPopped;
         event Action OnMove;
+        event Action<int> OnLevelCompleted;
         public int SelectedLevelIndex { get; }
         public void FireItemsPopped(IEnumerable<ItemActor> items);
         public void FireMove();
@@ -16,5 +17,6 @@ namespace EndlessHeresy.Gameplay.Services.Level
         event Action<TileActor[,], IReadOnlyList<TileActor>> OnPreDeflate;
         void FirePostInflate(TileActor[,] allTiles, IReadOnlyList<TileActor> connected);
         event Action<TileActor[,], IReadOnlyList<TileActor>> OnPostInflate;
+        void FileLevelCompleted();
     }
 }

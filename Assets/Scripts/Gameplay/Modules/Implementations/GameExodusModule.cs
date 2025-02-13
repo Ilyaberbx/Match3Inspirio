@@ -74,6 +74,8 @@ namespace EndlessHeresy.Gameplay.Modules
 
         private void Win(int stars)
         {
+            _levelService.FileLevelCompleted();
+
             CompleteSelectedLevel(stars);
 
             _popupsService.ShowAsync<LevelWinPopupController, LevelWinPopupModel>(LevelWinPopupModel.New())

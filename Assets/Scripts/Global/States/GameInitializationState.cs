@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
+using EndlessHeresy.Global.Services.Analytics;
 using EndlessHeresy.UI.Screens.Splash;
 using EndlessHeresy.UI.Services.Screens;
 using UnityEngine;
@@ -17,12 +18,14 @@ namespace EndlessHeresy.Global.States
         public override async Task EnterAsync(CancellationToken token)
         {
             await base.EnterAsync(token);
-
+            
             _screensService = ServiceLocator.Get<ScreensService>();
-            Application.targetFrameRate = TargetFrameRate;
+            InitializeApplicationSettings();
             await _screensService.ShowAsync<SplashScreenController, SplashScreenModel>(SplashScreenModel.New());
             await Task.Delay(MillisecondsToShowSplash, token);
         }
+
+        public override Task ExitAsync(CancellationToken token) => Task.CompletedTask;
 
         public override void OnEntered()
         {
@@ -38,6 +41,6 @@ namespace EndlessHeresy.Global.States
             GameStatesService.ChangeStateAsync<WebviewState>().Forget();
         }
 
-        public override Task ExitAsync(CancellationToken token) => Task.CompletedTask;
+        private void InitializeApplicationSettings() => Application.targetFrameRate = TargetFrameRate;
     }
 }

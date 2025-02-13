@@ -593,6 +593,7 @@ MonoBehaviour:
         - rid: 9117324423403929600
         - rid: 9117324423403929601
         - rid: 9117324444953214984
+        - rid: 9117324453360697344
     - rid: 6450054396463284224
       type: {class: GameStatesService, ns: EndlessHeresy.Global.Services.StatesManagement, asm: Assembly-CSharp}
       data: 
@@ -623,6 +624,10 @@ MonoBehaviour:
         _itemsConfiguration: {fileID: 11400000, guid: b6405ee2e80f85445929c2b9d69e5475, type: 2}
         _uiWinConfiguration: {fileID: 11400000, guid: 6022ae5046d9b3e4aae45969a74058a7, type: 2}
         _vfxConfiguration: {fileID: 11400000, guid: 29c7cede5df87a647b5562e42b59a47f, type: 2}
+    - rid: 9117324453360697344
+      type: {class: AppsflyerService, ns: EndlessHeresy.Global.Services.Analytics, asm: Assembly-CSharp}
+      data:
+        _settings: {fileID: 11400000, guid: 95baaad5065b1094d8615d168cbc1ed9, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

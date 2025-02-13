@@ -10,6 +10,7 @@ namespace EndlessHeresy.Gameplay.Services.Level
     [Serializable]
     public sealed class LevelService : PocoService, ILevelService
     {
+        public event Action<int> OnLevelCompleted;
         public event Action<IEnumerable<ItemActor>> OnItemsPopped;
         public event Action<TileActor[,], IReadOnlyList<TileActor>> OnPreDeflate;
         public event Action<TileActor[,], IReadOnlyList<TileActor>> OnPostInflate;
@@ -20,6 +21,7 @@ namespace EndlessHeresy.Gameplay.Services.Level
         public void FireItemsPopped(IEnumerable<ItemActor> items) => OnItemsPopped?.Invoke(items);
         public void FireMove() => OnMove?.Invoke();
         public void FireSelectLevel(int index) => SelectedLevelIndex = index;
+        public void FileLevelCompleted() => OnLevelCompleted?.Invoke(SelectedLevelIndex);
 
         public void FirePreDeflate(TileActor[,] allTiles, IReadOnlyList<TileActor> connected) =>
             OnPreDeflate?.Invoke(allTiles, connected);
