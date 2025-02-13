@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
-using EndlessHeresy.Global.Services.Analytics;
 using EndlessHeresy.UI.Screens.Splash;
 using EndlessHeresy.UI.Services.Screens;
 using UnityEngine;
@@ -18,7 +17,7 @@ namespace EndlessHeresy.Global.States
         public override async Task EnterAsync(CancellationToken token)
         {
             await base.EnterAsync(token);
-            
+
             _screensService = ServiceLocator.Get<ScreensService>();
             InitializeApplicationSettings();
             await _screensService.ShowAsync<SplashScreenController, SplashScreenModel>(SplashScreenModel.New());

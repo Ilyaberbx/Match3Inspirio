@@ -1,6 +1,9 @@
 {
   "dependencies": {
     "appsflyer-unity-plugin": "https://github.com/AppsFlyerSDK/appsflyer-unity-plugin.git#upm",
+    "com.onesignal.unity.android": "5.1.12",
+    "com.onesignal.unity.core": "5.1.12",
+    "com.onesignal.unity.ios": "5.1.12",
     "com.tdw.better.attributes": "0.0.4",
     "com.tdw.better.commons": "0.0.61",
     "com.tdw.better.contexts": "0.0.4",
@@ -55,6 +58,13 @@
       "scopes": [
         "com.uurha",
         "com.tdw"
+      ]
+    },
+    {
+      "name": "npmjs",
+      "url": "https://registry.npmjs.org",
+      "scopes": [
+        "com.onesignal"
       ]
     }
   ]

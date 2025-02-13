@@ -24,7 +24,14 @@ namespace EndlessHeresy.Global.Services.Analytics
             AppsFlyer.startSDK();
         }
 
-        public void SendEvent(string eventName, Dictionary<string, string> eventValues) =>
+        public void SendEvent(string eventName, Dictionary<string, string> eventValues)
+        {
+            if (Settings.Suppress)
+            {
+                return;
+            }
+
             AppsFlyer.sendEvent(eventName, eventValues);
+        }
     }
 }
