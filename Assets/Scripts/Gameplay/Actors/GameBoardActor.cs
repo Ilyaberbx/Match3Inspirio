@@ -12,7 +12,6 @@ using EndlessHeresy.Gameplay.Services.Level;
 using EndlessHeresy.Gameplay.Services.StaticData;
 using EndlessHeresy.Gameplay.Systems;
 using EndlessHeresy.Utilities;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = System.Random;
 using Sequence = DG.Tweening.Sequence;
@@ -21,8 +20,6 @@ namespace EndlessHeresy.Gameplay.Actors
 {
     public sealed class GameBoardActor : MonoActor
     {
-        private const float Duration = 0.5f;
-
         private IGameplayFactoryService _gameplayFactoryService;
         private IGameplayStaticDataService _gameplayStaticDataService;
         private ILevelService _levelService;
@@ -155,8 +152,10 @@ namespace EndlessHeresy.Gameplay.Actors
                 var oldItem = oldTile.Item;
                 var newTile = GetTileOf(newItem);
                 var newTileTransform = newTile.transform;
-                var newItemShuffleTween = newItem.transform.DOMove(oldTileTransform.position, Duration);
-                var oldItemShuffleTween = oldItem.transform.DOMove(newTileTransform.position, Duration);
+                var newItemShuffleTween =
+                    newItem.transform.DOMove(oldTileTransform.position, GameBoardConstants.TweenDuration);
+                var oldItemShuffleTween =
+                    oldItem.transform.DOMove(newTileTransform.position, GameBoardConstants.TweenDuration);
 
                 sequence.Join(newItemShuffleTween)
                     .Join(oldItemShuffleTween);
@@ -241,9 +240,11 @@ namespace EndlessHeresy.Gameplay.Actors
         {
             while (true)
             {
+                _levelService.FirePreDeflate(_tilesManager.Tiles, connected);
                 await DeflateTilesAsync(connected);
                 _levelService.FireItemsPopped(connected.Select(t => t.Item));
                 await InflateTilesAsync(connected);
+                _levelService.FirePostInflate(_tilesManager.Tiles, connected);
 
                 if (MatchUtility.TryGetTilesToPop(_tilesManager.Tiles, out var toPop))
                 {
@@ -272,7 +273,7 @@ namespace EndlessHeresy.Gameplay.Actors
 
             foreach (var item in items)
             {
-                var tween = item.transform.DOScale(Vector3.zero, Duration);
+                var tween = item.transform.DOScale(Vector3.zero, GameBoardConstants.TweenDuration);
                 sequence.Join(tween);
             }
 
@@ -302,7 +303,7 @@ namespace EndlessHeresy.Gameplay.Actors
                 item.OnSelected += OnItemSelected;
                 tile.SetItem(item);
 
-                var tween = item.transform.DOScale(Vector3.zero, Duration).From();
+                var tween = item.transform.DOScale(Vector3.zero, GameBoardConstants.TweenDuration).From();
                 sequence.Join(tween);
             }
 
@@ -317,9 +318,9 @@ namespace EndlessHeresy.Gameplay.Actors
             var secondTile = GetTileOf(second);
 
             var firstTween = firstTransform
-                .DOMove(secondTile.transform.position, Duration);
+                .DOMove(secondTile.transform.position, GameBoardConstants.TweenDuration);
             var secondTween = secondTransform
-                .DOMove(firstTile.transform.position, Duration);
+                .DOMove(firstTile.transform.position, GameBoardConstants.TweenDuration);
 
             firstTransform.SetParent(transform);
             secondTransform.SetParent(transform);

@@ -7,10 +7,6 @@ namespace EndlessHeresy.Gameplay.Services.StaticData
     public sealed class GameBoardConfiguration : ScriptableObject
     {
         [SerializeField] private GameBoardActor _boardPrefab;
-        [SerializeField] private int _width;
-        [SerializeField] private int _height;
         public GameBoardActor BoardPrefab => _boardPrefab;
-        public int Width => _width;
-        public int Height => _height;
     }
 }

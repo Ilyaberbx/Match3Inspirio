@@ -22,6 +22,7 @@ namespace EndlessHeresy.Gameplay.States
             await AddModuleAsync<ScoreModule>();
             await AddModuleAsync<GameExodusModule>();
             await AddModuleAsync<ReturnModule>();
+            await AddModuleAsync<EffectsModule>();
         }
 
         public override Task ExitAsync(CancellationToken token)

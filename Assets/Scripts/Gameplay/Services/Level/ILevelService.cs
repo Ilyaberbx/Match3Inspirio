@@ -12,5 +12,9 @@ namespace EndlessHeresy.Gameplay.Services.Level
         public void FireItemsPopped(IEnumerable<ItemActor> items);
         public void FireMove();
         public void FireSelectLevel(int index);
+        void FirePreDeflate(TileActor[,] allTiles, IReadOnlyList<TileActor> connected);
+        event Action<TileActor[,], IReadOnlyList<TileActor>> OnPreDeflate;
+        void FirePostInflate(TileActor[,] allTiles, IReadOnlyList<TileActor> connected);
+        event Action<TileActor[,], IReadOnlyList<TileActor>> OnPostInflate;
     }
 }

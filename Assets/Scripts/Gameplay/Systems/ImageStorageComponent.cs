@@ -17,5 +17,7 @@ namespace EndlessHeresy.Gameplay.Systems
 
             _image.sprite = sprite;
         }
+
+        public void SetColor(Color color) => _image.color = color;
     }
 }

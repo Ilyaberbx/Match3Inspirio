@@ -20,17 +20,12 @@ namespace EndlessHeresy.Gameplay.Services.Factory
         [SerializeField] private GameObject _root;
 
         private IGameplayStaticDataService _staticDataService;
+        protected override Task OnInitializeAsync(CancellationToken cancellationToken) => Task.CompletedTask;
 
-        protected override Task OnInitializeAsync(CancellationToken cancellationToken)
+        protected override Task OnPostInitializeAsync(CancellationToken cancellationToken)
         {
-            return Task.CompletedTask;
-        }
-
-        protected override async Task OnPostInitializeAsync(CancellationToken cancellationToken)
-        {
-            await Task.CompletedTask;
-
             _staticDataService = ServiceLocator.Get<GameplayStaticDataService>();
+            return Task.CompletedTask;
         }
 
         public Task<GameBoardActor> CreateGameBoardAsync(int index)
@@ -42,7 +37,7 @@ namespace EndlessHeresy.Gameplay.Services.Factory
             var tilesStorage = new TilesManagerComponent();
 
             idStorage.Setup(index);
-            sizeStorage.Setup(configuration.Width, configuration.Height);
+            sizeStorage.Setup(GameBoardConstants.Width, GameBoardConstants.Height);
 
             return builder
                 .ForPrefab(configuration.BoardPrefab)
