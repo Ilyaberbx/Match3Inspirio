@@ -29,6 +29,12 @@ namespace EndlessHeresy.Global.States
             base.OnEntered();
 
             _screensService.Hide();
+
+#if UNITY_EDITOR
+
+            GameStatesService.ChangeStateAsync<GameplayState>().Forget();
+            return;
+#endif
             GameStatesService.ChangeStateAsync<WebviewState>().Forget();
         }
 

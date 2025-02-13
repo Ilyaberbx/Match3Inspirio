@@ -11,7 +11,6 @@ namespace EndlessHeresy.Extensions
             var taskCompletionSource = new TaskCompletionSource<bool>();
 
             tween.OnComplete(() => { taskCompletionSource.TrySetResult(true); });
-            tween.OnKill(() => { taskCompletionSource.TrySetCanceled(); });
 
             if (cancellationToken != CancellationToken.None)
             {

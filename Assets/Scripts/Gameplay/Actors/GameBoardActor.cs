@@ -141,7 +141,10 @@ namespace EndlessHeresy.Gameplay.Actors
                 (items[i], items[j]) = (items[j], items[i]);
             }
 
-            var sequence = DOTween.Sequence();
+            var sequence = DOTween
+                .Sequence()
+                .SetId(this);
+
             var index = 0;
 
             foreach (var oldTile in _tiles)
@@ -258,7 +261,9 @@ namespace EndlessHeresy.Gameplay.Actors
 
         private async Task DeflateTilesAsync(IReadOnlyList<TileActor> tiles)
         {
-            var sequence = DOTween.Sequence();
+            var sequence = DOTween
+                .Sequence()
+                .SetId(this);
 
             var items = tiles.Select(temp => temp.Item).ToArray();
 
@@ -284,7 +289,9 @@ namespace EndlessHeresy.Gameplay.Actors
 
         private async Task InflateTilesAsync(IReadOnlyList<TileActor> tiles)
         {
-            var sequence = DOTween.Sequence();
+            var sequence = DOTween
+                .Sequence()
+                .SetId(this);
 
             foreach (var tile in tiles)
             {

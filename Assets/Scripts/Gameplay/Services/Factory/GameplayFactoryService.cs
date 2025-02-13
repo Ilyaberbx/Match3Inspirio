@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Better.Locators.Runtime;
 using Better.Services.Runtime;
+using DG.Tweening;
 using EndlessHeresy.Core;
 using EndlessHeresy.Gameplay.Actors;
 using EndlessHeresy.Gameplay.Services.StaticData;
@@ -84,8 +85,9 @@ namespace EndlessHeresy.Gameplay.Services.Factory
                 .Build();
         }
 
-        public void Dispose(MonoActor actor)
+        public void Dispose<TActor>(TActor actor) where TActor : MonoActor
         {
+            DOTween.Kill(actor);
             actor.Dispose();
             Object.Destroy(actor.gameObject);
         }
