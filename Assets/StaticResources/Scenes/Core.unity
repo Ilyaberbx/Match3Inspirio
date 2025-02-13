@@ -592,6 +592,7 @@ MonoBehaviour:
         - rid: 9117324402366349315
         - rid: 9117324423403929600
         - rid: 9117324423403929601
+        - rid: 9117324444953214981
     - rid: 6450054396463284224
       type: {class: GameStatesService, ns: EndlessHeresy.Global.Services.StatesManagement, asm: Assembly-CSharp}
       data: 
@@ -614,6 +615,13 @@ MonoBehaviour:
     - rid: 9117324444953214978
       type: {class: UserService, ns: EndlessHeresy.Global.Services.Persistence, asm: Assembly-CSharp}
       data: 
+    - rid: 9117324444953214981
+      type: {class: GameplayStaticDataService, ns: EndlessHeresy.Gameplay.Services.StaticData, asm: Assembly-CSharp}
+      data:
+        _tilesConfiguration: {fileID: 11400000, guid: c5112956a28f5024fb8b6ab079e1ccb8, type: 2}
+        _levelsConfiguration: {fileID: 11400000, guid: 235c7f5df7f77384d9e7099cf7918b75, type: 2}
+        _itemsConfiguration: {fileID: 11400000, guid: b6405ee2e80f85445929c2b9d69e5475, type: 2}
+        _uiWinConfiguration: {fileID: 11400000, guid: 6022ae5046d9b3e4aae45969a74058a7, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

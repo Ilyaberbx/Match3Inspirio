@@ -31,18 +31,5 @@ namespace EndlessHeresy.Gameplay.Services.Level
         public void FireItemsPopped(IEnumerable<ItemActor> items) => OnItemsPopped?.Invoke(items);
         public void FireMove() => OnMove?.Invoke();
         public void FireSelectLevel(int index) => SelectedLevelIndex = index;
-
-        public void FireNextLevel()
-        {
-            var nextLevel = SelectedLevelIndex + 1;
-            var maxLevelsCount = _levelConfiguration.BoardConfigurations.Length - 1;
-
-            if (nextLevel > maxLevelsCount)
-            {
-                nextLevel = maxLevelsCount;
-            }
-
-            FireSelectLevel(nextLevel);
-        }
     }
 }

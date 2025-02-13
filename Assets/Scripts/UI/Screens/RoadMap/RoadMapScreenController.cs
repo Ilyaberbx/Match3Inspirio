@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
+using EndlessHeresy.Gameplay.Services.Level;
 using EndlessHeresy.Global.Services.Persistence;
+using EndlessHeresy.Persistence;
 using EndlessHeresy.UI.MVC;
 using EndlessHeresy.UI.Popups.LevelStart;
 using EndlessHeresy.UI.Services.Popups;
@@ -13,6 +16,7 @@ namespace EndlessHeresy.UI.Screens.RoadMap
     {
         private IPopupsService _popupsService;
         private IUserService _userService;
+        private ILevelService _levelService;
 
         protected override void Show(RoadMapScreenModel model, RoadMapScreenView view)
         {
@@ -20,6 +24,7 @@ namespace EndlessHeresy.UI.Screens.RoadMap
 
             _popupsService = ServiceLocator.Get<PopupsService>();
             _userService = ServiceLocator.Get<UserService>();
+            _levelService = ServiceLocator.Get<LevelService>();
 
             foreach (var nodeView in View.Nodes)
             {
@@ -27,7 +32,9 @@ namespace EndlessHeresy.UI.Screens.RoadMap
             }
 
             Model.LastLevelIndex.Subscribe(OnLastLevelIndexChanged);
+            Model.Levels.Subscribe(OnLevelsChanged);
             Model.LastLevelIndex.Value = _userService.LastLevelIndex.Value;
+            Model.Levels.Value = _userService.Levels.Value;
         }
 
         protected override void Hide()
@@ -40,14 +47,32 @@ namespace EndlessHeresy.UI.Screens.RoadMap
             }
 
             Model.LastLevelIndex.Unsubscribe(OnLastLevelIndexChanged);
+            Model.Levels.Unsubscribe(OnLevelsChanged);
         }
 
         private void OnNodeClicked(RoadMapNodeView node)
         {
             var levelIndex = Array.IndexOf(View.Nodes, node);
+            _levelService.FireSelectLevel(levelIndex);
             _popupsService
-                .ShowAsync<LevelStartPopupController, LevelStartPopupModel>(new LevelStartPopupModel(levelIndex))
+                .ShowAsync<LevelStartPopupController, LevelStartPopupModel>(LevelStartPopupModel.New())
                 .Forget();
+        }
+
+        private void OnLevelsChanged(List<LevelData> levels)
+        {
+            for (var i = 0; i < View.Nodes.Length; i++)
+            {
+                var nodeView = View.Nodes[i];
+                var levelData = levels[i];
+                var stars = levelData.Stars;
+
+                for (var j = 0; j < nodeView.StarViews.Length; j++)
+                {
+                    var starView = nodeView.StarViews[j];
+                    starView.SetFilled(stars - 1 >= j);
+                }
+            }
         }
 
         private void OnLastLevelIndexChanged(int index)

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
 using EndlessHeresy.Gameplay.Services.Level;
@@ -43,6 +44,7 @@ namespace EndlessHeresy.Gameplay.Modules
             var score = _scoreService.Score;
             var minScoreToWin = _levelsConfiguration.ScoreForStars[0];
             var maxScoreToWin = _levelsConfiguration.ScoreForStars[^1];
+            var stars = _levelsConfiguration.ScoreForStars.Count(scoreForStar => score >= scoreForStar);
 
             if (movesLeft > 0)
             {
@@ -53,13 +55,13 @@ namespace EndlessHeresy.Gameplay.Modules
 
                 var scoreToAdd = movesLeft * _levelsConfiguration.ScorePerMoveLeft;
                 _scoreService.AddScore(scoreToAdd);
-                Win();
+                Win(stars);
                 return;
             }
 
             if (score >= minScoreToWin)
             {
-                Win();
+                Win(stars);
                 return;
             }
 
@@ -69,22 +71,41 @@ namespace EndlessHeresy.Gameplay.Modules
         private void Lose() => _popupsService
             .ShowAsync<LevelLosePopupController, LevelLosePopupModel>(LevelLosePopupModel.New()).Forget();
 
-        private void Win()
+        private void Win(int stars)
         {
-            CompleteSelectedLevel();
+            CompleteSelectedLevel(stars);
 
             _popupsService.ShowAsync<LevelWinPopupController, LevelWinPopupModel>(LevelWinPopupModel.New())
                 .Forget();
         }
 
-        private void CompleteSelectedLevel()
+        private void CompleteSelectedLevel(int stars)
         {
-            var lastLevel = _userService.LastLevelIndex.Value;
             var selectedLevel = _levelService.SelectedLevelIndex;
+            var levelsData = _userService.Levels.Value;
+            var currentLevelData = levelsData.FirstOrDefault(temp => temp.Index == selectedLevel);
 
-            if (selectedLevel > lastLevel)
+            if (stars > currentLevelData?.Stars)
             {
-                _userService.LastLevelIndex.Value = selectedLevel;
+                currentLevelData.Stars = stars;
+            }
+
+            _userService.Levels.Value = levelsData;
+
+            var levelConfiguration = _gameplayStaticDataService.GetLevelConfiguration();
+            var maxLevel = levelConfiguration.BoardConfigurations.Length - 1;
+            var lastLevel = _userService.LastLevelIndex.Value;
+
+            if (selectedLevel >= lastLevel)
+            {
+                var nextLevel = selectedLevel + 1;
+
+                if (nextLevel > maxLevel)
+                {
+                    return;
+                }
+
+                _userService.LastLevelIndex.Value = nextLevel;
             }
         }
     }

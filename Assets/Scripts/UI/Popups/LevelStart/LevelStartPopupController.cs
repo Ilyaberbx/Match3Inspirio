@@ -1,8 +1,11 @@
-﻿using Better.Commons.Runtime.Extensions;
+﻿using System.Collections.Generic;
+using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
 using EndlessHeresy.Gameplay.Services.Level;
 using EndlessHeresy.Gameplay.Services.StatesManagement;
 using EndlessHeresy.Gameplay.States;
+using EndlessHeresy.Global.Services.Persistence;
+using EndlessHeresy.Persistence;
 using EndlessHeresy.UI.MVC;
 using EndlessHeresy.UI.Services.Popups;
 
@@ -14,6 +17,7 @@ namespace EndlessHeresy.UI.Popups.LevelStart
         private IGameplayStatesService _gameplayStatesService;
         private ILevelService _levelService;
         private IPopupsService _popupsService;
+        private IUserService _userService;
 
         protected override void Show(LevelStartPopupModel model, LevelStartPopupView view)
         {
@@ -22,32 +26,53 @@ namespace EndlessHeresy.UI.Popups.LevelStart
             _gameplayStatesService = ServiceLocator.Get<GameplayStatesService>();
             _popupsService = ServiceLocator.Get<PopupsService>();
             _levelService = ServiceLocator.Get<LevelService>();
+            _userService = ServiceLocator.Get<UserService>();
 
-            UpdateLevelText(model);
+            Model.LevelIndex.Subscribe(OnLevelIndexChanged);
+            Model.Levels.Subscribe(OnLevelsChanged);
             View.OnLevelStartClicked += OnLevelStartClicked;
             View.OnCloseClicked += OnCloseClicked;
+
+            Model.LevelIndex.Value = _levelService.SelectedLevelIndex;
+            Model.Levels.Value = _userService.Levels.Value;
         }
 
         protected override void Hide()
         {
             base.Hide();
+            Model.LevelIndex.Unsubscribe(OnLevelIndexChanged);
+            Model.Levels.Unsubscribe(OnLevelsChanged);
             View.OnLevelStartClicked -= OnLevelStartClicked;
             View.OnCloseClicked -= OnCloseClicked;
         }
 
-        private void OnLevelStartClicked() => StartLevel();
-        private void OnCloseClicked() => _popupsService.Hide();
-
-        private void UpdateLevelText(LevelStartPopupModel model)
+        private void OnLevelsChanged(List<LevelData> levels)
         {
-            var level = model.LevelIndex + 1;
+            var selectedLevelIndex = _levelService.SelectedLevelIndex;
+            var levelData = levels[selectedLevelIndex];
+            var stars = levelData.Stars;
+
+            for (var j = 0; j < View.StarViews.Length; j++)
+            {
+                var starView = View.StarViews[j];
+                starView.SetFilled(stars - 1 >= j);
+            }
+        }
+
+        private void OnLevelStartClicked() => StartLevel();
+
+        private void OnLevelIndexChanged(int levelIndex)
+        {
+            var level = levelIndex + 1;
             var levelText = string.Format(LevelFormat, level);
             View.SetLevelText(levelText);
         }
 
+        private void OnCloseClicked() => _popupsService.Hide();
+
         private void StartLevel()
         {
-            _levelService.FireSelectLevel(Model.LevelIndex);
+            _levelService.FireSelectLevel(Model.LevelIndex.Value);
             _popupsService.Hide();
             _gameplayStatesService.ChangeStateAsync<BoardMiniGameState>().Forget();
         }

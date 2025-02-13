@@ -1,5 +1,5 @@
 ﻿using System;
-using EndlessHeresy.UI.MVC;
+using EndlessHeresy.UI.ViewComponents;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,8 +10,11 @@ namespace EndlessHeresy.UI.Popups.LevelStart
     {
         public event Action OnLevelStartClicked;
 
+        [SerializeField] private StarNodeView[] _starViews;
         [SerializeField] private Button _startLevelButton;
         [SerializeField] private TextMeshProUGUI _levelText;
+
+        public StarNodeView[] StarViews => _starViews;
 
         protected override void OnEnable()
         {

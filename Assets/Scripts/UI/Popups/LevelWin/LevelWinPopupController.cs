@@ -95,7 +95,17 @@ namespace EndlessHeresy.UI.Popups.LevelWin
 
         private void OnNextLevelClicked()
         {
-            _levelService.FireNextLevel();
+            var selectedLevel = _levelService.SelectedLevelIndex;
+            var maxLevel = _levelConfiguration.BoardConfigurations.Length - 1;
+            var nextLevel = selectedLevel + 1;
+
+            if (nextLevel > maxLevel)
+            {
+                _gameplayStatesService.ChangeStateAsync<RoadMapState>().Forget();
+                return;
+            }
+
+            _levelService.FireSelectLevel(nextLevel);
             _gameplayStatesService.ChangeStateAsync<BoardMiniGameState>().Forget();
         }
 

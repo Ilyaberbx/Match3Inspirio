@@ -679,7 +679,6 @@ MonoBehaviour:
       type: {class: PocoServicesInstaller, ns: Better.Contexts.Runtime.Installers, asm: Better.Contexts.Runtime}
       data:
         _services:
-        - rid: 9117324378338492418
         - rid: 9117324378338492419
         - rid: 9117324378338492421
         - rid: 9117324383988219904
@@ -687,13 +686,6 @@ MonoBehaviour:
         - rid: 9117324402366349312
         - rid: 9117324407724834816
         - rid: 9117324407724834817
-    - rid: 9117324378338492418
-      type: {class: GameplayStaticDataService, ns: EndlessHeresy.Gameplay.Services.StaticData, asm: Assembly-CSharp}
-      data:
-        _tilesConfiguration: {fileID: 11400000, guid: c5112956a28f5024fb8b6ab079e1ccb8, type: 2}
-        _levelsConfiguration: {fileID: 11400000, guid: 235c7f5df7f77384d9e7099cf7918b75, type: 2}
-        _itemsConfiguration: {fileID: 11400000, guid: b6405ee2e80f85445929c2b9d69e5475, type: 2}
-        _uiWinConfiguration: {fileID: 11400000, guid: 6022ae5046d9b3e4aae45969a74058a7, type: 2}
     - rid: 9117324378338492419
       type: {class: GameplayStatesService, ns: EndlessHeresy.Gameplay.Services.StatesManagement, asm: Assembly-CSharp}
       data: 
