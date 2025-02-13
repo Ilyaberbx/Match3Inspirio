@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AppsFlyerSDK;
 using Better.Services.Runtime;
+using OneSignalSDK;
 
 namespace EndlessHeresy.Global.Services.Analytics
 {
@@ -18,7 +19,7 @@ namespace EndlessHeresy.Global.Services.Analytics
             {
                 return;
             }
-
+            
             AppsFlyer.initSDK(Settings.DevKey, Settings.AppId);
             AppsFlyer.setIsDebug(Settings.IsDebugMode);
             AppsFlyer.startSDK();
