@@ -39,6 +39,7 @@ namespace EndlessHeresy.Gameplay.Services.Factory
             var builder = MonoActorUtility.GetBuilder<GameBoardActor>();
             var sizeStorage = new SizeStorageComponent();
             var idStorage = new IdentifierStorageComponent();
+            var tilesStorage = new TilesManagerComponent();
 
             idStorage.Setup(index);
             sizeStorage.Setup(configuration.Width, configuration.Height);
@@ -48,6 +49,7 @@ namespace EndlessHeresy.Gameplay.Services.Factory
                 .WithParent(_root.transform)
                 .WithComponent(sizeStorage)
                 .WithComponent(idStorage)
+                .WithComponent(tilesStorage)
                 .Build();
         }
 

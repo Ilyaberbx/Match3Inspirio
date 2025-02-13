@@ -19,7 +19,7 @@ using Sequence = DG.Tweening.Sequence;
 
 namespace EndlessHeresy.Gameplay.Actors
 {
-    public sealed class GameBoardActor : MonoActor, IGameBoard
+    public sealed class GameBoardActor : MonoActor
     {
         private const float Duration = 0.5f;
 
@@ -28,12 +28,12 @@ namespace EndlessHeresy.Gameplay.Actors
         private ILevelService _levelService;
         private IInputService _inputService;
 
-        private TileActor[,] _tiles;
         private Random _random;
         private readonly List<ItemActor> _selectedItems = new();
 
         private SizeStorageComponent _sizeStorage;
         private GridStorageComponent _gridStorage;
+        private TilesManagerComponent _tilesManager;
 
         private int ItemsCount => _gameplayStaticDataService.GetItemsConfiguration().Items.Length;
 
@@ -45,6 +45,7 @@ namespace EndlessHeresy.Gameplay.Actors
             _gameplayStaticDataService = ServiceLocator.Get<GameplayStaticDataService>();
             _inputService = ServiceLocator.Get<InputService>();
             _levelService = ServiceLocator.Get<LevelService>();
+            _tilesManager = GetComponent<TilesManagerComponent>();
             _sizeStorage = GetComponent<SizeStorageComponent>();
             _gridStorage = GetComponent<GridStorageComponent>();
 
@@ -56,7 +57,7 @@ namespace EndlessHeresy.Gameplay.Actors
         {
             base.OnDispose();
 
-            foreach (var tile in _tiles)
+            foreach (var tile in _tilesManager.Tiles)
             {
                 var item = tile.Item;
                 item.OnSelected -= OnItemSelected;
@@ -84,7 +85,7 @@ namespace EndlessHeresy.Gameplay.Actors
             var height = _sizeStorage.Height;
 
             var tiles = new List<TileActor>();
-            _tiles = new TileActor[width, height];
+            _tilesManager.Initialize(width, height);
 
             for (var y = 0; y < height; y++)
             {
@@ -92,7 +93,7 @@ namespace EndlessHeresy.Gameplay.Actors
                 {
                     var tile = await _gameplayFactoryService.CreateTileAsync(x, y, gridRoot);
                     tiles.Add(tile);
-                    _tiles[x, y] = tile;
+                    _tilesManager.AddTile(tile, x, y);
                 }
             }
 
@@ -111,13 +112,13 @@ namespace EndlessHeresy.Gameplay.Actors
                 items.Add(item);
             }
 
-            foreach (var tile in _tiles)
+            foreach (var tile in _tilesManager.Tiles)
             {
-                tile.SetBoard(this);
+                tile.SetManager(_tilesManager);
             }
 
-            var noPossibleMoves = !MatchUtility.HasPossibleMoves(_tiles);
-            var canPop = MatchUtility.CanPop(_tiles);
+            var noPossibleMoves = !MatchUtility.HasPossibleMoves(_tilesManager.Tiles);
+            var canPop = MatchUtility.CanPop(_tilesManager.Tiles);
 
             if (canPop || noPossibleMoves)
             {
@@ -133,7 +134,7 @@ namespace EndlessHeresy.Gameplay.Actors
         {
             _inputService.Lock();
 
-            var items = _tiles.Cast<TileActor>().Select(t => t.Item).ToList();
+            var items = _tilesManager.Tiles.Cast<TileActor>().Select(t => t.Item).ToList();
 
             for (var i = items.Count - 1; i > 0; i--)
             {
@@ -147,7 +148,7 @@ namespace EndlessHeresy.Gameplay.Actors
 
             var index = 0;
 
-            foreach (var oldTile in _tiles)
+            foreach (var oldTile in _tilesManager.Tiles)
             {
                 var oldTileTransform = oldTile.transform;
                 var newItem = items[index++];
@@ -168,7 +169,7 @@ namespace EndlessHeresy.Gameplay.Actors
 
             _inputService.Unlock();
 
-            var noPossibleMoves = !MatchUtility.HasPossibleMoves(_tiles);
+            var noPossibleMoves = !MatchUtility.HasPossibleMoves(_tilesManager.Tiles);
 
             if (noPossibleMoves)
             {
@@ -203,7 +204,7 @@ namespace EndlessHeresy.Gameplay.Actors
 
             await SwapAsync(firstSelected, secondSelected);
 
-            if (MatchUtility.TryGetTilesToPop(_tiles, out var toPop))
+            if (MatchUtility.TryGetTilesToPop(_tilesManager.Tiles, out var toPop))
             {
                 await PopTilesAsync(toPop);
             }
@@ -242,7 +243,7 @@ namespace EndlessHeresy.Gameplay.Actors
                 _levelService.FireItemsPopped(connected.Select(t => t.Item));
                 await InflateTilesAsync(connected);
 
-                if (MatchUtility.TryGetTilesToPop(_tiles, out var toPop))
+                if (MatchUtility.TryGetTilesToPop(_tilesManager.Tiles, out var toPop))
                 {
                     connected = toPop;
                     continue;
@@ -251,7 +252,7 @@ namespace EndlessHeresy.Gameplay.Actors
                 break;
             }
 
-            var noPossibleMoves = !MatchUtility.HasPossibleMoves(_tiles);
+            var noPossibleMoves = !MatchUtility.HasPossibleMoves(_tilesManager.Tiles);
 
             if (noPossibleMoves)
             {
@@ -339,21 +340,7 @@ namespace EndlessHeresy.Gameplay.Actors
             return _gameplayFactoryService.CreateItemAsync(index, parent);
         }
 
-        private TileActor GetTileOf(ItemActor item)
-        {
-            var point = item.GetComponent<PointStorageComponent>().Point;
-            return _tiles[point.x, point.y];
-        }
-
-        public TileActor GetTileActor(int x, int y)
-        {
-            if (x < 0 || y < 0)
-                return null;
-
-            if (_tiles.GetLength(0) > x && _tiles.GetLength(1) > y)
-                return _tiles[x, y];
-
-            return null;
-        }
+        private TileActor GetTileOf(ItemActor item) => _tilesManager.GetTileOf(item);
+        public TileActor GetTileActor(int x, int y) => _tilesManager.GetTileActor(x, y);
     }
 }

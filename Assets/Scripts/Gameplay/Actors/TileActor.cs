@@ -17,13 +17,13 @@ namespace EndlessHeresy.Gameplay.Actors
         private ImageStorageComponent _imageStorage;
         private ItemStorageComponent _itemStorage;
         private TileActor[] _neighbors;
-        private IGameBoard _board;
+        private ITilesManager _tilesManager;
 
         public ItemActor Item => _itemStorage.Item;
-        private TileActor Left => _board.GetTileActor(_pointStorage.Point.x - 1, _pointStorage.Point.y);
-        private TileActor Right => _board.GetTileActor(_pointStorage.Point.x + 1, _pointStorage.Point.y);
-        private TileActor Top => _board.GetTileActor(_pointStorage.Point.x, _pointStorage.Point.y - 1);
-        private TileActor Bottom => _board.GetTileActor(_pointStorage.Point.x, _pointStorage.Point.y + 1);
+        private TileActor Left => _tilesManager.GetTileActor(_pointStorage.Point.x - 1, _pointStorage.Point.y);
+        private TileActor Right => _tilesManager.GetTileActor(_pointStorage.Point.x + 1, _pointStorage.Point.y);
+        private TileActor Top => _tilesManager.GetTileActor(_pointStorage.Point.x, _pointStorage.Point.y - 1);
+        private TileActor Bottom => _tilesManager.GetTileActor(_pointStorage.Point.x, _pointStorage.Point.y + 1);
 
         protected override async Task OnInitializeAsync()
         {
@@ -47,9 +47,9 @@ namespace EndlessHeresy.Gameplay.Actors
             _gameplayFactoryService.Dispose(Item);
         }
 
-        public void SetBoard(IGameBoard board)
+        public void SetManager(ITilesManager tilesManager)
         {
-            _board = board;
+            _tilesManager = tilesManager;
             _neighbors = new[]
             {
                 Left,
