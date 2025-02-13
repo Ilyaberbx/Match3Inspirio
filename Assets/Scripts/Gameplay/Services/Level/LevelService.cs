@@ -6,7 +6,6 @@ using Better.Locators.Runtime;
 using Better.Services.Runtime;
 using EndlessHeresy.Gameplay.Actors;
 using EndlessHeresy.Gameplay.Services.StaticData;
-using EndlessHeresy.Global.Services.User;
 
 namespace EndlessHeresy.Gameplay.Services.Level
 {

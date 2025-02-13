@@ -1,0 +1,16 @@
+﻿using System;
+using EndlessHeresy.UI.MVC;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace EndlessHeresy.UI.Huds.Return
+{
+    public sealed class ReturnHudView : BaseView
+    {
+        public event Action OnReturnClicked;
+        [SerializeField] private Button _returnButton;
+        private void OnEnable() => _returnButton.onClick.AddListener(OnReturnButtonClicked);
+        private void OnDisable() => _returnButton.onClick.RemoveAllListeners();
+        private void OnReturnButtonClicked() => OnReturnClicked?.Invoke();
+    }
+}

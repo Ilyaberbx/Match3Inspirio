@@ -34,7 +34,7 @@ namespace EndlessHeresy.UI.Services.Popups
             return Task.CompletedTask;
         }
 
-        public async Task<TController> ShowAsync<TController, TModel>(TModel model)
+        public async Task<TController> ShowAsync<TController, TModel>(TModel model, bool showBackground = true)
             where TController : BaseController<TModel>, new()
             where TModel : IModel
         {
@@ -56,7 +56,15 @@ namespace EndlessHeresy.UI.Services.Popups
             controller.Initialize(view, model);
             _currentController = controller;
 
-            ShowBackground();
+            if (showBackground)
+            {
+                ShowBackground();
+            }
+            else
+            {
+                HideBackground();
+            }
+
             return controller;
         }
 

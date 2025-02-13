@@ -36,7 +36,7 @@ namespace EndlessHeresy.UI.Huds.Pause
             }
 
             _pauseService.Pause();
-            _popupsService.ShowAsync<PausePopupController, PausePopupModel>(PausePopupModel.New()).Forget();
+            _popupsService.ShowAsync<PausePopupController, PausePopupModel>(PausePopupModel.New(), false).Forget();
         }
     }
 }

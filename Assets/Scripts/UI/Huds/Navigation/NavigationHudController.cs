@@ -1,0 +1,45 @@
+﻿using Better.Locators.Runtime;
+using EndlessHeresy.Global.Services.StatesManagement;
+using EndlessHeresy.Global.States;
+using EndlessHeresy.UI.MVC;
+using EndlessHeresy.Webview;
+
+namespace EndlessHeresy.UI.Huds.Navigation
+{
+    public sealed class NavigationHudController : BaseController<NavigationHudModel, NavigationHudView>
+    {
+        private IWebViewService _webViewService;
+        private IGameStatesService _gameStatesService;
+
+        protected override void Show(NavigationHudModel model, NavigationHudView view)
+        {
+            base.Show(model, view);
+
+            _webViewService = ServiceLocator.Get<WebViewService>();
+            _gameStatesService = ServiceLocator.Get<GameStatesService>();
+            View.OnBackClicked += OnBackClicked;
+            View.OnReloadClicked += OnReloadClicked;
+        }
+
+        protected override void Hide()
+        {
+            base.Hide();
+
+            View.OnBackClicked -= OnBackClicked;
+            View.OnReloadClicked -= OnReloadClicked;
+        }
+
+        private void OnBackClicked()
+        {
+            if (_webViewService.CanGoBack())
+            {
+                _webViewService.GoBack();
+                return;
+            }
+
+            _gameStatesService.ChangeStateAsync<GameplayState>();
+        }
+
+        private void OnReloadClicked() => _webViewService.Reload();
+    }
+}

@@ -9,6 +9,7 @@ using EndlessHeresy.Gameplay.Services.StaticData;
 using EndlessHeresy.Gameplay.Systems;
 using EndlessHeresy.Utilities;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace EndlessHeresy.Gameplay.Services.Factory
 {
@@ -83,6 +84,10 @@ namespace EndlessHeresy.Gameplay.Services.Factory
                 .Build();
         }
 
-        public void Dispose(MonoActor actor) => actor.Dispose();
+        public void Dispose(MonoActor actor)
+        {
+            actor.Dispose();
+            Object.Destroy(actor.gameObject);
+        }
     }
 }

@@ -4,7 +4,7 @@ using Better.Locators.Runtime;
 using EndlessHeresy.Gameplay.Services.Level;
 using EndlessHeresy.Gameplay.Services.Score;
 using EndlessHeresy.Gameplay.Services.StaticData;
-using EndlessHeresy.Global.Services.User;
+using EndlessHeresy.Global.Services.Persistence;
 using EndlessHeresy.UI.Popups.LevelLose;
 using EndlessHeresy.UI.Popups.LevelWin;
 using EndlessHeresy.UI.Services.Popups;

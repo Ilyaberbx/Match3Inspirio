@@ -12,8 +12,10 @@ using EndlessHeresy.Gameplay.Services.Level;
 using EndlessHeresy.Gameplay.Services.StaticData;
 using EndlessHeresy.Gameplay.Systems;
 using EndlessHeresy.Utilities;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = System.Random;
+using Sequence = DG.Tweening.Sequence;
 
 namespace EndlessHeresy.Gameplay.Actors
 {
@@ -159,7 +161,7 @@ namespace EndlessHeresy.Gameplay.Actors
                 newTile.SetItem(oldItem);
             }
 
-            await sequence.AsTask(destroyCancellationToken);
+            await ValidateAndAwait(sequence);
 
             _inputService.Unlock();
 
@@ -169,6 +171,13 @@ namespace EndlessHeresy.Gameplay.Actors
             {
                 await ShuffleBoardAsync();
             }
+        }
+
+        private Task ValidateAndAwait(Sequence sequence)
+        {
+            return destroyCancellationToken.IsCancellationRequested
+                ? Task.CompletedTask
+                : sequence.AsTask(destroyCancellationToken);
         }
 
         private async Task SelectItemAsync(ItemActor item)
@@ -259,7 +268,7 @@ namespace EndlessHeresy.Gameplay.Actors
                 sequence.Join(tween);
             }
 
-            await sequence.AsTask(destroyCancellationToken);
+            await ValidateAndAwait(sequence);
 
             Dispose(items);
         }
@@ -287,7 +296,7 @@ namespace EndlessHeresy.Gameplay.Actors
                 sequence.Join(tween);
             }
 
-            await sequence.AsTask(destroyCancellationToken);
+            await ValidateAndAwait(sequence);
         }
 
         private async Task SwapAsync(ItemActor first, ItemActor second)
@@ -305,12 +314,13 @@ namespace EndlessHeresy.Gameplay.Actors
             firstTransform.SetParent(transform);
             secondTransform.SetParent(transform);
 
-            await DOTween
+            var sequence = DOTween
                 .Sequence()
                 .Join(firstTween)
                 .Join(secondTween)
-                .SetId(this)
-                .AsTask(destroyCancellationToken);
+                .SetId(this);
+
+            await ValidateAndAwait(sequence);
 
             firstTile.SetItem(second);
             secondTile.SetItem(first);

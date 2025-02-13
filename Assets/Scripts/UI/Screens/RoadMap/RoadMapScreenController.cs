@@ -1,7 +1,7 @@
 ﻿using System;
 using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
-using EndlessHeresy.Global.Services.User;
+using EndlessHeresy.Global.Services.Persistence;
 using EndlessHeresy.UI.MVC;
 using EndlessHeresy.UI.Popups.LevelStart;
 using EndlessHeresy.UI.Services.Popups;

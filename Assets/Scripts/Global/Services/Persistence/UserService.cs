@@ -5,8 +5,9 @@ using Better.Saves.Runtime;
 using Better.Saves.Runtime.Data;
 using Better.Saves.Runtime.Interfaces;
 using Better.Services.Runtime;
+using EndlessHeresy.Persistence;
 
-namespace EndlessHeresy.Global.Services.User
+namespace EndlessHeresy.Global.Services.Persistence
 {
     [Serializable]
     public sealed class UserService : PocoService, IUserService
@@ -23,5 +24,6 @@ namespace EndlessHeresy.Global.Services.User
         }
 
         public SavesProperty<int> LastLevelIndex { get; private set; }
+        public SavesProperty<LevelData[]> Levels { get; set; }
     }
 }
