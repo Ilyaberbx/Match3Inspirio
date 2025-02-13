@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: OneSignalServiceSettings
   m_EditorClassIdentifier: 
   _isShared: 0
-  _logLevel: 0
-  _alertLevel: 0
+  _logLevel: 5
+  _alertLevel: 5
   _consentRequired: 0
   _appId: 
+  _suppress: 1

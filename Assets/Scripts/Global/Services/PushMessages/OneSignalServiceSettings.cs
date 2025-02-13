@@ -11,11 +11,13 @@ namespace EndlessHeresy.Global.Services.PushMessages
         [SerializeField] private LogLevel _alertLevel;
         [SerializeField] private bool _consentRequired;
         [SerializeField] private string _appId;
-
+        [SerializeField] private bool _suppress;
+        
         public bool IsShared => _isShared;
         public LogLevel LogLevel => _logLevel;
         public LogLevel AlertLevel => _alertLevel;
         public bool ConsentRequired => _consentRequired;
         public string AppId => _appId;
+        public bool Suppress => _suppress;
     }
 }

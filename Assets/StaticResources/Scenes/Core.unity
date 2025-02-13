@@ -632,7 +632,7 @@ MonoBehaviour:
     - rid: 9117324453360697345
       type: {class: OneSignalService, ns: EndlessHeresy.Global.Services.PushMessages, asm: Assembly-CSharp}
       data:
-        _settings: {fileID: 0}
+        _settings: {fileID: 11400000, guid: 6f6158d1131a26243876c60e3c651107, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -13,6 +13,11 @@ namespace EndlessHeresy.Global.Services.PushMessages
         {
             await base.OnInitializeAsync(cancellationToken);
 
+            if (Settings.Suppress)
+            {
+                return;
+            }
+
             OneSignal.Debug.LogLevel = Settings.LogLevel;
             OneSignal.Debug.AlertLevel = Settings.AlertLevel;
             OneSignal.ConsentRequired = Settings.ConsentRequired;
