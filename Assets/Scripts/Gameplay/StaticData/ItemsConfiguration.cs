@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.Services.StaticData
+namespace EndlessHeresy.Gameplay.StaticData
 {
     [CreateAssetMenu(menuName = "Configs/Match3/Items", fileName = "ItemsConfiguration", order = 0)]
     public sealed class ItemsConfiguration : ScriptableObject

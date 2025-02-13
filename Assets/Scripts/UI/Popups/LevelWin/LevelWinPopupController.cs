@@ -3,8 +3,9 @@ using Better.Locators.Runtime;
 using EndlessHeresy.Gameplay.Services.Level;
 using EndlessHeresy.Gameplay.Services.Score;
 using EndlessHeresy.Gameplay.Services.StatesManagement;
-using EndlessHeresy.Gameplay.Services.StaticData;
+using EndlessHeresy.Gameplay.Services.StaticDataManagement;
 using EndlessHeresy.Gameplay.States;
+using EndlessHeresy.Gameplay.StaticData;
 using EndlessHeresy.UI.MVC;
 using UnityEngine;
 

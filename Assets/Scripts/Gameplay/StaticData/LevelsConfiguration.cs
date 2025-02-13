@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.Services.StaticData
+namespace EndlessHeresy.Gameplay.StaticData
 {
     [CreateAssetMenu(menuName = "Configs/Match3/Score", fileName = "LevelConfiguration", order = 0)]
     public sealed class LevelsConfiguration : ScriptableObject

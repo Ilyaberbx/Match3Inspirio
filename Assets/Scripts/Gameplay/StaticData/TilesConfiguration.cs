@@ -1,7 +1,7 @@
 ﻿using EndlessHeresy.Gameplay.Actors;
 using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.Services.StaticData
+namespace EndlessHeresy.Gameplay.StaticData
 {
     [CreateAssetMenu(menuName = "Configs/Match3/Tiles", fileName = "TilesConfiguration", order = 0)]
     public sealed class TilesConfiguration : ScriptableObject

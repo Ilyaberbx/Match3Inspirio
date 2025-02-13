@@ -6,7 +6,7 @@ using Better.Services.Runtime;
 using DG.Tweening;
 using EndlessHeresy.Core;
 using EndlessHeresy.Gameplay.Actors;
-using EndlessHeresy.Gameplay.Services.StaticData;
+using EndlessHeresy.Gameplay.Services.StaticDataManagement;
 using EndlessHeresy.Gameplay.Systems;
 using EndlessHeresy.Utilities;
 using UnityEngine;

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.Services.StaticData
+namespace EndlessHeresy.Gameplay.StaticData
 {
     [CreateAssetMenu(menuName = "Configs/Match3/UIWin", fileName = "UIWinConfiguration", order = 0)]
     public sealed class UIWinConfiguration : ScriptableObject

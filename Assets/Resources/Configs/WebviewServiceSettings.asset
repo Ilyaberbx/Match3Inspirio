@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _leftMargin: 0
   _rightMargin: 0
-  _topMargin: 150
+  _topMargin: 200
   _bottomMargin: 0
   _textZoom: 100

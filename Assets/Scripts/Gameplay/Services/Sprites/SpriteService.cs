@@ -3,7 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Better.Locators.Runtime;
 using Better.Services.Runtime;
-using EndlessHeresy.Gameplay.Services.StaticData;
+using EndlessHeresy.Gameplay.Services.StaticDataManagement;
+using EndlessHeresy.Gameplay.StaticData;
 using UnityEngine;
 
 namespace EndlessHeresy.Gameplay.Services.Sprites
@@ -13,7 +14,6 @@ namespace EndlessHeresy.Gameplay.Services.Sprites
     {
         private IGameplayStaticDataService _gameplayConfigurationService;
         private TilesConfiguration _tilesConfiguration;
-        private UIWinConfiguration _uiWinConfiguration;
 
         protected override Task OnInitializeAsync(CancellationToken cancellationToken) => Task.CompletedTask;
 
@@ -21,7 +21,6 @@ namespace EndlessHeresy.Gameplay.Services.Sprites
         {
             _gameplayConfigurationService = ServiceLocator.Get<GameplayStaticDataService>();
             _tilesConfiguration = _gameplayConfigurationService.GetTilesConfiguration();
-            _uiWinConfiguration = _gameplayConfigurationService.GetUIWinConfiguration();
             return Task.CompletedTask;
         }
 
@@ -33,6 +32,5 @@ namespace EndlessHeresy.Gameplay.Services.Sprites
         }
 
         public Sprite GetItemSprite(int id) => _gameplayConfigurationService.GetItemConfiguration(id).Sprite;
-        public Sprite GetStatusSprite(int index) => _uiWinConfiguration.IconsForStars[index];
     }
 }

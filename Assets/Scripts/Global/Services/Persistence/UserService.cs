@@ -7,7 +7,7 @@ using Better.Saves.Runtime;
 using Better.Saves.Runtime.Data;
 using Better.Saves.Runtime.Interfaces;
 using Better.Services.Runtime;
-using EndlessHeresy.Gameplay.Services.StaticData;
+using EndlessHeresy.Gameplay.Services.StaticDataManagement;
 using EndlessHeresy.Persistence;
 
 namespace EndlessHeresy.Global.Services.Persistence

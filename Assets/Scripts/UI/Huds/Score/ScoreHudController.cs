@@ -1,6 +1,7 @@
 ﻿using Better.Locators.Runtime;
 using EndlessHeresy.Gameplay.Services.Score;
-using EndlessHeresy.Gameplay.Services.StaticData;
+using EndlessHeresy.Gameplay.Services.StaticDataManagement;
+using EndlessHeresy.Gameplay.StaticData;
 using EndlessHeresy.UI.MVC;
 
 namespace EndlessHeresy.UI.Huds.Score

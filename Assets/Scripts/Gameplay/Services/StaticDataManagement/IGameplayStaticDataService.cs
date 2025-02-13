@@ -1,4 +1,6 @@
-﻿namespace EndlessHeresy.Gameplay.Services.StaticData
+﻿using EndlessHeresy.Gameplay.StaticData;
+
+namespace EndlessHeresy.Gameplay.Services.StaticDataManagement
 {
     public interface IGameplayStaticDataService
     {
@@ -8,5 +10,6 @@
         ItemConfiguration GetItemConfiguration(int index);
         LevelsConfiguration GetLevelConfiguration();
         UIWinConfiguration GetUIWinConfiguration();
+        VfxConfiguration GetVfxConfiguration();
     }
 }

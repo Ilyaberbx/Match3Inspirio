@@ -9,7 +9,7 @@ using EndlessHeresy.Extensions;
 using EndlessHeresy.Gameplay.Services.Factory;
 using EndlessHeresy.Gameplay.Services.Input;
 using EndlessHeresy.Gameplay.Services.Level;
-using EndlessHeresy.Gameplay.Services.StaticData;
+using EndlessHeresy.Gameplay.Services.StaticDataManagement;
 using EndlessHeresy.Gameplay.Systems;
 using EndlessHeresy.Utilities;
 using UnityEngine;

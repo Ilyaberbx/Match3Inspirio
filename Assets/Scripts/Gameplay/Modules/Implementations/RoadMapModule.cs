@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Better.Locators.Runtime;
-using EndlessHeresy.Gameplay.Services.StaticData;
 using EndlessHeresy.UI.Screens.RoadMap;
 using EndlessHeresy.UI.Services.Screens;
 

@@ -2,7 +2,7 @@
 using EndlessHeresy.Gameplay.Actors;
 using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.Services.StaticData
+namespace EndlessHeresy.Gameplay.StaticData
 {
     [Serializable]
     public sealed class ItemConfiguration

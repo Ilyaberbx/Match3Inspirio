@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.Services.StaticData
+namespace EndlessHeresy.Gameplay.StaticData
 {
     [Serializable]
     public sealed class ScoreData
