@@ -170,8 +170,9 @@ namespace EndlessHeresy.Gameplay.Actors
             _inputService.Unlock();
 
             var noPossibleMoves = !MatchUtility.HasPossibleMoves(_tilesManager.Tiles);
+            var canPop = MatchUtility.CanPop(_tilesManager.Tiles);
 
-            if (noPossibleMoves)
+            if (noPossibleMoves || canPop)
             {
                 await ShuffleBoardAsync();
             }
@@ -188,6 +189,7 @@ namespace EndlessHeresy.Gameplay.Actors
         {
             if (!CanSelect(item))
             {
+                _selectedItems.Clear();
                 return;
             }
 
