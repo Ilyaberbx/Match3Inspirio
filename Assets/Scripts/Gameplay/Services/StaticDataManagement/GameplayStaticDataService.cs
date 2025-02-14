@@ -2,10 +2,10 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Better.Services.Runtime;
-using EndlessHeresy.Gameplay.StaticData;
+using Inspirio.Gameplay.StaticData;
 using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.Services.StaticDataManagement
+namespace Inspirio.Gameplay.Services.StaticDataManagement
 {
     [Serializable]
     public sealed class GameplayStaticDataService : PocoService, IGameplayStaticDataService

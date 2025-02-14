@@ -1,11 +1,11 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Better.Locators.Runtime;
-using EndlessHeresy.Gameplay.Modules;
-using EndlessHeresy.UI.Services.Huds;
-using EndlessHeresy.UI.Services.Popups;
+using Inspirio.Gameplay.Modules;
+using Inspirio.UI.Services.Huds;
+using Inspirio.UI.Services.Popups;
 
-namespace EndlessHeresy.Gameplay.States
+namespace Inspirio.Gameplay.States
 {
     public sealed class BoardMiniGameState : BaseGameplayState
     {

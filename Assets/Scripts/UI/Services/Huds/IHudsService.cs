@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using EndlessHeresy.UI.MVC;
+using Inspirio.UI.MVC;
 
-namespace EndlessHeresy.UI.Services.Huds
+namespace Inspirio.UI.Services.Huds
 {
     public interface IHudsService
     {

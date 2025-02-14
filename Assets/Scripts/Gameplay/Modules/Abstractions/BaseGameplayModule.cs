@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace EndlessHeresy.Gameplay.Modules
+namespace Inspirio.Gameplay.Modules
 {
     public abstract class BaseGameplayModule : IDisposable
     {

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace EndlessHeresy.Webview
+namespace Inspirio.Webview
 {
     public interface IWebViewService
     {

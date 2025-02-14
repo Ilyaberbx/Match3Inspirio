@@ -3,10 +3,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Better.Services.Runtime;
 using Better.StateMachine.Runtime;
-using EndlessHeresy.Commons;
-using EndlessHeresy.Gameplay.States;
+using Inspirio.Commons;
+using Inspirio.Gameplay.States;
 
-namespace EndlessHeresy.Gameplay.Services.StatesManagement
+namespace Inspirio.Gameplay.Services.StatesManagement
 {
     [Serializable]
     public sealed class GameplayStatesService : PocoService, IDisposable, IGameplayStatesService

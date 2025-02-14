@@ -1,9 +1,9 @@
 ﻿using System;
-using EndlessHeresy.UI.MVC;
+using Inspirio.UI.MVC;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EndlessHeresy.UI.Popups
+namespace Inspirio.UI.Popups
 {
     public abstract class BasePopupView : BaseView
     {

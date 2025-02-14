@@ -1,12 +1,12 @@
 ﻿using System.Threading.Tasks;
 using Better.Locators.Runtime;
 using DG.Tweening;
-using EndlessHeresy.Gameplay.Services.Input;
-using EndlessHeresy.Gameplay.Services.Pause;
-using EndlessHeresy.UI.Huds.Pause;
-using EndlessHeresy.UI.Services.Huds;
+using Inspirio.Gameplay.Services.Input;
+using Inspirio.Gameplay.Services.Pause;
+using Inspirio.UI.Huds.Pause;
+using Inspirio.UI.Services.Huds;
 
-namespace EndlessHeresy.Gameplay.Modules
+namespace Inspirio.Gameplay.Modules
 {
     public sealed class PauseModule : BaseGameplayModule
     {

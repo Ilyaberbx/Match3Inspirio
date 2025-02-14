@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using UnityEngine;
 
-namespace EndlessHeresy.Global.Services.AssetsManagement
+namespace Inspirio.Global.Services.AssetsManagement
 {
     public interface IAssetsService
     {

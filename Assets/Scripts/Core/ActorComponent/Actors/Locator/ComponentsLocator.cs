@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Better.Locators.Runtime;
 
-namespace EndlessHeresy.Core
+namespace Inspirio.Core
 {
     public class ComponentsLocator : Locator<Type, IComponent>, IComponentsLocator
     {

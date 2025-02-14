@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Better.Locators.Runtime;
-using EndlessHeresy.Gameplay.Actors;
-using EndlessHeresy.Gameplay.Services.Factory;
-using EndlessHeresy.Gameplay.Services.Level;
+using Inspirio.Gameplay.Actors;
+using Inspirio.Gameplay.Services.Factory;
+using Inspirio.Gameplay.Services.Level;
 
-namespace EndlessHeresy.Gameplay.Modules
+namespace Inspirio.Gameplay.Modules
 {
     public sealed class InitializeBoardModule : BaseGameplayModule
     {

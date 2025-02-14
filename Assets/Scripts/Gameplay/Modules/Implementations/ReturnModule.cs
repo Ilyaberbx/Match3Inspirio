@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Better.Locators.Runtime;
-using EndlessHeresy.UI.Huds.Return;
-using EndlessHeresy.UI.Services.Huds;
+using Inspirio.UI.Huds.Return;
+using Inspirio.UI.Services.Huds;
 
-namespace EndlessHeresy.Gameplay.Modules
+namespace Inspirio.Gameplay.Modules
 {
     public sealed class ReturnModule : BaseGameplayModule
     {

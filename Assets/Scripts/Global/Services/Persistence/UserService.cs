@@ -7,30 +7,35 @@ using Better.Saves.Runtime;
 using Better.Saves.Runtime.Data;
 using Better.Saves.Runtime.Interfaces;
 using Better.Services.Runtime;
-using EndlessHeresy.Gameplay.Services.StaticDataManagement;
-using EndlessHeresy.Persistence;
+using Inspirio.Gameplay.Services.StaticDataManagement;
+using Inspirio.Persistence;
 
-namespace EndlessHeresy.Global.Services.Persistence
+namespace Inspirio.Global.Services.Persistence
 {
     [Serializable]
     public sealed class UserService : PocoService, IUserService
     {
         private ISaveSystem _savesSystem;
         private IGameplayStaticDataService _gameplayStaticDataService;
-        protected override Task OnInitializeAsync(CancellationToken cancellationToken) => Task.CompletedTask;
+
+        protected override Task OnInitializeAsync(CancellationToken cancellationToken)
+        {
+            _savesSystem = new SavesSystem();
+            return Task.CompletedTask;
+        }
 
         protected override Task OnPostInitializeAsync(CancellationToken cancellationToken)
         {
             _gameplayStaticDataService = ServiceLocator.Get<GameplayStaticDataService>();
-            _savesSystem = new SavesSystem();
             LastLevelIndex = new SavesProperty<int>(_savesSystem, nameof(LastLevelIndex));
+            CurrentWebViewUrl = new SavesProperty<string>(_savesSystem, nameof(CurrentWebViewUrl), string.Empty);
             InitializeLevelsProperty();
             return Task.CompletedTask;
         }
 
         public SavesProperty<int> LastLevelIndex { get; private set; }
-
-        public SavesProperty<List<LevelData>> Levels { get; set; }
+        public SavesProperty<List<LevelData>> Levels { get; private set; }
+        public SavesProperty<string> CurrentWebViewUrl { get; private set; }
 
         private void InitializeLevelsProperty()
         {

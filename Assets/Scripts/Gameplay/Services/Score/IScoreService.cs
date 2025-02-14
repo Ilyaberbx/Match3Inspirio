@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EndlessHeresy.Gameplay.Services.Score
+namespace Inspirio.Gameplay.Services.Score
 {
     public interface IScoreService
     {

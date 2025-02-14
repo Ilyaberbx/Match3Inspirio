@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EndlessHeresy.UI.Popups.LevelLose
+namespace Inspirio.UI.Popups.LevelLose
 {
     public sealed class LevelLosePopupView : BasePopupView
     {

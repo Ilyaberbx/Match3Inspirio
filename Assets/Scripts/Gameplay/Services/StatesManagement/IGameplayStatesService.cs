@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using EndlessHeresy.Gameplay.States;
+using Inspirio.Gameplay.States;
 
-namespace EndlessHeresy.Gameplay.Services.StatesManagement
+namespace Inspirio.Gameplay.Services.StatesManagement
 {
     public interface IGameplayStatesService
     {

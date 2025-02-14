@@ -2,7 +2,7 @@
 using Better.StateMachine.Runtime.Modules.Transitions;
 using Better.StateMachine.Runtime.States;
 
-namespace EndlessHeresy.Extensions
+namespace Inspirio.Extensions
 {
     public static class TransitionsExtensions
     {

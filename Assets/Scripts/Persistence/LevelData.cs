@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EndlessHeresy.Persistence
+namespace Inspirio.Persistence
 {
     [Serializable]
     public sealed class LevelData

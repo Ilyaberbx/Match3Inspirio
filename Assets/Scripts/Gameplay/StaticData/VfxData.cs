@@ -1,8 +1,8 @@
 ﻿using System;
-using EndlessHeresy.Gameplay.Services.Vfx;
+using Inspirio.Gameplay.Services.Vfx;
 using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.StaticData
+namespace Inspirio.Gameplay.StaticData
 {
     [Serializable]
     public sealed class VfxData

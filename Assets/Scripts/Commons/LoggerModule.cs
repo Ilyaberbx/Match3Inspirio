@@ -3,7 +3,7 @@ using Better.StateMachine.Runtime.Modules;
 using Better.StateMachine.Runtime.States;
 using UnityEngine;
 
-namespace EndlessHeresy.Commons
+namespace Inspirio.Commons
 {
     public class LoggerModule<TState> : Module<TState> where TState : BaseState
     {

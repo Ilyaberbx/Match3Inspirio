@@ -1,4 +1,4 @@
-namespace EndlessHeresy.UI.MVC
+namespace Inspirio.UI.MVC
 {
     public interface IModel
     {

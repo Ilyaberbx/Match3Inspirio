@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
-using EndlessHeresy.Gameplay.Services.Level;
-using EndlessHeresy.Global.Services.Persistence;
-using EndlessHeresy.Persistence;
-using EndlessHeresy.UI.MVC;
-using EndlessHeresy.UI.Popups.LevelStart;
-using EndlessHeresy.UI.Services.Popups;
-using EndlessHeresy.UI.ViewComponents;
+using Inspirio.Gameplay.Services.Level;
+using Inspirio.Global.Services.Persistence;
+using Inspirio.Persistence;
+using Inspirio.UI.MVC;
+using Inspirio.UI.Popups.LevelStart;
+using Inspirio.UI.Services.Popups;
+using Inspirio.UI.ViewComponents;
 
-namespace EndlessHeresy.UI.Screens.RoadMap
+namespace Inspirio.UI.Screens.RoadMap
 {
     public sealed class RoadMapScreenController : BaseController<RoadMapScreenModel, RoadMapScreenView>
     {

@@ -1,6 +1,6 @@
-﻿using EndlessHeresy.Gameplay.StaticData;
+﻿using Inspirio.Gameplay.StaticData;
 
-namespace EndlessHeresy.Gameplay.Services.StaticDataManagement
+namespace Inspirio.Gameplay.Services.StaticDataManagement
 {
     public interface IGameplayStaticDataService
     {

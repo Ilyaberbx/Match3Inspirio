@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Better.Services.Runtime;
 using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.Services.Input
+namespace Inspirio.Gameplay.Services.Input
 {
     [Serializable]
     public sealed class InputService : PocoService, IInputService

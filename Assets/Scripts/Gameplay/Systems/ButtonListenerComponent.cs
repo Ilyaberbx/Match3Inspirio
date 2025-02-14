@@ -2,12 +2,12 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Better.Locators.Runtime;
-using EndlessHeresy.Core;
-using EndlessHeresy.Gameplay.Services.Input;
+using Inspirio.Core;
+using Inspirio.Gameplay.Services.Input;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EndlessHeresy.Gameplay.Systems
+namespace Inspirio.Gameplay.Systems
 {
     public sealed class ButtonListenerComponent : MonoComponent
     {

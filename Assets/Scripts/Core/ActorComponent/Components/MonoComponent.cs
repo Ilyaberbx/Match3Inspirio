@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace EndlessHeresy.Core
+namespace Inspirio.Core
 {
     public abstract class MonoComponent : MonoBehaviour, IComponent
     {

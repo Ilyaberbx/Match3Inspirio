@@ -1,6 +1,6 @@
-﻿using EndlessHeresy.UI.MVC;
+﻿using Inspirio.UI.MVC;
 
-namespace EndlessHeresy.UI.Huds.Return
+namespace Inspirio.UI.Huds.Return
 {
     public sealed class ReturnHudModel : IModel
     {

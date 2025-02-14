@@ -1,7 +1,7 @@
 ﻿using Better.Commons.Runtime.Components.UI;
 using UnityEngine;
 
-namespace EndlessHeresy.UI.ViewComponents
+namespace Inspirio.UI.ViewComponents
 {
     public sealed class StarNodeView : UIMonoBehaviour
     {

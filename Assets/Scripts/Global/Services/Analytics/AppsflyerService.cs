@@ -4,9 +4,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using AppsFlyerSDK;
 using Better.Services.Runtime;
-using OneSignalSDK;
 
-namespace EndlessHeresy.Global.Services.Analytics
+namespace Inspirio.Global.Services.Analytics
 {
     [Serializable]
     public sealed class AppsflyerService : PocoService<AppsflyerServiceSettings>, IAppsflyerService

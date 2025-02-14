@@ -1,8 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using EndlessHeresy.Gameplay.Modules;
+using Inspirio.Gameplay.Modules;
 
-namespace EndlessHeresy.Gameplay.States
+namespace Inspirio.Gameplay.States
 {
     public sealed class MainMenuState : BaseGameplayState
     {

@@ -1,9 +1,9 @@
 ﻿using Better.Locators.Runtime;
-using EndlessHeresy.Gameplay.Services.StatesManagement;
-using EndlessHeresy.Gameplay.States;
-using EndlessHeresy.UI.MVC;
+using Inspirio.Gameplay.Services.StatesManagement;
+using Inspirio.Gameplay.States;
+using Inspirio.UI.MVC;
 
-namespace EndlessHeresy.UI.Screens.Menu
+namespace Inspirio.UI.Screens.Menu
 {
     public sealed class MenuScreenController : BaseController<MenuScreenModel, MenuScreenView>
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace EndlessHeresy.UI.MVC
+namespace Inspirio.UI.MVC
 {
     public abstract class BaseController : IDisposable
     {

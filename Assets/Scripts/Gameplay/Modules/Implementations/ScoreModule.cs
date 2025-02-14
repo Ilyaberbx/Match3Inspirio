@@ -2,15 +2,15 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Better.Locators.Runtime;
-using EndlessHeresy.Gameplay.Actors;
-using EndlessHeresy.Gameplay.Services.Level;
-using EndlessHeresy.Gameplay.Services.Score;
-using EndlessHeresy.Gameplay.Services.StaticDataManagement;
-using EndlessHeresy.Gameplay.StaticData;
-using EndlessHeresy.UI.Huds.Score;
-using EndlessHeresy.UI.Services.Huds;
+using Inspirio.Gameplay.Actors;
+using Inspirio.Gameplay.Services.Level;
+using Inspirio.Gameplay.Services.Score;
+using Inspirio.Gameplay.Services.StaticDataManagement;
+using Inspirio.Gameplay.StaticData;
+using Inspirio.UI.Huds.Score;
+using Inspirio.UI.Services.Huds;
 
-namespace EndlessHeresy.Gameplay.Modules
+namespace Inspirio.Gameplay.Modules
 {
     public sealed class ScoreModule : BaseGameplayModule
     {

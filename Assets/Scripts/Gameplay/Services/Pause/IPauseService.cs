@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EndlessHeresy.Gameplay.Services.Pause
+namespace Inspirio.Gameplay.Services.Pause
 {
     public interface IPauseService
     {

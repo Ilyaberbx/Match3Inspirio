@@ -2,7 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using DG.Tweening;
 
-namespace EndlessHeresy.Extensions
+namespace Inspirio.Extensions
 {
     public static class TweenExtensions
     {

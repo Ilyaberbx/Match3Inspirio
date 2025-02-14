@@ -1,10 +1,10 @@
 ﻿using System;
-using EndlessHeresy.UI.ViewComponents;
+using Inspirio.UI.ViewComponents;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EndlessHeresy.UI.Popups.LevelStart
+namespace Inspirio.UI.Popups.LevelStart
 {
     public sealed class LevelStartPopupView : BasePopupView
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EndlessHeresy.Webview
+namespace Inspirio.Webview
 {
     [CreateAssetMenu(menuName = "Configs/Webview", fileName = "WebviewServiceSettings", order = 0)]
     public sealed class WebviewServiceSettings : ScriptableObject

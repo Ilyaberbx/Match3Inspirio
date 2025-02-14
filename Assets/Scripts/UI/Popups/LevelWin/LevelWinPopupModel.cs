@@ -1,8 +1,8 @@
 ﻿using Better.Commons.Runtime.DataStructures.Properties;
-using EndlessHeresy.UI.MVC;
+using Inspirio.UI.MVC;
 using UnityEngine;
 
-namespace EndlessHeresy.UI.Popups.LevelWin
+namespace Inspirio.UI.Popups.LevelWin
 {
     public sealed class LevelWinPopupModel : IModel
     {

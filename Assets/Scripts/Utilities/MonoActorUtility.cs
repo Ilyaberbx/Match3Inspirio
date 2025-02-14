@@ -1,7 +1,7 @@
-﻿using EndlessHeresy.Core;
-using EndlessHeresy.Core.Builder;
+﻿using Inspirio.Core;
+using Inspirio.Core.Builder;
 
-namespace EndlessHeresy.Utilities
+namespace Inspirio.Utilities
 {
     public static class MonoActorUtility
     {

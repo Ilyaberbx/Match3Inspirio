@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace EndlessHeresy.Core
+namespace Inspirio.Core
 {
     public interface IComponent
     {

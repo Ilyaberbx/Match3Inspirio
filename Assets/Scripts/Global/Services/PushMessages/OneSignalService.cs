@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Better.Services.Runtime;
 using OneSignalSDK;
 
-namespace EndlessHeresy.Global.Services.PushMessages
+namespace Inspirio.Global.Services.PushMessages
 {
     [Serializable]
     public sealed class OneSignalService : PocoService<OneSignalServiceSettings>

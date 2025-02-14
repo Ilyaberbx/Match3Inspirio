@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EndlessHeresy.UI.ViewComponents
+namespace Inspirio.UI.ViewComponents
 {
     public sealed class RoadMapNodeView : UIMonoBehaviour
     {

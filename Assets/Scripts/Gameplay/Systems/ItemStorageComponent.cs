@@ -1,7 +1,7 @@
-﻿using EndlessHeresy.Core;
-using EndlessHeresy.Gameplay.Actors;
+﻿using Inspirio.Core;
+using Inspirio.Gameplay.Actors;
 
-namespace EndlessHeresy.Gameplay.Systems
+namespace Inspirio.Gameplay.Systems
 {
     public sealed class ItemStorageComponent : PocoComponent
     {

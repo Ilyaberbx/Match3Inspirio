@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Better.Services.Runtime;
 
-namespace EndlessHeresy.Gameplay.Services.Pause
+namespace Inspirio.Gameplay.Services.Pause
 {
     [Serializable]
     public sealed class PauseService : PocoService, IPauseService

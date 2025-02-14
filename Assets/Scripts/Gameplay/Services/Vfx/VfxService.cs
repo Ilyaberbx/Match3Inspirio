@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 using Better.Locators.Runtime;
 using Better.Services.Runtime;
 using DG.Tweening;
-using EndlessHeresy.Extensions;
-using EndlessHeresy.Gameplay.Services.StaticDataManagement;
-using EndlessHeresy.Gameplay.StaticData;
+using Inspirio.Extensions;
+using Inspirio.Gameplay.Services.StaticDataManagement;
+using Inspirio.Gameplay.StaticData;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace EndlessHeresy.Gameplay.Services.Vfx
+namespace Inspirio.Gameplay.Services.Vfx
 {
     [Serializable]
     public sealed class VfxService : PocoService, IVfxService

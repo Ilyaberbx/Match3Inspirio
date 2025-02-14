@@ -1,4 +1,4 @@
-﻿namespace EndlessHeresy.Utilities
+﻿namespace Inspirio.Utilities
 {
     public static class GameBoardConstants
     {

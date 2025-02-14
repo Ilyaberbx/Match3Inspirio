@@ -715,40 +715,40 @@ MonoBehaviour:
       type: {class: PocoServicesInstaller, ns: Better.Contexts.Runtime.Installers, asm: Better.Contexts.Runtime}
       data:
         _services:
-        - rid: 9117324378338492419
-        - rid: 9117324378338492421
-        - rid: 9117324383988219904
-        - rid: 9117324400301703168
-        - rid: 9117324402366349312
-        - rid: 9117324407724834816
-        - rid: 9117324407724834817
-        - rid: 9117324444953214982
-    - rid: 9117324378338492419
-      type: {class: GameplayStatesService, ns: EndlessHeresy.Gameplay.Services.StatesManagement, asm: Assembly-CSharp}
-      data: 
-    - rid: 9117324378338492421
-      type: {class: GameplayFactoryService, ns: EndlessHeresy.Gameplay.Services.Factory, asm: Assembly-CSharp}
-      data:
-        _root: {fileID: 2136763070}
-    - rid: 9117324383988219904
-      type: {class: SpriteService, ns: EndlessHeresy.Gameplay.Services.Sprites, asm: Assembly-CSharp}
-      data: 
-    - rid: 9117324400301703168
-      type: {class: InputService, ns: EndlessHeresy.Gameplay.Services.Input, asm: Assembly-CSharp}
-      data: 
-    - rid: 9117324402366349312
-      type: {class: PauseService, ns: EndlessHeresy.Gameplay.Services.Pause, asm: Assembly-CSharp}
-      data: 
-    - rid: 9117324407724834816
-      type: {class: LevelService, ns: EndlessHeresy.Gameplay.Services.Level, asm: Assembly-CSharp}
-      data: 
-    - rid: 9117324407724834817
-      type: {class: ScoreService, ns: EndlessHeresy.Gameplay.Services.Score, asm: Assembly-CSharp}
-      data: 
-    - rid: 9117324444953214982
-      type: {class: VfxService, ns: EndlessHeresy.Gameplay.Services.Vfx, asm: Assembly-CSharp}
+        - rid: 9117324465804148748
+        - rid: 9117324465804148749
+        - rid: 9117324465804148750
+        - rid: 9117324465804148751
+        - rid: 9117324465804148752
+        - rid: 9117324465804148753
+        - rid: 9117324465804148754
+        - rid: 9117324465804148755
+    - rid: 9117324465804148748
+      type: {class: VfxService, ns: Inspirio.Gameplay.Services.Vfx, asm: Assembly-CSharp}
       data:
         _root: {fileID: 1565792417}
+    - rid: 9117324465804148749
+      type: {class: GameplayFactoryService, ns: Inspirio.Gameplay.Services.Factory, asm: Assembly-CSharp}
+      data:
+        _root: {fileID: 2136763070}
+    - rid: 9117324465804148750
+      type: {class: GameplayStatesService, ns: Inspirio.Gameplay.Services.StatesManagement, asm: Assembly-CSharp}
+      data: 
+    - rid: 9117324465804148751
+      type: {class: LevelService, ns: Inspirio.Gameplay.Services.Level, asm: Assembly-CSharp}
+      data: 
+    - rid: 9117324465804148752
+      type: {class: PauseService, ns: Inspirio.Gameplay.Services.Pause, asm: Assembly-CSharp}
+      data: 
+    - rid: 9117324465804148753
+      type: {class: ScoreService, ns: Inspirio.Gameplay.Services.Score, asm: Assembly-CSharp}
+      data: 
+    - rid: 9117324465804148754
+      type: {class: SpriteService, ns: Inspirio.Gameplay.Services.Sprites, asm: Assembly-CSharp}
+      data: 
+    - rid: 9117324465804148755
+      type: {class: InputService, ns: Inspirio.Gameplay.Services.Input, asm: Assembly-CSharp}
+      data: 
 --- !u!1 &2136763070
 GameObject:
   m_ObjectHideFlags: 0

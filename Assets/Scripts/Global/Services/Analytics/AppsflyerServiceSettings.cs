@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EndlessHeresy.Global.Services.Analytics
+namespace Inspirio.Global.Services.Analytics
 {
     [CreateAssetMenu(menuName = "Configs/Analytics/Appsflyer", fileName = "AppsflyerServiceSettings", order = 0)]
     public sealed class AppsflyerServiceSettings : ScriptableObject

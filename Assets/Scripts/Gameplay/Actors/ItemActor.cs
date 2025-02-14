@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Better.Locators.Runtime;
-using EndlessHeresy.Core;
-using EndlessHeresy.Gameplay.Services.Sprites;
-using EndlessHeresy.Gameplay.Systems;
+using Inspirio.Core;
+using Inspirio.Gameplay.Services.Sprites;
+using Inspirio.Gameplay.Systems;
 
-namespace EndlessHeresy.Gameplay.Actors
+namespace Inspirio.Gameplay.Actors
 {
     public sealed class ItemActor : MonoActor
     {

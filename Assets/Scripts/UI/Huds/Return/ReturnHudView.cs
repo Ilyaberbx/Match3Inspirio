@@ -1,9 +1,9 @@
 ﻿using System;
-using EndlessHeresy.UI.MVC;
+using Inspirio.UI.MVC;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EndlessHeresy.UI.Huds.Return
+namespace Inspirio.UI.Huds.Return
 {
     public sealed class ReturnHudView : BaseView
     {

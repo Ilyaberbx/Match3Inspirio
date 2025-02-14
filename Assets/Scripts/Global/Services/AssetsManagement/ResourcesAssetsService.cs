@@ -5,7 +5,7 @@ using Better.Services.Runtime;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace EndlessHeresy.Global.Services.AssetsManagement
+namespace Inspirio.Global.Services.AssetsManagement
 {
     [Serializable]
     public sealed class ResourcesAssetsService : PocoService, IAssetsService

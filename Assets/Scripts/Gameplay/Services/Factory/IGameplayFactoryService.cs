@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using EndlessHeresy.Core;
-using EndlessHeresy.Gameplay.Actors;
+using Inspirio.Core;
+using Inspirio.Gameplay.Actors;
 using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.Services.Factory
+namespace Inspirio.Gameplay.Services.Factory
 {
     public interface IGameplayFactoryService
     {

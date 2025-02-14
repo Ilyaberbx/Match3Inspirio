@@ -3,11 +3,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Better.Locators.Runtime;
 using Better.Services.Runtime;
-using EndlessHeresy.Gameplay.Services.StaticDataManagement;
-using EndlessHeresy.Gameplay.StaticData;
+using Inspirio.Gameplay.Services.StaticDataManagement;
+using Inspirio.Gameplay.StaticData;
 using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.Services.Sprites
+namespace Inspirio.Gameplay.Services.Sprites
 {
     [Serializable]
     public sealed class SpriteService : PocoService, ISpriteService

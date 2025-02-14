@@ -2,16 +2,16 @@
 using System.Threading.Tasks;
 using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
-using EndlessHeresy.Gameplay.Services.Level;
-using EndlessHeresy.Gameplay.Services.Score;
-using EndlessHeresy.Gameplay.Services.StaticDataManagement;
-using EndlessHeresy.Gameplay.StaticData;
-using EndlessHeresy.Global.Services.Persistence;
-using EndlessHeresy.UI.Popups.LevelLose;
-using EndlessHeresy.UI.Popups.LevelWin;
-using EndlessHeresy.UI.Services.Popups;
+using Inspirio.Gameplay.Services.Level;
+using Inspirio.Gameplay.Services.Score;
+using Inspirio.Gameplay.Services.StaticDataManagement;
+using Inspirio.Gameplay.StaticData;
+using Inspirio.Global.Services.Persistence;
+using Inspirio.UI.Popups.LevelLose;
+using Inspirio.UI.Popups.LevelWin;
+using Inspirio.UI.Services.Popups;
 
-namespace EndlessHeresy.Gameplay.Modules
+namespace Inspirio.Gameplay.Modules
 {
     public sealed class GameExodusModule : BaseGameplayModule
     {

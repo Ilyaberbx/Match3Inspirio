@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
-using EndlessHeresy.Gameplay.Services.Level;
-using EndlessHeresy.Gameplay.Services.StatesManagement;
-using EndlessHeresy.Gameplay.States;
-using EndlessHeresy.Global.Services.Persistence;
-using EndlessHeresy.Persistence;
-using EndlessHeresy.UI.MVC;
-using EndlessHeresy.UI.Services.Popups;
+using Inspirio.Gameplay.Services.Level;
+using Inspirio.Gameplay.Services.StatesManagement;
+using Inspirio.Gameplay.States;
+using Inspirio.Global.Services.Persistence;
+using Inspirio.Persistence;
+using Inspirio.UI.MVC;
+using Inspirio.UI.Services.Popups;
 
-namespace EndlessHeresy.UI.Popups.LevelStart
+namespace Inspirio.UI.Popups.LevelStart
 {
     public sealed class LevelStartPopupController : BaseController<LevelStartPopupModel, LevelStartPopupView>
     {

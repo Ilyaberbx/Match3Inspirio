@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.StaticData
+namespace Inspirio.Gameplay.StaticData
 {
     [Serializable]
     public sealed class ScoreData

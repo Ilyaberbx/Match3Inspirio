@@ -4,19 +4,19 @@ using System.Threading.Tasks;
 using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
 using DG.Tweening;
-using EndlessHeresy.Core;
-using EndlessHeresy.Extensions;
-using EndlessHeresy.Gameplay.Services.Factory;
-using EndlessHeresy.Gameplay.Services.Input;
-using EndlessHeresy.Gameplay.Services.Level;
-using EndlessHeresy.Gameplay.Services.StaticDataManagement;
-using EndlessHeresy.Gameplay.Systems;
-using EndlessHeresy.Utilities;
+using Inspirio.Core;
+using Inspirio.Extensions;
+using Inspirio.Gameplay.Services.Factory;
+using Inspirio.Gameplay.Services.Input;
+using Inspirio.Gameplay.Services.Level;
+using Inspirio.Gameplay.Services.StaticDataManagement;
+using Inspirio.Gameplay.Systems;
+using Inspirio.Utilities;
 using UnityEngine;
 using Random = System.Random;
 using Sequence = DG.Tweening.Sequence;
 
-namespace EndlessHeresy.Gameplay.Actors
+namespace Inspirio.Gameplay.Actors
 {
     public sealed class GameBoardActor : MonoActor
     {

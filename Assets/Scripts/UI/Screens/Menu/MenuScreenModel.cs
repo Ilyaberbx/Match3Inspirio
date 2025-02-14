@@ -1,6 +1,6 @@
-﻿using EndlessHeresy.UI.MVC;
+﻿using Inspirio.UI.MVC;
 
-namespace EndlessHeresy.UI.Screens.Menu
+namespace Inspirio.UI.Screens.Menu
 {
     public sealed class MenuScreenModel : IModel
     {

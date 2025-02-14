@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EndlessHeresy.UI.MVC
+namespace Inspirio.UI.MVC
 {
     [RequireComponent(typeof(CanvasGroup))]
     public abstract class BaseView : MonoBehaviour

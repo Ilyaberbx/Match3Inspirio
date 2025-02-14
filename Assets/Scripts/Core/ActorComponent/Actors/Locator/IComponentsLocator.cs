@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EndlessHeresy.Core
+namespace Inspirio.Core
 {
     public interface IComponentsLocator
     {

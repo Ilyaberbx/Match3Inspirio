@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EndlessHeresy.Extensions
+namespace Inspirio.Extensions
 {
     public static class VectorExtensions
     {

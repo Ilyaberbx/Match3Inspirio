@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
 using Better.Services.Runtime;
-using EndlessHeresy.Global.Services.AssetsManagement;
-using EndlessHeresy.UI.MVC;
+using Inspirio.Global.Services.AssetsManagement;
+using Inspirio.UI.MVC;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace EndlessHeresy.UI.Services.Huds
+namespace Inspirio.UI.Services.Huds
 {
     [Serializable]
     public sealed class HudsService : PocoService, IHudsService

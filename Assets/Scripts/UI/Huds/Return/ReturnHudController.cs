@@ -1,10 +1,10 @@
 ﻿using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
-using EndlessHeresy.Gameplay.Services.StatesManagement;
-using EndlessHeresy.Gameplay.States;
-using EndlessHeresy.UI.MVC;
+using Inspirio.Gameplay.Services.StatesManagement;
+using Inspirio.Gameplay.States;
+using Inspirio.UI.MVC;
 
-namespace EndlessHeresy.UI.Huds.Return
+namespace Inspirio.UI.Huds.Return
 {
     public sealed class ReturnHudController : BaseController<ReturnHudModel, ReturnHudView>
     {

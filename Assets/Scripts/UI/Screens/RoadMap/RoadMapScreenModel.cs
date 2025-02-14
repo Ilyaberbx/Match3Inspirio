@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Better.Commons.Runtime.DataStructures.Properties;
-using EndlessHeresy.Persistence;
-using EndlessHeresy.UI.MVC;
+using Inspirio.Persistence;
+using Inspirio.UI.MVC;
 
-namespace EndlessHeresy.UI.Screens.RoadMap
+namespace Inspirio.UI.Screens.RoadMap
 {
     public sealed class RoadMapScreenModel : IModel
     {

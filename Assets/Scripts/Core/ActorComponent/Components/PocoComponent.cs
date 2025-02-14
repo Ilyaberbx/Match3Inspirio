@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace EndlessHeresy.Core
+namespace Inspirio.Core
 {
     public abstract class PocoComponent : IComponent
     {

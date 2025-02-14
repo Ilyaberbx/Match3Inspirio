@@ -1,6 +1,6 @@
-﻿using EndlessHeresy.Core;
+﻿using Inspirio.Core;
 
-namespace EndlessHeresy.Gameplay.Systems
+namespace Inspirio.Gameplay.Systems
 {
     public sealed class SizeStorageComponent : PocoComponent
     {

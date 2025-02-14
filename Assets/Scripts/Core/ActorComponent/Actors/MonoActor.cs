@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Better.Commons.Runtime.Extensions;
 using UnityEngine;
 
-namespace EndlessHeresy.Core
+namespace Inspirio.Core
 {
     public abstract class MonoActor : MonoBehaviour, IActor
     {

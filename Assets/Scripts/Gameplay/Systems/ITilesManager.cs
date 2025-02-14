@@ -1,6 +1,6 @@
-﻿using EndlessHeresy.Gameplay.Actors;
+﻿using Inspirio.Gameplay.Actors;
 
-namespace EndlessHeresy.Gameplay.Systems
+namespace Inspirio.Gameplay.Systems
 {
     public interface ITilesManager
     {

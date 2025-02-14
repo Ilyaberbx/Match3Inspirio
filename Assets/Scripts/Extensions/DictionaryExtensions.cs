@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Better.Commons.Runtime.Utility;
 using Better.Locators.Runtime;
 
-namespace EndlessHeresy.Extensions
+namespace Inspirio.Extensions
 {
     public static class DictionaryExtensions
     {

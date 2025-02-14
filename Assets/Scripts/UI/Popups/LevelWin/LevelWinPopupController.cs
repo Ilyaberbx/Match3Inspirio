@@ -1,15 +1,15 @@
 ﻿using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
-using EndlessHeresy.Gameplay.Services.Level;
-using EndlessHeresy.Gameplay.Services.Score;
-using EndlessHeresy.Gameplay.Services.StatesManagement;
-using EndlessHeresy.Gameplay.Services.StaticDataManagement;
-using EndlessHeresy.Gameplay.States;
-using EndlessHeresy.Gameplay.StaticData;
-using EndlessHeresy.UI.MVC;
+using Inspirio.Gameplay.Services.Level;
+using Inspirio.Gameplay.Services.Score;
+using Inspirio.Gameplay.Services.StatesManagement;
+using Inspirio.Gameplay.Services.StaticDataManagement;
+using Inspirio.Gameplay.States;
+using Inspirio.Gameplay.StaticData;
+using Inspirio.UI.MVC;
 using UnityEngine;
 
-namespace EndlessHeresy.UI.Popups.LevelWin
+namespace Inspirio.UI.Popups.LevelWin
 {
     public sealed class LevelWinPopupController : BaseController<LevelWinPopupModel, LevelWinPopupView>
     {

@@ -1,6 +1,6 @@
-﻿using EndlessHeresy.UI.MVC;
+﻿using Inspirio.UI.MVC;
 
-namespace EndlessHeresy.UI.Screens.Splash
+namespace Inspirio.UI.Screens.Splash
 {
     public sealed class SplashScreenView : BaseView
     {

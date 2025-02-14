@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
-using Better.Commons.Runtime.Extensions;
+using Better.Locators.Runtime;
 using Better.Services.Runtime;
+using Inspirio.Global.Services.Persistence;
 using UnityEngine;
-using UnityEngine.Networking;
 
-namespace EndlessHeresy.Webview
+namespace Inspirio.Webview
 {
     [Serializable]
     public sealed class WebViewService : PocoService<WebviewServiceSettings>, IWebViewService
@@ -13,8 +14,15 @@ namespace EndlessHeresy.Webview
         private const string WebViewName = "WebViewObject";
         private const string HttpFormat = "http";
 
-        private string _currentUrl;
+        private IUserService _userService;
         private WebViewObject _webViewObject;
+
+        protected override async Task OnPostInitializeAsync(CancellationToken cancellationToken)
+        {
+            await base.OnPostInitializeAsync(cancellationToken);
+
+            _userService = ServiceLocator.Get<UserService>();
+        }
 
         public bool CanGoBack() => _webViewObject != null && _webViewObject.CanGoBack();
 
@@ -58,7 +66,10 @@ namespace EndlessHeresy.Webview
         private WebViewObject CreateWebView()
         {
             var webViewObject = new GameObject(WebViewName).AddComponent<WebViewObject>();
-            webViewObject.Init();
+            webViewObject.Init(null,
+                null,
+                null,
+                OnWebViewUrlLoaded);
             webViewObject.SetMargins(Settings.LeftMargin,
                 Settings.TopMargin,
                 Settings.RightMargin,
@@ -69,5 +80,7 @@ namespace EndlessHeresy.Webview
             webViewObject.SetScrollBounceEnabled(true);
             return webViewObject;
         }
+
+        private void OnWebViewUrlLoaded(string url) => _userService.CurrentWebViewUrl.Value = url;
     }
 }

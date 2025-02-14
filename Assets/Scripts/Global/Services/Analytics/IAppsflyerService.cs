@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EndlessHeresy.Global.Services.Analytics
+namespace Inspirio.Global.Services.Analytics
 {
     public interface IAppsflyerService
     {

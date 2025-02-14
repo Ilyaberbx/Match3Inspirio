@@ -1,11 +1,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Better.Commons.Runtime.Extensions;
-using EndlessHeresy.Commons;
+using Inspirio.Commons;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace EndlessHeresy.Global.States
+namespace Inspirio.Global.States
 {
     public abstract class BaseLoadingState : BaseGameState
     {

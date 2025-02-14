@@ -1,4 +1,4 @@
-﻿namespace EndlessHeresy.Gameplay.Services.Vfx
+﻿namespace Inspirio.Gameplay.Services.Vfx
 {
     public enum VfxType
     {

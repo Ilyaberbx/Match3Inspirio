@@ -1,9 +1,9 @@
 ﻿using System;
-using EndlessHeresy.UI.MVC;
+using Inspirio.UI.MVC;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EndlessHeresy.UI.Screens.Menu
+namespace Inspirio.UI.Screens.Menu
 {
     public sealed class MenuScreenView : BaseView
     {

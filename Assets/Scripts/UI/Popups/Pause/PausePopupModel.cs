@@ -1,6 +1,6 @@
-﻿using EndlessHeresy.UI.MVC;
+﻿using Inspirio.UI.MVC;
 
-namespace EndlessHeresy.UI.Popups.Pause
+namespace Inspirio.UI.Popups.Pause
 {
     public sealed class PausePopupModel : IModel
     {

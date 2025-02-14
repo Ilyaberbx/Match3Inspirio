@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Better.Locators.Runtime;
-using EndlessHeresy.UI.Screens.Menu;
-using EndlessHeresy.UI.Services.Screens;
+using Inspirio.UI.Screens.Menu;
+using Inspirio.UI.Services.Screens;
 
-namespace EndlessHeresy.Gameplay.Modules
+namespace Inspirio.Gameplay.Modules
 {
     public sealed class MainMenuModule : BaseGameplayModule
     {

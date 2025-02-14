@@ -2,22 +2,26 @@ using System.Threading;
 using System.Threading.Tasks;
 using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
-using EndlessHeresy.Gameplay.Services.StatesManagement;
-using EndlessHeresy.Gameplay.States;
+using Inspirio.Gameplay.Services.StatesManagement;
+using Inspirio.Gameplay.States;
+using Inspirio.Global.Services.Loading;
+using Inspirio.Global.Services.StatesManagement;
 
-namespace EndlessHeresy.Global.States
+namespace Inspirio.Global.States
 {
     public sealed class GameplayState : BaseLoadingState
     {
         protected override string GetSceneName() => SceneConstants.Gameplay;
 
         private IGameplayStatesService _gameplayStatesService;
+        private ILoadingService _loadingService;
 
-        protected override Task OnSceneLoaded()
+        protected override async Task OnSceneLoaded()
         {
             _gameplayStatesService = ServiceLocator.Get<GameplayStatesService>();
-            _gameplayStatesService.ChangeStateAsync<MainMenuState>().Forget();
-            return Task.CompletedTask;
+            _loadingService = ServiceLocator.Get<LoadingService>();
+            await _gameplayStatesService.ChangeStateAsync<MainMenuState>();
+            await _loadingService.HideCurtainAsync();
         }
 
         public override async Task ExitAsync(CancellationToken token)

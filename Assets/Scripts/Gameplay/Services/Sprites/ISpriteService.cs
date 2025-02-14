@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.Services.Sprites
+namespace Inspirio.Gameplay.Services.Sprites
 {
     public interface ISpriteService
     {

@@ -2,9 +2,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Better.Locators.Runtime;
 using Better.StateMachine.Runtime.States;
-using EndlessHeresy.Global.Services.StatesManagement;
+using Inspirio.Global.Services.StatesManagement;
 
-namespace EndlessHeresy.Global.States
+namespace Inspirio.Global.States
 {
     public abstract class BaseGameState : BaseState
     {

@@ -1,7 +1,7 @@
-﻿using EndlessHeresy.Gameplay.Actors;
+﻿using Inspirio.Gameplay.Actors;
 using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.StaticData
+namespace Inspirio.Gameplay.StaticData
 {
     [CreateAssetMenu(menuName = "Configs/Match3/Tiles", fileName = "TilesConfiguration", order = 0)]
     public sealed class TilesConfiguration : ScriptableObject

@@ -1,7 +1,7 @@
 ﻿using OneSignalSDK.Debug.Models;
 using UnityEngine;
 
-namespace EndlessHeresy.Global.Services.PushMessages
+namespace Inspirio.Global.Services.PushMessages
 {
     [CreateAssetMenu(menuName = "Configs/PushMessages/OneSignal", fileName = "OneSignalServiceSettings", order = 0)]
     public sealed class OneSignalServiceSettings : ScriptableObject

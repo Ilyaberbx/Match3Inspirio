@@ -1,8 +1,8 @@
 ﻿using System;
-using EndlessHeresy.Gameplay.Actors;
+using Inspirio.Gameplay.Actors;
 using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.StaticData
+namespace Inspirio.Gameplay.StaticData
 {
     [Serializable]
     public sealed class ItemConfiguration

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using EndlessHeresy.UI.MVC;
+using Inspirio.UI.MVC;
 
-namespace EndlessHeresy.UI.Services.Popups
+namespace Inspirio.UI.Services.Popups
 {
     public interface IPopupsService
     {

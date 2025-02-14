@@ -1,7 +1,7 @@
-﻿using EndlessHeresy.Core;
+﻿using Inspirio.Core;
 using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.Systems
+namespace Inspirio.Gameplay.Systems
 {
     public sealed class RectTransformStorage : MonoComponent
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using EndlessHeresy.Gameplay.Actors;
+using Inspirio.Gameplay.Actors;
 
-namespace EndlessHeresy.Gameplay.Services.Level
+namespace Inspirio.Gameplay.Services.Level
 {
     public interface ILevelService
     {

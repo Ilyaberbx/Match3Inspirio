@@ -4,7 +4,7 @@ using Better.Commons.Runtime.Utility;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace EndlessHeresy.Core.Builder
+namespace Inspirio.Core.Builder
 {
     public sealed class MonoActorBuilder<TActor> where TActor : MonoActor
     {

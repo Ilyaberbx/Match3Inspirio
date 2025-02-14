@@ -1,10 +1,10 @@
 ﻿using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
-using EndlessHeresy.Gameplay.Services.StatesManagement;
-using EndlessHeresy.Gameplay.States;
-using EndlessHeresy.UI.MVC;
+using Inspirio.Gameplay.Services.StatesManagement;
+using Inspirio.Gameplay.States;
+using Inspirio.UI.MVC;
 
-namespace EndlessHeresy.UI.Popups.LevelLose
+namespace Inspirio.UI.Popups.LevelLose
 {
     public sealed class LevelLosePopupController : BaseController<LevelLosePopupModel, LevelLosePopupView>
     {

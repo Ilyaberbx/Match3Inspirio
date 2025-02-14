@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.StaticData
+namespace Inspirio.Gameplay.StaticData
 {
     [CreateAssetMenu(menuName = "Configs/Match3/Score", fileName = "LevelConfiguration", order = 0)]
     public sealed class LevelsConfiguration : ScriptableObject

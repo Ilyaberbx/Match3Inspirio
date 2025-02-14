@@ -1,9 +1,9 @@
-﻿using EndlessHeresy.UI.MVC;
-using EndlessHeresy.UI.ViewComponents;
+﻿using Inspirio.UI.MVC;
+using Inspirio.UI.ViewComponents;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EndlessHeresy.UI.Huds.Score
+namespace Inspirio.UI.Huds.Score
 {
     public sealed class ScoreHudView : BaseView
     {

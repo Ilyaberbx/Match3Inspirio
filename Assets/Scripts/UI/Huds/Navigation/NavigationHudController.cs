@@ -1,10 +1,10 @@
 ﻿using Better.Locators.Runtime;
-using EndlessHeresy.Global.Services.StatesManagement;
-using EndlessHeresy.Global.States;
-using EndlessHeresy.UI.MVC;
-using EndlessHeresy.Webview;
+using Inspirio.Global.Services.StatesManagement;
+using Inspirio.Global.States;
+using Inspirio.UI.MVC;
+using Inspirio.Webview;
 
-namespace EndlessHeresy.UI.Huds.Navigation
+namespace Inspirio.UI.Huds.Navigation
 {
     public sealed class NavigationHudController : BaseController<NavigationHudModel, NavigationHudView>
     {

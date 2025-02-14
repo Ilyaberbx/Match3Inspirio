@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using EndlessHeresy.Gameplay.Actors;
+using Inspirio.Gameplay.Actors;
 
-namespace EndlessHeresy.Utilities
+namespace Inspirio.Utilities
 {
     public static class MatchUtility
     {

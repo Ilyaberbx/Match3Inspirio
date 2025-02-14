@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Better.StateMachine.Runtime.States;
-using EndlessHeresy.Gameplay.Modules;
+using Inspirio.Gameplay.Modules;
 
-namespace EndlessHeresy.Gameplay.States
+namespace Inspirio.Gameplay.States
 {
     public abstract class BaseGameplayState : BaseState
     {

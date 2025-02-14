@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using UnityEngine;
 
-namespace EndlessHeresy.Core
+namespace Inspirio.Core
 {
     public interface IActor : IComponentsLocator
     {

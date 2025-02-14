@@ -6,7 +6,7 @@ using Better.Commons.Runtime.Extensions;
 using Better.Contexts.Runtime.Installers;
 using UnityEngine;
 
-namespace EndlessHeresy.Commons
+namespace Inspirio.Commons
 {
     public class MonoContextAdapter : MonoBehaviour
     {

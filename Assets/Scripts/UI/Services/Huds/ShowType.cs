@@ -1,4 +1,4 @@
-﻿namespace EndlessHeresy.UI.Services.Huds
+﻿namespace Inspirio.UI.Services.Huds
 {
     public enum ShowType
     {

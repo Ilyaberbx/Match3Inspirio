@@ -1,8 +1,8 @@
-﻿using EndlessHeresy.UI.MVC;
-using EndlessHeresy.UI.ViewComponents;
+﻿using Inspirio.UI.MVC;
+using Inspirio.UI.ViewComponents;
 using UnityEngine;
 
-namespace EndlessHeresy.UI.Screens.RoadMap
+namespace Inspirio.UI.Screens.RoadMap
 {
     public sealed class RoadMapScreenView : BaseView
     {

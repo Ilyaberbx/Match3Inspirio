@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EndlessHeresy.Gameplay.Services.Input
+namespace Inspirio.Gameplay.Services.Input
 {
     public interface IInputService
     {

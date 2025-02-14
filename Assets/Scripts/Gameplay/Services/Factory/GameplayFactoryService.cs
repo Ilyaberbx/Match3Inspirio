@@ -4,15 +4,15 @@ using System.Threading.Tasks;
 using Better.Locators.Runtime;
 using Better.Services.Runtime;
 using DG.Tweening;
-using EndlessHeresy.Core;
-using EndlessHeresy.Gameplay.Actors;
-using EndlessHeresy.Gameplay.Services.StaticDataManagement;
-using EndlessHeresy.Gameplay.Systems;
-using EndlessHeresy.Utilities;
+using Inspirio.Core;
+using Inspirio.Gameplay.Actors;
+using Inspirio.Gameplay.Services.StaticDataManagement;
+using Inspirio.Gameplay.Systems;
+using Inspirio.Utilities;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace EndlessHeresy.Gameplay.Services.Factory
+namespace Inspirio.Gameplay.Services.Factory
 {
     [Serializable]
     public sealed class GameplayFactoryService : PocoService, IGameplayFactoryService

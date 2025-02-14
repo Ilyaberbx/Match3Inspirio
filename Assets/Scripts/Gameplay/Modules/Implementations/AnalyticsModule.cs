@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Better.Locators.Runtime;
-using EndlessHeresy.Gameplay.Services.Level;
-using EndlessHeresy.Gameplay.Services.Score;
-using EndlessHeresy.Global.Services.Analytics;
+using Inspirio.Gameplay.Services.Level;
+using Inspirio.Gameplay.Services.Score;
+using Inspirio.Global.Services.Analytics;
 
-namespace EndlessHeresy.Gameplay.Modules
+namespace Inspirio.Gameplay.Modules
 {
     public sealed class AnalyticsModule : BaseGameplayModule
     {

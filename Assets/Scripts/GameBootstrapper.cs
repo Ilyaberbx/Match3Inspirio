@@ -1,10 +1,10 @@
 using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
-using EndlessHeresy.Global.Services.StatesManagement;
-using EndlessHeresy.Global.States;
+using Inspirio.Global.Services.StatesManagement;
+using Inspirio.Global.States;
 using UnityEngine;
 
-namespace EndlessHeresy
+namespace Inspirio
 {
     public sealed class GameBootstrapper : MonoBehaviour
     {

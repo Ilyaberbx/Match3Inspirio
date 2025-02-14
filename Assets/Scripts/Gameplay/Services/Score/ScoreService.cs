@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Better.Services.Runtime;
 using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.Services.Score
+namespace Inspirio.Gameplay.Services.Score
 {
     [Serializable]
     public sealed class ScoreService : PocoService, IScoreService

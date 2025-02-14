@@ -3,12 +3,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using Better.Locators.Runtime;
 using Better.Services.Runtime;
-using EndlessHeresy.Global.Services.AssetsManagement;
-using EndlessHeresy.UI.MVC;
+using Inspirio.Global.Services.AssetsManagement;
+using Inspirio.UI.MVC;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace EndlessHeresy.UI.Services.Screens
+namespace Inspirio.UI.Services.Screens
 {
     [Serializable]
     public sealed class ScreensService : PocoService, IScreensService

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Better.Services.Runtime;
-using EndlessHeresy.Gameplay.Actors;
+using Inspirio.Gameplay.Actors;
 
-namespace EndlessHeresy.Gameplay.Services.Level
+namespace Inspirio.Gameplay.Services.Level
 {
     [Serializable]
     public sealed class LevelService : PocoService, ILevelService

@@ -1,6 +1,6 @@
-﻿using EndlessHeresy.UI.MVC;
+﻿using Inspirio.UI.MVC;
 
-namespace EndlessHeresy.UI.Huds.Pause
+namespace Inspirio.UI.Huds.Pause
 {
     public sealed class PauseHudModel : IModel
     {

@@ -436,9 +436,9 @@ MonoBehaviour:
       type: {class: PocoServicesInstaller, ns: Better.Contexts.Runtime.Installers, asm: Better.Contexts.Runtime}
       data:
         _services:
-        - rid: 9117324444953214980
-    - rid: 9117324444953214980
-      type: {class: WebViewService, ns: EndlessHeresy.Webview, asm: Assembly-CSharp}
+        - rid: 9117324465804148746
+    - rid: 9117324465804148746
+      type: {class: WebViewService, ns: Inspirio.Webview, asm: Assembly-CSharp}
       data:
         _settings: {fileID: 11400000, guid: 53665a85fcb17ab48b2edd12b2c428d1, type: 2}
 --- !u!1 &2136763070

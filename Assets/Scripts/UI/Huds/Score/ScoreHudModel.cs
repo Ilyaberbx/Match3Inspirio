@@ -1,7 +1,7 @@
 ﻿using System;
-using EndlessHeresy.UI.MVC;
+using Inspirio.UI.MVC;
 
-namespace EndlessHeresy.UI.Huds.Score
+namespace Inspirio.UI.Huds.Score
 {
     public sealed class ScoreHudModel : IModel
     {

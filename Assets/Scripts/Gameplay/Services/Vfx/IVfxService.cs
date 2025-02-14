@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using UnityEngine;
 
-namespace EndlessHeresy.Gameplay.Services.Vfx
+namespace Inspirio.Gameplay.Services.Vfx
 {
     public interface IVfxService
     {

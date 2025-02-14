@@ -1,9 +1,9 @@
 ﻿using Better.Locators.Runtime;
-using EndlessHeresy.Gameplay.Services.Pause;
-using EndlessHeresy.UI.MVC;
-using EndlessHeresy.UI.Services.Popups;
+using Inspirio.Gameplay.Services.Pause;
+using Inspirio.UI.MVC;
+using Inspirio.UI.Services.Popups;
 
-namespace EndlessHeresy.UI.Popups.Pause
+namespace Inspirio.UI.Popups.Pause
 {
     public sealed class PausePopupController : BaseController<PausePopupModel, PausePopupView>
     {
