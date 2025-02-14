@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Inspirio.Core
+namespace Inspirio.Gameplay.Core
 {
     public interface IComponentsLocator
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Better.Locators.Runtime;
-using Inspirio.Core;
+using Inspirio.Gameplay.Core;
 using Inspirio.Gameplay.Services.Sprites;
 using Inspirio.Gameplay.Systems;
 

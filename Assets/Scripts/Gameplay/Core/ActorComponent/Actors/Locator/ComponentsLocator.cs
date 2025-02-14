@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Better.Locators.Runtime;
 
-namespace Inspirio.Core
+namespace Inspirio.Gameplay.Core
 {
     public class ComponentsLocator : Locator<Type, IComponent>, IComponentsLocator
     {

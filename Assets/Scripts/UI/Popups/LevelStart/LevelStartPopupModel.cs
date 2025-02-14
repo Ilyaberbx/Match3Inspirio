@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Better.Commons.Runtime.DataStructures.Properties;
-using Inspirio.Persistence;
+using Inspirio.Gameplay.Persistence;
 using Inspirio.UI.MVC;
 
 namespace Inspirio.UI.Popups.LevelStart

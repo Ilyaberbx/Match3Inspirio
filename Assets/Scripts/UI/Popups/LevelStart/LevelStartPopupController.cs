@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
+using Inspirio.Gameplay.Persistence;
 using Inspirio.Gameplay.Services.Level;
 using Inspirio.Gameplay.Services.StatesManagement;
 using Inspirio.Gameplay.States;
 using Inspirio.Global.Services.Persistence;
-using Inspirio.Persistence;
 using Inspirio.UI.MVC;
 using Inspirio.UI.Services.Popups;
 

@@ -4,7 +4,7 @@ using Better.Commons.Runtime.Utility;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Inspirio.Core.Builder
+namespace Inspirio.Gameplay.Core.Builder
 {
     public sealed class MonoActorBuilder<TActor> where TActor : MonoActor
     {

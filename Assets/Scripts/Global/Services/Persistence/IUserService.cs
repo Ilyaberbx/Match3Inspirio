@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Better.Saves.Runtime.Data;
-using Inspirio.Persistence;
+using Inspirio.Gameplay.Persistence;
 
 namespace Inspirio.Global.Services.Persistence
 {

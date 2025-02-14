@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Better.Commons.Runtime.Extensions;
 using UnityEngine;
 
-namespace Inspirio.Core
+namespace Inspirio.Gameplay.Core
 {
     public abstract class MonoActor : MonoBehaviour, IActor
     {

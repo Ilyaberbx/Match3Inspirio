@@ -1,5 +1,5 @@
-﻿using Inspirio.Core;
-using Inspirio.Core.Builder;
+﻿using Inspirio.Gameplay.Core;
+using Inspirio.Gameplay.Core.Builder;
 
 namespace Inspirio.Utilities
 {

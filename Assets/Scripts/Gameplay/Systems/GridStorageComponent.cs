@@ -1,4 +1,4 @@
-﻿using Inspirio.Core;
+﻿using Inspirio.Gameplay.Core;
 using UnityEngine;
 using UnityEngine.UI;
 

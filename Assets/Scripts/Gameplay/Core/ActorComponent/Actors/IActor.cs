@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Inspirio.Core
+namespace Inspirio.Gameplay.Core
 {
     public interface IActor : IComponentsLocator
     {

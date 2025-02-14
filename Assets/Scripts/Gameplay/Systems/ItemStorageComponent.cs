@@ -1,5 +1,5 @@
-﻿using Inspirio.Core;
-using Inspirio.Gameplay.Actors;
+﻿using Inspirio.Gameplay.Actors;
+using Inspirio.Gameplay.Core;
 
 namespace Inspirio.Gameplay.Systems
 {

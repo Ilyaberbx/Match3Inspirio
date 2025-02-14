@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Inspirio.Core;
 using Inspirio.Gameplay.Actors;
+using Inspirio.Gameplay.Core;
 using UnityEngine;
 
 namespace Inspirio.Gameplay.Services.Factory

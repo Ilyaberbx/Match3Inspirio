@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace Inspirio.Core
+namespace Inspirio.Gameplay.Core
 {
     public abstract class PocoComponent : IComponent
     {

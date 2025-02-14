@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Inspirio.Persistence
+namespace Inspirio.Gameplay.Persistence
 {
     [Serializable]
     public sealed class LevelData

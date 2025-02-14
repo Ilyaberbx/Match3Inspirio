@@ -1,4 +1,4 @@
-﻿using Inspirio.Core;
+﻿using Inspirio.Gameplay.Core;
 
 namespace Inspirio.Gameplay.Systems
 {
