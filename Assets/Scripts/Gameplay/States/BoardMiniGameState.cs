@@ -17,7 +17,7 @@ namespace Inspirio.Gameplay.States
             _popupsService = ServiceLocator.Get<PopupsService>();
             _hudsService = ServiceLocator.Get<HudsService>();
 
-            await AddModuleAsync<InitializeBoardModule>();
+            await AddModuleAsync<GameBoardModule>();
             await AddModuleAsync<PauseModule>();
             await AddModuleAsync<ScoreModule>();
             await AddModuleAsync<GameExodusModule>();

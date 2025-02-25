@@ -6,16 +6,14 @@ namespace Inspirio.Utilities
 {
     public static class MatchUtility
     {
-        private const int MinSelectionCount = 2;
-        private const int MinPopCount = 3;
-
-        public static bool CanSwap(IReadOnlyList<ItemActor> selected) => selected.Count >= MinSelectionCount;
+        public static bool CanSwap(IReadOnlyList<ItemActor> selected) =>
+            selected.Count >= GameBoardConstants.MinSelectionCount;
 
         public static bool CanPop(TileActor[,] tiles)
         {
             var width = tiles.GetLength(0);
             var height = tiles.GetLength(1);
-            
+
             for (var x = 0; x < width; x++)
             {
                 for (var y = 0; y < height; y++)
@@ -23,7 +21,7 @@ namespace Inspirio.Utilities
                     var tile = tiles[x, y];
                     var connected = tile.GetConnected();
 
-                    if (connected.Count() >= MinPopCount)
+                    if (connected.Count() >= GameBoardConstants.MinPopCount)
                     {
                         return true;
                     }
@@ -77,7 +75,7 @@ namespace Inspirio.Utilities
                     var tile = tiles[x, y];
                     connected = tile.GetConnected();
 
-                    if (connected.Count() >= MinPopCount)
+                    if (connected.Count() >= GameBoardConstants.MinPopCount)
                     {
                         return true;
                     }

@@ -17,3 +17,4 @@ MonoBehaviour:
     _type: 0
   - _prefab: {fileID: 1392982352481523002, guid: 7c0b672a76ff89f4abc93fffcd3d2e4f, type: 3}
     _type: 1
+  _playDuration: 1

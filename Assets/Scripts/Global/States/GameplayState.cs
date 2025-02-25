@@ -4,8 +4,8 @@ using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
 using Inspirio.Gameplay.Services.StatesManagement;
 using Inspirio.Gameplay.States;
-using Inspirio.Global.Services.Loading;
 using Inspirio.Global.Services.StatesManagement;
+using Inspirio.UI.Services.Loading;
 
 namespace Inspirio.Global.States
 {

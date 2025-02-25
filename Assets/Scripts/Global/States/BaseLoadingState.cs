@@ -15,13 +15,8 @@ namespace Inspirio.Global.States
         public sealed override async Task EnterAsync(CancellationToken token)
         {
             await base.EnterAsync(token);
-
-            var sceneName = GetSceneName();
-            await SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-            var loadedScene = SceneManager.GetSceneByName(sceneName);
-            SceneManager.SetActiveScene(loadedScene);
-            _monoContext = Object.FindObjectOfType<MonoContextAdapter>();
-            await _monoContext.EnterAsync();
+            await LoadRequiredScene();
+            await InstallDependencies();
             await OnSceneLoaded();
         }
 
@@ -33,5 +28,19 @@ namespace Inspirio.Global.States
         }
 
         protected abstract Task OnSceneLoaded();
+
+        private async Task InstallDependencies()
+        {
+            _monoContext = Object.FindObjectOfType<MonoContextAdapter>();
+            await _monoContext.EnterAsync();
+        }
+
+        private async Task LoadRequiredScene()
+        {
+            var sceneName = GetSceneName();
+            await SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            var loadedScene = SceneManager.GetSceneByName(sceneName);
+            SceneManager.SetActiveScene(loadedScene);
+        }
     }
 }

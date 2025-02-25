@@ -10,6 +10,7 @@ using Inspirio.Gameplay.Services.Factory;
 using Inspirio.Gameplay.Services.Input;
 using Inspirio.Gameplay.Services.Level;
 using Inspirio.Gameplay.Services.StaticDataManagement;
+using Inspirio.Gameplay.StaticData;
 using Inspirio.Gameplay.Systems;
 using Inspirio.Utilities;
 using UnityEngine;
@@ -31,13 +32,12 @@ namespace Inspirio.Gameplay.Actors
         private SizeStorageComponent _sizeStorage;
         private GridStorageComponent _gridStorage;
         private TilesManagerComponent _tilesManager;
+        private MatchingConfiguration _matchingConfiguration;
 
         private int ItemsCount => _gameplayStaticDataService.GetItemsConfiguration().Items.Length;
 
-        protected override async Task OnInitializeAsync()
+        protected override Task OnInitializeAsync()
         {
-            await base.OnInitializeAsync();
-
             _gameplayFactoryService = ServiceLocator.Get<GameplayFactoryService>();
             _gameplayStaticDataService = ServiceLocator.Get<GameplayStaticDataService>();
             _inputService = ServiceLocator.Get<InputService>();
@@ -45,9 +45,10 @@ namespace Inspirio.Gameplay.Actors
             _tilesManager = GetComponent<TilesManagerComponent>();
             _sizeStorage = GetComponent<SizeStorageComponent>();
             _gridStorage = GetComponent<GridStorageComponent>();
+            _matchingConfiguration = _gameplayStaticDataService.GetMatchingConfiguration();
 
             InitializeRandom();
-            await InitializeBoardAsync();
+            return InitializeBoardAsync();
         }
 
         protected override void OnDispose()
@@ -153,9 +154,9 @@ namespace Inspirio.Gameplay.Actors
                 var newTile = GetTileOf(newItem);
                 var newTileTransform = newTile.transform;
                 var newItemShuffleTween =
-                    newItem.transform.DOMove(oldTileTransform.position, GameBoardConstants.TweenDuration);
+                    newItem.transform.DOMove(oldTileTransform.position, _matchingConfiguration.ShuffleDuration);
                 var oldItemShuffleTween =
-                    oldItem.transform.DOMove(newTileTransform.position, GameBoardConstants.TweenDuration);
+                    oldItem.transform.DOMove(newTileTransform.position, _matchingConfiguration.ShuffleDuration);
 
                 sequence.Join(newItemShuffleTween)
                     .Join(oldItemShuffleTween);
@@ -240,8 +241,13 @@ namespace Inspirio.Gameplay.Actors
         {
             while (true)
             {
+                var items = connected.Select(temp => temp.Item).ToList();
+                _levelService.FirePreMatch(_tilesManager.Tiles, connected);
+                await MatchItemsAsync(items);
                 _levelService.FirePreDeflate(_tilesManager.Tiles, connected);
-                await DeflateTilesAsync(connected);
+                await DeflateTilesAsync(items);
+                await RewriteTiles(connected);
+                _levelService.FirePostDeflate(_tilesManager.Tiles, connected);
                 _levelService.FireItemsPopped(connected.Select(t => t.Item));
                 await InflateTilesAsync(connected);
                 _levelService.FirePostInflate(_tilesManager.Tiles, connected);
@@ -263,17 +269,46 @@ namespace Inspirio.Gameplay.Actors
             }
         }
 
-        private async Task DeflateTilesAsync(IReadOnlyList<TileActor> tiles)
+        private async Task RewriteTiles(IReadOnlyList<TileActor> connected)
+        {
+            foreach (var tile in connected)
+            {
+                var item = await CreateItemAsync(tile.transform);
+                tile.SetItem(item);
+            }
+        }
+
+        private Task MatchItemsAsync(IReadOnlyList<ItemActor> items)
         {
             var sequence = DOTween
                 .Sequence()
                 .SetId(this);
 
-            var items = tiles.Select(temp => temp.Item).ToArray();
+            var matchScale = _matchingConfiguration.MatchScale;
+            var matchDuration = _matchingConfiguration.MatchDuration;
 
             foreach (var item in items)
             {
-                var tween = item.transform.DOScale(Vector3.zero, GameBoardConstants.TweenDuration);
+                var sourceScale = item.transform.localScale;
+                var deflateScale = sourceScale * matchScale;
+                var tween = item.transform.DOScale(deflateScale, matchDuration);
+                sequence.Join(tween);
+            }
+
+            return ValidateAndAwait(sequence);
+        }
+
+        private async Task DeflateTilesAsync(IReadOnlyList<ItemActor> items)
+        {
+            var sequence = DOTween
+                .Sequence()
+                .SetId(this);
+
+            var deflateDuration = _matchingConfiguration.DeflateDuration;
+
+            foreach (var item in items)
+            {
+                var tween = item.transform.DOScale(Vector3.zero, deflateDuration);
                 sequence.Join(tween);
             }
 
@@ -291,19 +326,25 @@ namespace Inspirio.Gameplay.Actors
             }
         }
 
+        private async Task<ItemActor> CreateItemAsync(Transform parent)
+        {
+            var item = await GetRandomItemAsync(parent);
+            item.OnSelected += OnItemSelected;
+            return item;
+        }
+
         private async Task InflateTilesAsync(IReadOnlyList<TileActor> tiles)
         {
             var sequence = DOTween
                 .Sequence()
                 .SetId(this);
 
+            var inflateDuration = _matchingConfiguration.InflateDuration;
+
             foreach (var tile in tiles)
             {
-                var item = await GetRandomItemAsync(tile.transform);
-                item.OnSelected += OnItemSelected;
-                tile.SetItem(item);
-
-                var tween = item.transform.DOScale(Vector3.zero, GameBoardConstants.TweenDuration).From();
+                var item = tile.Item;
+                var tween = item.transform.DOScale(Vector3.zero, inflateDuration).From();
                 sequence.Join(tween);
             }
 
@@ -316,11 +357,12 @@ namespace Inspirio.Gameplay.Actors
             var secondTransform = second.transform;
             var firstTile = GetTileOf(first);
             var secondTile = GetTileOf(second);
+            var swapDuration = _matchingConfiguration.SwapDuration;
 
             var firstTween = firstTransform
-                .DOMove(secondTile.transform.position, GameBoardConstants.TweenDuration);
+                .DOMove(secondTile.transform.position, swapDuration);
             var secondTween = secondTransform
-                .DOMove(firstTile.transform.position, GameBoardConstants.TweenDuration);
+                .DOMove(firstTile.transform.position, swapDuration);
 
             firstTransform.SetParent(transform);
             secondTransform.SetParent(transform);
@@ -344,6 +386,5 @@ namespace Inspirio.Gameplay.Actors
         }
 
         private TileActor GetTileOf(ItemActor item) => _tilesManager.GetTileOf(item);
-        public TileActor GetTileActor(int x, int y) => _tilesManager.GetTileActor(x, y);
     }
 }

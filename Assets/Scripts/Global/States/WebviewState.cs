@@ -2,12 +2,12 @@
 using System.Threading.Tasks;
 using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
-using Inspirio.Global.Services.Loading;
 using Inspirio.Global.Services.Persistence;
 using Inspirio.Global.Services.StatesManagement;
-using Inspirio.Global.Services.StaticData;
+using Inspirio.Global.Services.StaticDataManagement;
 using Inspirio.UI.Huds.Navigation;
 using Inspirio.UI.Services.Huds;
+using Inspirio.UI.Services.Loading;
 using Inspirio.Webview;
 
 namespace Inspirio.Global.States

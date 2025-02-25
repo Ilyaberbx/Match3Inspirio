@@ -42,14 +42,14 @@ namespace Inspirio.Gameplay.Modules
             _usedMoves++;
             var maxMoves = _levelsConfiguration.Moves;
             var movesLeft = maxMoves - _usedMoves;
-            var score = _scoreService.Score;
-            var minScoreToWin = _levelsConfiguration.ScoreForStars[0];
-            var maxScoreToWin = _levelsConfiguration.ScoreForStars[^1];
-            var stars = _levelsConfiguration.ScoreForStars.Count(scoreForStar => score >= scoreForStar);
+            var currentScore = _scoreService.Score;
+            var minScoreToWin = GetMinScoreToWin();
+            var maxScoreToWin = GetMaxScoreToWin();
+            var stars = _levelsConfiguration.ScoreForStars.Count(scoreForStar => currentScore >= scoreForStar);
 
             if (movesLeft > 0)
             {
-                if (score < maxScoreToWin)
+                if (currentScore < maxScoreToWin)
                 {
                     return;
                 }
@@ -60,7 +60,7 @@ namespace Inspirio.Gameplay.Modules
                 return;
             }
 
-            if (score >= minScoreToWin)
+            if (currentScore >= minScoreToWin)
             {
                 Win(stars);
                 return;
@@ -111,5 +111,8 @@ namespace Inspirio.Gameplay.Modules
                 _userService.LastLevelIndex.Value = nextLevel;
             }
         }
+
+        private int GetMinScoreToWin() => _levelsConfiguration.ScoreForStars[0];
+        private int GetMaxScoreToWin() => _levelsConfiguration.ScoreForStars[^1];
     }
 }

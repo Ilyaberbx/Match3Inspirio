@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 980552c8a7974eb99b7b1e4eba287045, type: 3}
-  m_Name: AppInitializationConfiguration
+  m_Script: {fileID: 11500000, guid: 05f86a5ba10b499689770343dad596dc, type: 3}
+  m_Name: LoadingConfiguration
   m_EditorClassIdentifier: 
-  _moderationMode: 0
-  _secondsToWaitBeforeLoading: 3
-  _targetFrameRate: 60
-  _webViewUrl: https://github.com/gree/unity-webview
+  _toggleCurtainDuration: 0.5

@@ -13,7 +13,9 @@ namespace Inspirio.Gameplay.Services.Level
         public event Action<int> OnLevelCompleted;
         public event Action<IEnumerable<ItemActor>> OnItemsPopped;
         public event Action<TileActor[,], IReadOnlyList<TileActor>> OnPreDeflate;
+        public event Action<TileActor[,], IReadOnlyList<TileActor>> OnPostDeflate;
         public event Action<TileActor[,], IReadOnlyList<TileActor>> OnPostInflate;
+        public event Action<TileActor[,], IReadOnlyList<TileActor>> OnPreMatch;
         public event Action OnMove;
         public int SelectedLevelIndex { get; private set; }
         protected override Task OnInitializeAsync(CancellationToken cancellationToken) => Task.CompletedTask;
@@ -23,8 +25,14 @@ namespace Inspirio.Gameplay.Services.Level
         public void FireSelectLevel(int index) => SelectedLevelIndex = index;
         public void FileLevelCompleted() => OnLevelCompleted?.Invoke(SelectedLevelIndex);
 
+        public void FirePreMatch(TileActor[,] tilesManagerTiles, IReadOnlyList<TileActor> connected) =>
+            OnPreMatch?.Invoke(tilesManagerTiles, connected);
+
         public void FirePreDeflate(TileActor[,] allTiles, IReadOnlyList<TileActor> connected) =>
             OnPreDeflate?.Invoke(allTiles, connected);
+
+        public void FirePostDeflate(TileActor[,] allTiles, IReadOnlyList<TileActor> connected) =>
+            OnPostDeflate?.Invoke(allTiles, connected);
 
         public void FirePostInflate(TileActor[,] allTiles, IReadOnlyList<TileActor> connected) =>
             OnPostInflate?.Invoke(allTiles, connected);

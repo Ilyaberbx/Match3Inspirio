@@ -11,5 +11,6 @@ namespace Inspirio.Gameplay.Services.StaticDataManagement
         LevelsConfiguration GetLevelConfiguration();
         UIWinConfiguration GetUIWinConfiguration();
         VfxConfiguration GetVfxConfiguration();
+        MatchingConfiguration GetMatchingConfiguration();
     }
 }

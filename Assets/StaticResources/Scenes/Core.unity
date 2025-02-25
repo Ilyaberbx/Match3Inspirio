@@ -692,14 +692,14 @@ MonoBehaviour:
         - rid: 9117324465804148737
         - rid: 9117324465804148738
         - rid: 9117324465804148739
-        - rid: 9117324465804148740
-        - rid: 9117324465804148741
+        - rid: 9117324726135422977
         - rid: 9117324465804148742
         - rid: 9117324465804148744
+        - rid: 9117324726135422978
         - rid: 9117324465804148745
         - rid: 9117324465804148747
         - rid: 9117324465804148743
-        - rid: 9117324465804148756
+        - rid: 9117324724290977792
     - rid: 9117324465804148737
       type: {class: ScreensService, ns: Inspirio.UI.Services.Screens, asm: Assembly-CSharp}
       data:
@@ -713,13 +713,6 @@ MonoBehaviour:
       type: {class: HudsService, ns: Inspirio.UI.Services.Huds, asm: Assembly-CSharp}
       data:
         _root: {fileID: 420250335}
-    - rid: 9117324465804148740
-      type: {class: AppStaticDataService, ns: Inspirio.Global.Services.StaticData, asm: Assembly-CSharp}
-      data:
-        _initializationConfiguration: {fileID: 11400000, guid: c3bfdb181e5ab4c4eafeb861c4419f9e, type: 2}
-    - rid: 9117324465804148741
-      type: {class: GameStatesService, ns: Inspirio.Global.Services.StatesManagement, asm: Assembly-CSharp}
-      data: 
     - rid: 9117324465804148742
       type: {class: OneSignalService, ns: Inspirio.Global.Services.PushMessages, asm: Assembly-CSharp}
       data:
@@ -739,13 +732,22 @@ MonoBehaviour:
         _itemsConfiguration: {fileID: 11400000, guid: b6405ee2e80f85445929c2b9d69e5475, type: 2}
         _uiWinConfiguration: {fileID: 11400000, guid: 6022ae5046d9b3e4aae45969a74058a7, type: 2}
         _vfxConfiguration: {fileID: 11400000, guid: 29c7cede5df87a647b5562e42b59a47f, type: 2}
+        _matchingConfiguration: {fileID: 11400000, guid: d99ad07b55fb10b4aa3dcb33d09a0b13, type: 2}
     - rid: 9117324465804148747
       type: {class: ResourcesAssetsService, ns: Inspirio.Global.Services.AssetsManagement, asm: Assembly-CSharp}
       data: 
-    - rid: 9117324465804148756
-      type: {class: LoadingService, ns: Inspirio.Global.Services.Loading, asm: Assembly-CSharp}
+    - rid: 9117324724290977792
+      type: {class: LoadingService, ns: Inspirio.UI.Services.Loading, asm: Assembly-CSharp}
       data:
         _loadingCurtainView: {fileID: 1838931543}
+    - rid: 9117324726135422977
+      type: {class: GameStatesService, ns: Inspirio.Global.Services.StatesManagement, asm: Assembly-CSharp}
+      data: 
+    - rid: 9117324726135422978
+      type: {class: AppStaticDataService, ns: Inspirio.Global.Services.StaticDataManagement, asm: Assembly-CSharp}
+      data:
+        _initializationConfiguration: {fileID: 11400000, guid: c3bfdb181e5ab4c4eafeb861c4419f9e, type: 2}
+        _loadingConfiguration: {fileID: 11400000, guid: 081eade012ec2ad4c92d6cf5542fe462, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

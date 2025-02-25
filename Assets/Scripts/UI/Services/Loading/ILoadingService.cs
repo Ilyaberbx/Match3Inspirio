@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Inspirio.Global.Services.Loading
+namespace Inspirio.UI.Services.Loading
 {
     public interface ILoadingService
     {

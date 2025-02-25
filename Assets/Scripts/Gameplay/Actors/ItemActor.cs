@@ -16,17 +16,15 @@ namespace Inspirio.Gameplay.Actors
         private ButtonListenerComponent _buttonListener;
         public int Index => _identifierStorage.Value;
 
-        protected override async Task OnInitializeAsync()
+        protected override Task OnInitializeAsync()
         {
-            await base.OnInitializeAsync();
-
             _spriteService = ServiceLocator.Get<SpriteService>();
             _identifierStorage = GetComponent<IdentifierStorageComponent>();
             _buttonListener = GetComponent<ButtonListenerComponent>();
-
             InitializeSprite();
 
             _buttonListener.OnClicked += OnButtonClicked;
+            return Task.CompletedTask;
         }
 
         protected override void OnDispose()

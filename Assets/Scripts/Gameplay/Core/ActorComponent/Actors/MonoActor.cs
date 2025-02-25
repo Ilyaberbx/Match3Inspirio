@@ -17,18 +17,28 @@ namespace Inspirio.Gameplay.Core
         public GameObject GameObject => _gameObject;
         public Transform Transform => _transform;
         public bool ActiveSelf => GameObject.activeSelf;
-        
+
         public async Task InitializeAsync(IComponentsLocator locator)
         {
             _componentsLocator = locator;
             InitializeMonoComponents();
             _components = _componentsLocator.GetAllComponents();
+            
+            var initializationTasks = new List<Task>();
 
             foreach (var component in _components)
             {
                 component.SetActor(this);
+                var initializationTask = component.InitializeAsync();
+                initializationTasks.Add(initializationTask);
             }
 
+            if (initializationTasks.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            await Task.WhenAll(initializationTasks);
             await OnInitializeAsync();
         }
 
@@ -60,23 +70,7 @@ namespace Inspirio.Gameplay.Core
         public bool TryRemoveComponent<TComponent>(TComponent component) where TComponent : IComponent =>
             _componentsLocator.TryRemoveComponent(component);
 
-        protected virtual async Task OnInitializeAsync()
-        {
-            var initializationTasks = new List<Task>();
-
-            foreach (var component in _components)
-            {
-                var initializationTask = component.InitializeAsync();
-                initializationTasks.Add(initializationTask);
-            }
-
-            if (initializationTasks.IsNullOrEmpty())
-            {
-                return;
-            }
-
-            await Task.WhenAll(initializationTasks);
-        }
+        protected virtual Task OnInitializeAsync() => Task.CompletedTask;
 
         protected virtual void OnDispose()
         {

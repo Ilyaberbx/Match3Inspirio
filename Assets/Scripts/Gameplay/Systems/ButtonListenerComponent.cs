@@ -16,13 +16,12 @@ namespace Inspirio.Gameplay.Systems
         [SerializeField] private Button _button;
         private InputService _inputService;
 
-        protected override async Task OnPostInitializeAsync(CancellationToken cancellationToken)
+        protected override Task OnPostInitializeAsync(CancellationToken cancellationToken)
         {
-            await base.OnPostInitializeAsync(cancellationToken);
-
             _inputService = ServiceLocator.Get<InputService>();
             _button.onClick.AddListener(OnButtonClicked);
             _inputService.OnLockChanged += OnLockChanged;
+            return Task.CompletedTask;
         }
 
         protected override void OnDispose()

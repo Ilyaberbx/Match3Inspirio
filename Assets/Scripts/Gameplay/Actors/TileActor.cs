@@ -25,10 +25,8 @@ namespace Inspirio.Gameplay.Actors
         private TileActor Top => _tilesManager.GetTileActor(_pointStorage.Point.x, _pointStorage.Point.y - 1);
         private TileActor Bottom => _tilesManager.GetTileActor(_pointStorage.Point.x, _pointStorage.Point.y + 1);
 
-        protected override async Task OnInitializeAsync()
+        protected override Task OnInitializeAsync()
         {
-            await base.OnInitializeAsync();
-
             _pointStorage = GetComponent<PointStorageComponent>();
             _imageStorage = GetComponent<ImageStorageComponent>();
             _itemStorage = GetComponent<ItemStorageComponent>();
@@ -36,6 +34,7 @@ namespace Inspirio.Gameplay.Actors
             _gameplayFactoryService = ServiceLocator.Get<GameplayFactoryService>();
 
             InitializeSprite();
+            return Task.CompletedTask;
         }
 
         protected override void OnDispose()

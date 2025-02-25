@@ -6,7 +6,7 @@ using Inspirio.Gameplay.Services.Level;
 
 namespace Inspirio.Gameplay.Modules
 {
-    public sealed class InitializeBoardModule : BaseGameplayModule
+    public sealed class GameBoardModule : BaseGameplayModule
     {
         private IGameplayFactoryService _gameplayFactoryService;
         private ILevelService _levelService;

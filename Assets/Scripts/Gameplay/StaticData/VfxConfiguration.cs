@@ -6,7 +6,8 @@ namespace Inspirio.Gameplay.StaticData
     public sealed class VfxConfiguration : ScriptableObject
     {
         [SerializeField] private VfxData[] _vfx;
-
+        [SerializeField] private float _playDuration;
         public VfxData[] Vfx => _vfx;
+        public float PlayDuration => _playDuration;
     }
 }
