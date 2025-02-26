@@ -24,7 +24,7 @@ MonoBehaviour:
   - _itemsCount: 6
     _scoreCount: 700
   _scoreForStars: dc0500008c0a000070170000
-  _moves: 21
+  _moves: 30
   _scorePerMoveLeft: 100
   _boardConfigurations:
   - {fileID: 11400000, guid: 0da08f395f2dd924dae5ae75104dc1f8, type: 2}
