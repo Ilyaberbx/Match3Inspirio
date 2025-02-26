@@ -1,12 +1,12 @@
 ﻿using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
+using Inspirio.Gameplay.Data.Static;
 using Inspirio.Gameplay.Services.Level;
 using Inspirio.Gameplay.Services.Score;
 using Inspirio.Gameplay.Services.StatesManagement;
 using Inspirio.Gameplay.Services.StaticDataManagement;
 using Inspirio.Gameplay.States;
-using Inspirio.Gameplay.StaticData;
-using Inspirio.UI.MVC;
+using Inspirio.UI.Core;
 using UnityEngine;
 
 namespace Inspirio.UI.Popups.LevelWin

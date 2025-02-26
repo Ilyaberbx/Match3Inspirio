@@ -1,5 +1,5 @@
 ﻿using System;
-using Inspirio.UI.MVC;
+using Inspirio.UI.Core;
 
 namespace Inspirio.UI.Huds.Score
 {

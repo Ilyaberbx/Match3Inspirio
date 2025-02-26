@@ -21,31 +21,37 @@ namespace Inspirio.Global.States
         private IUserService _userService;
         private ILoadingService _loadingService;
         private bool _urlSuccessfullyLoaded;
+
         protected override string GetSceneName() => SceneConstants.Webview;
+
         private string WebViewUrlFromConfig => _appStaticDataService.GetAppInitializationConfiguration().WebViewUrl;
 
         protected override async Task OnSceneLoaded()
         {
-            _webViewService = ServiceLocator.Get<WebViewService>();
-            _hudsService = ServiceLocator.Get<HudsService>();
-            _appStaticDataService = ServiceLocator.Get<AppStaticDataService>();
-            _userService = ServiceLocator.Get<UserService>();
-            _loadingService = ServiceLocator.Get<LoadingService>();
+            InitializeServices();
             await LoadUrl();
 
             if (_urlSuccessfullyLoaded)
             {
                 ShowNavigationBar().Forget();
+                await Task.Delay(MillisecondsToWaitLoading);
+                await _loadingService.HideCurtainAsync();
             }
-
-            await Task.Delay(MillisecondsToWaitLoading);
-            await _loadingService.HideCurtainAsync();
         }
 
         public override async Task ExitAsync(CancellationToken token)
         {
             await base.ExitAsync(token);
             _hudsService.HideAll();
+        }
+
+        private void InitializeServices()
+        {
+            _webViewService = ServiceLocator.Get<WebViewService>();
+            _hudsService = ServiceLocator.Get<HudsService>();
+            _appStaticDataService = ServiceLocator.Get<AppStaticDataService>();
+            _userService = ServiceLocator.Get<UserService>();
+            _loadingService = ServiceLocator.Get<LoadingService>();
         }
 
         private async Task LoadUrl()

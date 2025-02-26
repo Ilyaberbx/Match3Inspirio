@@ -1,7 +1,7 @@
 ﻿using Better.Locators.Runtime;
 using Inspirio.Global.Services.StatesManagement;
 using Inspirio.Global.States;
-using Inspirio.UI.MVC;
+using Inspirio.UI.Core;
 using Inspirio.Webview;
 
 namespace Inspirio.UI.Huds.Navigation

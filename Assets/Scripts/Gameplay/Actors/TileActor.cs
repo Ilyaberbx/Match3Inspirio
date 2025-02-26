@@ -13,17 +13,17 @@ namespace Inspirio.Gameplay.Actors
     {
         private ISpriteService _spriteService;
         private IGameplayFactoryService _gameplayFactoryService;
+        private ITilesLocator _tilesLocator;
         private PointStorageComponent _pointStorage;
         private ImageStorageComponent _imageStorage;
         private ItemStorageComponent _itemStorage;
         private TileActor[] _neighbors;
-        private ITilesManager _tilesManager;
 
         public ItemActor Item => _itemStorage.Item;
-        private TileActor Left => _tilesManager.GetTileActor(_pointStorage.Point.x - 1, _pointStorage.Point.y);
-        private TileActor Right => _tilesManager.GetTileActor(_pointStorage.Point.x + 1, _pointStorage.Point.y);
-        private TileActor Top => _tilesManager.GetTileActor(_pointStorage.Point.x, _pointStorage.Point.y - 1);
-        private TileActor Bottom => _tilesManager.GetTileActor(_pointStorage.Point.x, _pointStorage.Point.y + 1);
+        private TileActor Left => _tilesLocator.GetTileActor(_pointStorage.Point.x - 1, _pointStorage.Point.y);
+        private TileActor Right => _tilesLocator.GetTileActor(_pointStorage.Point.x + 1, _pointStorage.Point.y);
+        private TileActor Top => _tilesLocator.GetTileActor(_pointStorage.Point.x, _pointStorage.Point.y - 1);
+        private TileActor Bottom => _tilesLocator.GetTileActor(_pointStorage.Point.x, _pointStorage.Point.y + 1);
 
         protected override Task OnInitializeAsync()
         {
@@ -46,9 +46,9 @@ namespace Inspirio.Gameplay.Actors
             _gameplayFactoryService.Dispose(Item);
         }
 
-        public void SetManager(ITilesManager tilesManager)
+        public void SetManager(ITilesLocator tilesLocator)
         {
-            _tilesManager = tilesManager;
+            _tilesLocator = tilesLocator;
             _neighbors = new[]
             {
                 Left,

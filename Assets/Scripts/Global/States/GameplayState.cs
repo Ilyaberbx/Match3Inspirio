@@ -1,6 +1,5 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
 using Inspirio.Gameplay.Services.StatesManagement;
 using Inspirio.Gameplay.States;
@@ -11,24 +10,33 @@ namespace Inspirio.Global.States
 {
     public sealed class GameplayState : BaseLoadingState
     {
-        protected override string GetSceneName() => SceneConstants.Gameplay;
-
         private IGameplayStatesService _gameplayStatesService;
         private ILoadingService _loadingService;
 
         protected override async Task OnSceneLoaded()
         {
+            InitializeServices();
+            await TransitionToMainMenuAsync();
+        }
+
+        public override Task ExitAsync(CancellationToken token)
+        {
+            _gameplayStatesService.Dispose();
+            return Task.CompletedTask;
+        }
+
+        private void InitializeServices()
+        {
             _gameplayStatesService = ServiceLocator.Get<GameplayStatesService>();
             _loadingService = ServiceLocator.Get<LoadingService>();
+        }
+
+        private async Task TransitionToMainMenuAsync()
+        {
             await _gameplayStatesService.ChangeStateAsync<MainMenuState>();
             await _loadingService.HideCurtainAsync();
         }
 
-        public override async Task ExitAsync(CancellationToken token)
-        {
-            await base.ExitAsync(token);
-
-            _gameplayStatesService.Dispose();
-        }
+        protected override string GetSceneName() => SceneConstants.Gameplay;
     }
 }

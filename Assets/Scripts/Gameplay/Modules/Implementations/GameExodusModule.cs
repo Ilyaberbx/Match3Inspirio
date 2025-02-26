@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
+using Inspirio.Gameplay.Data.Static;
 using Inspirio.Gameplay.Services.Level;
 using Inspirio.Gameplay.Services.Score;
 using Inspirio.Gameplay.Services.StaticDataManagement;
-using Inspirio.Gameplay.StaticData;
 using Inspirio.Global.Services.Persistence;
 using Inspirio.UI.Popups.LevelLose;
 using Inspirio.UI.Popups.LevelWin;

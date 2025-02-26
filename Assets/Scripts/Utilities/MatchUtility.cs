@@ -9,7 +9,7 @@ namespace Inspirio.Utilities
         public static bool CanSwap(IReadOnlyList<ItemActor> selected) =>
             selected.Count >= GameBoardConstants.MinSelectionCount;
 
-        public static bool CanPop(TileActor[,] tiles)
+        public static bool CanMatch(TileActor[,] tiles)
         {
             var width = tiles.GetLength(0);
             var height = tiles.GetLength(1);
@@ -57,7 +57,7 @@ namespace Inspirio.Utilities
             tiles[x1, y1].SetItem(tiles[x2, y2].Item);
             tiles[x2, y2].SetItem(temp);
 
-            var hasMatch = TryGetTilesToPop(tiles, out _);
+            var hasMatch = TryGetTilesToMatch(tiles, out _);
 
             temp = tiles[x1, y1].Item;
             tiles[x1, y1].SetItem(tiles[x2, y2].Item);
@@ -66,7 +66,7 @@ namespace Inspirio.Utilities
             return hasMatch;
         }
 
-        public static bool TryGetTilesToPop(TileActor[,] tiles, out IReadOnlyList<TileActor> connected)
+        public static bool TryGetTilesToMatch(TileActor[,] tiles, out IReadOnlyList<TileActor> connected)
         {
             for (var x = 0; x < tiles.GetLength(0); x++)
             {

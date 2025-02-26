@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Better.Commons.Runtime.DataStructures.Properties;
-using Inspirio.Gameplay.Persistence;
-using Inspirio.UI.MVC;
+using Inspirio.Gameplay.Data.Persistent;
+using Inspirio.UI.Core;
 
 namespace Inspirio.UI.Screens.RoadMap
 {

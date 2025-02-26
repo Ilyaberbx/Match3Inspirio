@@ -7,7 +7,7 @@ using Better.Saves.Runtime;
 using Better.Saves.Runtime.Data;
 using Better.Saves.Runtime.Interfaces;
 using Better.Services.Runtime;
-using Inspirio.Gameplay.Persistence;
+using Inspirio.Gameplay.Data.Persistent;
 using Inspirio.Gameplay.Services.StaticDataManagement;
 
 namespace Inspirio.Global.Services.Persistence

@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Inspirio.Gameplay.Actors;
+using Inspirio.Gameplay.Actors.GameBoard;
 using Inspirio.Gameplay.Core;
 using UnityEngine;
 

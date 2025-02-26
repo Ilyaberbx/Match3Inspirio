@@ -11,8 +11,7 @@ namespace Inspirio.Gameplay.Services.Level
     public sealed class LevelService : PocoService, ILevelService
     {
         public event Action<int> OnLevelCompleted;
-        public event Action<IEnumerable<ItemActor>> OnItemsPopped;
-        public event Action<TileActor[,], IReadOnlyList<TileActor>> OnPreDeflate;
+        public event Action<TileActor[,], IReadOnlyList<TileActor>> OnPostMatch;
         public event Action<TileActor[,], IReadOnlyList<TileActor>> OnPostDeflate;
         public event Action<TileActor[,], IReadOnlyList<TileActor>> OnPostInflate;
         public event Action<TileActor[,], IReadOnlyList<TileActor>> OnPreMatch;
@@ -20,7 +19,6 @@ namespace Inspirio.Gameplay.Services.Level
         public int SelectedLevelIndex { get; private set; }
         protected override Task OnInitializeAsync(CancellationToken cancellationToken) => Task.CompletedTask;
         protected override Task OnPostInitializeAsync(CancellationToken cancellationToken) => Task.CompletedTask;
-        public void FireItemsPopped(IEnumerable<ItemActor> items) => OnItemsPopped?.Invoke(items);
         public void FireMove() => OnMove?.Invoke();
         public void FireSelectLevel(int index) => SelectedLevelIndex = index;
         public void FileLevelCompleted() => OnLevelCompleted?.Invoke(SelectedLevelIndex);
@@ -28,8 +26,8 @@ namespace Inspirio.Gameplay.Services.Level
         public void FirePreMatch(TileActor[,] tilesManagerTiles, IReadOnlyList<TileActor> connected) =>
             OnPreMatch?.Invoke(tilesManagerTiles, connected);
 
-        public void FirePreDeflate(TileActor[,] allTiles, IReadOnlyList<TileActor> connected) =>
-            OnPreDeflate?.Invoke(allTiles, connected);
+        public void FirePostMatch(TileActor[,] allTiles, IReadOnlyList<TileActor> connected) =>
+            OnPostMatch?.Invoke(allTiles, connected);
 
         public void FirePostDeflate(TileActor[,] allTiles, IReadOnlyList<TileActor> connected) =>
             OnPostDeflate?.Invoke(allTiles, connected);

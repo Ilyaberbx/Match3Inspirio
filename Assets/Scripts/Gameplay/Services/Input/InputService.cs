@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Better.Services.Runtime;
-using UnityEngine;
 
 namespace Inspirio.Gameplay.Services.Input
 {
@@ -13,19 +12,16 @@ namespace Inspirio.Gameplay.Services.Input
         protected override Task OnPostInitializeAsync(CancellationToken cancellationToken) => Task.CompletedTask;
         public event Action<bool> OnLockChanged;
         public bool IsLocked { get; private set; }
-        private int _lockRequests;
 
         public void Lock()
         {
-            _lockRequests++;
-            IsLocked = _lockRequests >= 0;
+            IsLocked = true;
             OnLockChanged?.Invoke(IsLocked);
         }
 
         public void Unlock()
         {
-            _lockRequests = Mathf.Clamp(_lockRequests--, 0, int.MaxValue);
-            IsLocked = _lockRequests == 0;
+            IsLocked = false;
             OnLockChanged?.Invoke(IsLocked);
         }
     }

@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Inspirio.UI.MVC;
+using Inspirio.UI.Core;
 
 namespace Inspirio.UI.Services.Screens
 {

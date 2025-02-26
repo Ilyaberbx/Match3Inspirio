@@ -1,6 +1,6 @@
 ﻿using Better.Locators.Runtime;
 using Inspirio.Gameplay.Services.Pause;
-using Inspirio.UI.MVC;
+using Inspirio.UI.Core;
 using Inspirio.UI.Services.Popups;
 
 namespace Inspirio.UI.Popups.Pause

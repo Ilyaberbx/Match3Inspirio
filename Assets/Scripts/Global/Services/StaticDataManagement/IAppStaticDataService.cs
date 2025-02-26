@@ -1,4 +1,4 @@
-﻿using Inspirio.Global.StaticData;
+﻿using Inspirio.Global.Data.Static;
 
 namespace Inspirio.Global.Services.StaticDataManagement
 {

@@ -3,8 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Better.Locators.Runtime;
 using Better.Services.Runtime;
+using Inspirio.Global.Data.Static;
 using Inspirio.Global.Services.StaticDataManagement;
-using Inspirio.Global.StaticData;
 using Inspirio.UI.ViewComponents;
 using UnityEngine;
 

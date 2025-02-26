@@ -1,8 +1,8 @@
 ﻿using Better.Locators.Runtime;
+using Inspirio.Gameplay.Data.Static;
 using Inspirio.Gameplay.Services.Score;
 using Inspirio.Gameplay.Services.StaticDataManagement;
-using Inspirio.Gameplay.StaticData;
-using Inspirio.UI.MVC;
+using Inspirio.UI.Core;
 
 namespace Inspirio.UI.Huds.Score
 {

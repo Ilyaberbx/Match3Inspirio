@@ -1,5 +1,5 @@
 ﻿using Better.Commons.Runtime.DataStructures.Properties;
-using Inspirio.UI.MVC;
+using Inspirio.UI.Core;
 using UnityEngine;
 
 namespace Inspirio.UI.Popups.LevelWin

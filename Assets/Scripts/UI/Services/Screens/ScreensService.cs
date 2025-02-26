@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Better.Locators.Runtime;
 using Better.Services.Runtime;
 using Inspirio.Global.Services.AssetsManagement;
-using Inspirio.UI.MVC;
+using Inspirio.UI.Core;
 using UnityEngine;
 using Object = UnityEngine.Object;
 

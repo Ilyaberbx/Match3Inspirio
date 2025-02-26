@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Better.Services.Runtime;
-using Inspirio.Global.StaticData;
+using Inspirio.Global.Data.Static;
 using UnityEngine;
 
 namespace Inspirio.Global.Services.StaticDataManagement

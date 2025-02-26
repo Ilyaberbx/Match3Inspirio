@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
 using Better.Commons.Runtime.Extensions;
 using Better.Locators.Runtime;
-using Inspirio.Gameplay.Persistence;
+using Inspirio.Gameplay.Data.Persistent;
 using Inspirio.Gameplay.Services.Level;
 using Inspirio.Gameplay.Services.StatesManagement;
 using Inspirio.Gameplay.States;
 using Inspirio.Global.Services.Persistence;
-using Inspirio.UI.MVC;
+using Inspirio.UI.Core;
 using Inspirio.UI.Services.Popups;
+using Inspirio.UI.Utilities;
 
 namespace Inspirio.UI.Popups.LevelStart
 {
     public sealed class LevelStartPopupController : BaseController<LevelStartPopupModel, LevelStartPopupView>
     {
-        private const string LevelFormat = "Level {0}";
         private IGameplayStatesService _gameplayStatesService;
         private ILevelService _levelService;
         private IPopupsService _popupsService;
@@ -63,8 +63,7 @@ namespace Inspirio.UI.Popups.LevelStart
 
         private void OnLevelIndexChanged(int levelIndex)
         {
-            var level = levelIndex + 1;
-            var levelText = string.Format(LevelFormat, level);
+            var levelText = LevelsUIUtility.GetLevelText(levelIndex);
             View.SetLevelText(levelText);
         }
 

@@ -13,7 +13,7 @@ namespace Inspirio
         private void Start()
         {
             _gameStatesService = ServiceLocator.Get<GameStatesService>();
-            _gameStatesService.ChangeStateAsync<GameInitializationState>().Forget();
+            _gameStatesService.ChangeStateAsync<AppInitializationState>().Forget();
         }
 
         private void OnDestroy()

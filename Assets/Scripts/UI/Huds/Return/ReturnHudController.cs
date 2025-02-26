@@ -2,7 +2,7 @@
 using Better.Locators.Runtime;
 using Inspirio.Gameplay.Services.StatesManagement;
 using Inspirio.Gameplay.States;
-using Inspirio.UI.MVC;
+using Inspirio.UI.Core;
 
 namespace Inspirio.UI.Huds.Return
 {

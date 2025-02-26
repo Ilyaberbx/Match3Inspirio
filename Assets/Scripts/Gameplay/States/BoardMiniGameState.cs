@@ -14,9 +14,7 @@ namespace Inspirio.Gameplay.States
 
         public override async Task EnterAsync(CancellationToken token)
         {
-            _popupsService = ServiceLocator.Get<PopupsService>();
-            _hudsService = ServiceLocator.Get<HudsService>();
-
+            InitializeServices();
             await AddModuleAsync<GameBoardModule>();
             await AddModuleAsync<PauseModule>();
             await AddModuleAsync<ScoreModule>();
@@ -24,6 +22,12 @@ namespace Inspirio.Gameplay.States
             await AddModuleAsync<ReturnModule>();
             await AddModuleAsync<EffectsModule>();
             await AddModuleAsync<AnalyticsModule>();
+        }
+
+        private void InitializeServices()
+        {
+            _popupsService = ServiceLocator.Get<PopupsService>();
+            _hudsService = ServiceLocator.Get<HudsService>();
         }
 
         public override Task ExitAsync(CancellationToken token)

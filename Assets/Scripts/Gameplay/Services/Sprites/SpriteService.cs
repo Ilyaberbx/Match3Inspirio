@@ -3,8 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Better.Locators.Runtime;
 using Better.Services.Runtime;
+using Inspirio.Gameplay.Data.Static;
 using Inspirio.Gameplay.Services.StaticDataManagement;
-using Inspirio.Gameplay.StaticData;
 using UnityEngine;
 
 namespace Inspirio.Gameplay.Services.Sprites
@@ -19,18 +19,19 @@ namespace Inspirio.Gameplay.Services.Sprites
 
         protected override Task OnPostInitializeAsync(CancellationToken cancellationToken)
         {
-            _gameplayConfigurationService = ServiceLocator.Get<GameplayStaticDataService>();
-            _tilesConfiguration = _gameplayConfigurationService.GetTilesConfiguration();
+            InitializeServices();
+            LoadTileConfiguration();
             return Task.CompletedTask;
         }
 
+        private void InitializeServices() => _gameplayConfigurationService = ServiceLocator.Get<GameplayStaticDataService>();
+        private void LoadTileConfiguration() => _tilesConfiguration = _gameplayConfigurationService.GetTilesConfiguration();
+        private static bool IsEven(int value) => value % 2 == 0;
         public Sprite GetTileSprite(Vector2Int point)
         {
             var value = Mathf.Abs(point.x + point.y);
-            var isEven = value % 2 == 0;
-            return isEven ? _tilesConfiguration.EvenSprite : _tilesConfiguration.OddSprite;
+            return IsEven(value) ? _tilesConfiguration.EvenSprite : _tilesConfiguration.OddSprite;
         }
-
         public Sprite GetItemSprite(int id) => _gameplayConfigurationService.GetItemConfiguration(id).Sprite;
     }
 }

@@ -5,6 +5,7 @@ using Better.Locators.Runtime;
 using Better.Services.Runtime;
 using DG.Tweening;
 using Inspirio.Gameplay.Actors;
+using Inspirio.Gameplay.Actors.GameBoard;
 using Inspirio.Gameplay.Core;
 using Inspirio.Gameplay.Services.StaticDataManagement;
 using Inspirio.Gameplay.Systems;
@@ -34,7 +35,7 @@ namespace Inspirio.Gameplay.Services.Factory
             var builder = MonoActorUtility.GetBuilder<GameBoardActor>();
             var sizeStorage = new SizeStorageComponent();
             var idStorage = new IdentifierStorageComponent();
-            var tilesStorage = new TilesManagerComponent();
+            var tilesStorage = new TilesLocatorComponent();
 
             idStorage.Setup(index);
             sizeStorage.Setup(GameBoardConstants.Width, GameBoardConstants.Height);

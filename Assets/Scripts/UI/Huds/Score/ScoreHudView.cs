@@ -1,4 +1,4 @@
-﻿using Inspirio.UI.MVC;
+﻿using Inspirio.UI.Core;
 using Inspirio.UI.ViewComponents;
 using UnityEngine;
 using UnityEngine.UI;

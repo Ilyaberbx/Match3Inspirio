@@ -17,14 +17,14 @@ namespace Inspirio.Gameplay.Services.StatesManagement
         protected override Task OnInitializeAsync(CancellationToken cancellationToken)
         {
             _stateMachine = new StateMachine<BaseGameplayState>();
-            _stateMachine.AddModule(new LoggerModule<BaseGameplayState>());
-            _stateMachine.Run();
             _tokenSource = new CancellationTokenSource();
             return Task.CompletedTask;
         }
 
         protected override Task OnPostInitializeAsync(CancellationToken cancellationToken)
         {
+            _stateMachine.AddModule(new LoggerModule<BaseGameplayState>());
+            _stateMachine.Run();
             return Task.CompletedTask;
         }
 

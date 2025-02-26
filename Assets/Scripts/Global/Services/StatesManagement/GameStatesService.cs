@@ -34,6 +34,9 @@ namespace Inspirio.Global.Services.StatesManagement
             return _stateMachine.ChangeStateAsync(state, _tokenSource.Token);
         }
 
+        public Task ChangeStateAsync<TState>(TState state) where TState : BaseGameState =>
+            _stateMachine.ChangeStateAsync(state, _tokenSource.Token);
+
         public void Dispose()
         {
             _tokenSource?.Dispose();
