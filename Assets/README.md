@@ -5,13 +5,15 @@ This project provides simple match3 game integrated with WebView
 
 ## Installation
 
-No additional installs needed after project cloned# Documentation
+No additional installs needed after project cloned
+
+### Documentation
 
 ## App Initialization
 The project uses `AppInitialization.cs` for initialization. This configuration comes from the client:
 ```
 Assets/Resources/Configs/AppInitializationConfiguration.asset
-```
+```https://github.com/Ilyaberbx/Match3Inspirio/blob/main/Assets/README.md
 It can be replaced by a server-side implementation if needed.
 
 ## Gameplay Configuration
